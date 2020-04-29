@@ -1,0 +1,273 @@
+ZPRED v1.0.0 (Daniel R. Grisham Oct. 2018)
+
+ZPRED computes the zeta potential of a molecular structure given the solution
+conditions as input.  This is accomplished by modeling an electric double layer
+over the structure and capturing the electric potenitals at the solvation edge
+of the molecule.
+
+############################################################################
+## LICENSE:
+############################################################################
+
+In a nutshell:  
+     - ZPRED is free for academic use, for commercial use please contact me. 
+    (molecularcollisions@gmail.com)
+
+THIS IS WHAT YOU AGREED TO BY DOWNLOADING THE SOFTWARE:
+
+1) The program (ZPRED) received by you will be used only for scientific
+   research. This license is issued to you as an individual.
+
+2. WE REQUEST THAT YOU AGREE TO ACKNOWLEDGE THE USE OF THE ZPRED SOFTWARE THAT
+   RESULTS IN ANY PUBLISHED WORK, INCLUDING SCIENTIFIC PAPERS, FILMS AND
+   VIDEOTAPES BY CITING THE FOLLOWING REFERENCE:
+
+   [INSERT CITATION]
+
+3. You will not sell or otherwise transfer these programs or derivatives to
+   any other party, whether with or without consideration, for any purpose.
+
+4. You will not obtain, and will not attempt to obtain copyright coverage
+   thereon without the express purpose written consent of The Nanda Lab.
+
+5. You will hold harmless from all or any expenses you may incur as a result
+   of or arising from your use, direct or indirect, of these materials.  You
+   understand that no other right or license to this program or its derivatives
+   is granted or implied as a result of our transmission of same to you.
+
+############################################################################
+## REPORTING PROBLEMS AND ASKING QUESTIONS
+############################################################################
+
+Please send questions and report bugs to the ZPRED mailing list:
+	molecularcollisions@gmail.com
+
+############################################################################
+## INSTALLATION:
+############################################################################
+
+Due to the multiple software components required to run ZPRED, it is essential
+to execute the following procedure.
+
+• Open a terminal (Ctrl+Alt+T)
+• Go to the downloaded ZPRED folder file location (using cd)
+• Give executable permission to the shell script, "Compile_and_Run.sh" (chmod +x Compile_and_Run.sh)
+• Run the shell script in the terminal (./Compile_and_Run.sh)
+-- this will install the user interface, which will help guide you through the rest of installation
+
+After running the shell script, the ZPRED user interface should appear.
+
+On the right hand side, navigate to the "Program File Paths" Panel
+For each software component, there will be an "Installation" button
+that provides details for its installation.  Additionally, a brief
+description is provided below for each component.
+• • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • 
+• • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • 
+Adaptive Poisson-Boltzmann Solver (APBS) v1.5
+
+• Download APBS 1.5 from the link:
+https://sourceforge.net/projects/apbs/files/apbs/apbs-1.5/APBS-1.5-linux64.tar.gz
+
+• After downloading the compressed APBS package, decompress it using the following
+command in a terminal:
+tar xzf APBS-1.5-linux64.tar.gz --strip-components 1 -C /usr/local
+
+• Install a necessary library:
+sudo apt-get install libgfortran3
+
+• Correct a possible linking error with libreadline.so.6:
+cd /lib/x86_64-linux-gnu
+sudo ln -s libreadline.so.7 libreadline.so.6
+
+• Decompress the downloaded APBS package to a known location in order to locate
+the following executable binaries:
+APBS-1.5-linux64/bin/apbs
+APBS-1.5-linux64/share/apbs/tools/bin/multivalue
+• • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • 
+• • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • 
+Micheal Sanners Molecular Surface (MSMS) v2.6.1
+
+• Download MSMS 2.6.1 from the link:
+http://mgltools.scripps.edu/downloads/tars/releases/MSMSRELEASE/REL2.6.1/msms_i86Linux2_2.6.1.tar.gz
+
+• After downloading the compressed MSMS package, decompress it, and the following
+files should be ready:
+msms.i86Linux2.2.6.1 (MSMS executable)
+atmtypenumbers
+pdb_to_xyzr
+pdb_to_xyzrn
+• • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • 
+• • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • 
+PDB2PQR v1.8
+
+• Download PDB2PQR 1.8 (includes PROPKA 3.0) from the link:
+https://sourceforge.net/projects/pdb2pqr/files/pdb2pqr/pdb2pqr-1.8/pdb2pqr-1.8.tar.gz
+
+• Python and Numpy should be installed with the terminal commands below:
+sudo apt-get install python-dev
+sudo apt-get install python-pip
+pip install --upgrade pip
+sudo pip install numpy scipy
+
+• When configuring PDB2PQR, configure without pdb2pka using the following command:
+./configure --disable-pdb2pka
+sudo make
+sudo make install
+
+• After installation, the following python file should be ready:
+main.py
+• • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • 
+• • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • 
+HullRad
+
+• Python code is already included in the ZPRED package and automatically
+unpacks itself at run-time (see Files/editedHullRad.py computation file)
+
+• Note: Python2.7 is required to run this software
+• • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • 
+• • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • 
+HYDROPRO v10
+
+• This hydrodynamics software is optional and was found to perform poorly relative
+to HullRad.  However, it is included for those who wish to compare the two
+softwares in computing hydrodynamic properties (e.g. translational diffusivity)
+
+• Download HYDROPRO 10 from the link:
+http://leonardo.inf.um.es/macromol/programs/hydropro/hydropro10.zip
+
+• After downloading the compressed HYDROPRO package, decompress it, and the
+HYDROPRO executable file (below) should be ready:
+hydropro10-lnx.exe
+• • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • 
+• • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • 
+ZPRED Driver Software
+
+• ZPRED C++ source code is already included in the initial download containing the
+user interface.  It can be located in Software/ZPRED/C++/ along with the shell script,
+"CompileZPRED.sh".  To compile the code, the following dependecies must be installed
+first:
+
+• Boost system and filesystem libraries can be obtained with the terminal command:
+sudo apt-get install libboost-all-dev
+
+• The C++ compiler, g++, can be obtained with the terminal command:
+sudo apt-get install g++
+
+• OpenSSL Crypto library can be obtained with the terminal command:
+sudo apt-get install libssl-dev
+
+• POSIX Pthread library can be obtained with the terminal command:
+sudo apt-get install libpthread-stubs0-dev
+
+• Compile the ZPRED executable (ZPRED.exe) using the included shell script,
+"CompileZPRED.sh"
+• • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • 
+• • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • 
+Once all components have been successfully installed, you are ready to
+run ZPRED.  For details on running ZPRED, see the usage section below.
+
+############################################################################
+## USAGE:
+############################################################################
+
+ZPRED is a driver program in that it automates the use of the above
+mentioned software components to compute the electrokinetic (or zeta) potential
+of a macromolecule.  Thus, successful implementation of ZPRED requires
+that all software components are installed correctly.
+
+To use ZPRED, it is necessary to specify solution conditions (solvent, temperature,
+ion concentrations, etc.) along with providing a structure or ensemble of structures.
+Together this information is used to model the collection of solvation layers 
+around the molecule (i.e. the electric double layer) and capture the average
+electric potential at the molecule's predicted solvation edge.
+
+All required input is highlighted red and turns black once a value is provided.
+
+A new job name (described below) should be specified for each ZPRED computation.
+A new folder will be generated with this job name, which will store all files
+used during the computation. Each ZPRED computation can contain multiple solution
+conditions and multiple structure files (ZPRED treats multiple files as an ensemble
+of structures representing a single molecule in solution). Two types of output
+files are generated following ZPRED computation:
+(i) concise view:
+• located in generated folder and named <Job Name>.txt
+• provides solution properties used during computation
+• provides output table with pertinent values (solvation layer thickness, zeta potential, diffusivity)
+• also, results from three different generalized electrokinetic models provide electrophoretic mobility values that can be compared with experimental values determined by free electrophoresis:
+(1) Standard Electrokinetic Model (SEM)
+(2) Henry Model (recommended for dilute protein solutions)
+(3) Kuwabara Model
+• if selected (see below for details), contains the generated average electric potential profile
+
+(ii) detailed view:
+• located in /Files/Z/ folder and named based on the structure file and solution condition used during computation
+• contains everything in the concise view plus more!
+• shape assessment (is molecule cylindrical or spherical?)
+• electrophoretic effects assessment
+
+• • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • 
+• • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • 
+|-PROGRAM FILE PATHS-|
+• Auto-Fill Button <- appears after selecting software component file paths for the first time
+APBS
+• apbs TextInput <- APBS executable (located in bin/)
+• multivalue TextInput <- APBS Tool, multivalue, executable (located in share/apbs/tools/bin/)
+HYDROPRO (Optional)
+• hydropro-lnx.exe TextInput <- HYDROPRO executable (hydropro-lnx.exe)
+MSMS
+• msms TextInput <- MSMS executable (msms.i86Linux2.2.6.1)
+• atmtypenumbers TextInput <- MSMS atmtypenumbers file (atmtypenumbers)
+• pdb_to_xyzr TextInput <- MSMS pdb_to_xyzr file (pdb_to_xyzr)
+• pdb_to_xyzrn TextInput <- MSMS pdb_to_xyzrn file (pdb_to_xyzrn)
+PDB2PQR
+• main.py TextInput <- PDB2PQR Python file (main.py)
+ZPRED
+• ZPRED.exe TextInput <- ZPRED executable (ZPRED.exe)
+• • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • 
+• • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • 
+|-INPUT PARAMETERS-|
+• Job Name TextInput <- specifies the name of the computation and creates a folder for containing the computational files and final output
+• Select Structure Files Button <- specify the file path to one or more structures to use in the computation
+• Add Solution Condition Button <- adds a solution condition to include in the computation
+• Remove Solution Condition Button <- removes the last added solution condition from the computation
+• Temperature TextInput <- specifies the absolute temperature of the solution
+• pH TextInput <- specifies the pH of the solution (be sure to include acid and/or base in the solutes selection)
+
+Solvent(s) Selection
+• Add Solvent Button <- adds another solvent to be included in the computation
+• Select a Solvent DropdownBox <- [default: water] specifies the solvent to use in the computation
+• Fraction TextInput <- specifies the fraction (mole, mass or volume) that the solvent occupies (e.g. a fraction of 1 means the solvent occupies the entire volume)
+• Units DropdownBox <- specifies the fraction type (mole, mass or volume)
+
+Solute(s) Selection
+• Add Solute Button <- adds a solute to be included in the computation
+• Select a Solute DropdownBox <- specifies the solute dissolved in the solvent
+• Concentration TextInput <- specifies the concentration of the solute
+• Units DropdownBox <- specifies the concentration type (molar or molal)
+
+• Protein Concentration <- specifies the protein's mass concentration in solution in units of grams/Liter
+
+• Specify Solution Parameters Instead of Computation? CheckBox <- allows user to specify solution properties rather than calculating them with an empirical relation derived from experimental data
+• Generate Electric Potential Profile? CheckBox <- outputs the computed electric potential profile from the molecular surface for the specific solution condition
+• • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • 
+• • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • 
+|-ADDITIONAL PARAMETERS-|
+• Save Temporary Computational Files? CheckBox <- specifies whether or not to save all files used in the computation (can require large amounts of memory)
+• Number of Simultaneous Computations TextInput <- specifies the number of parallel ZPRED computations to execute simultaneously
+• Use HYDROPRO instead of HULLRAD? CheckBox <- specifies the use of HYDROPRO hydrodynamic software rather than the superior HullRad (for comparison purposes)
+• APBS Options Button <- allows user to adjust critical APBS parameters
+• HYDROPRO Options Button <- allows user to adjust HYDROPRO calculation type
+• MSMS Options Button <- allows user to adjust mesh size of generated solvent-excluded surfaces
+• PDB2PQR Options Button <- allows user to adjust the force field used for determining charge
+• • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • 
+• • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • 
+|-INFORMATION-|
+• Solution Property Computation Button <- provides information about the empirical relations used to model pertinent solvent properties (relative dielectric, density, viscosity)
+• How to Use ZPRED Button <- provides information about using ZPRED
+• Experimental Methods and Validation Button <- provides information on the experimental validation of the software
+
+
+
+
+
+
