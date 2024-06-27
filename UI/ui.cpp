@@ -3265,10 +3265,10 @@ apbsOptions::apbsOptions(QWidget *parent) : QWidget(parent)
 	wtBox->setLayout(lo);
 	wtBox->setStyleSheet("background-color:lightgrey;");
 
-	QGridLayout *mainLayout = new QGridLayout;
-	mainLayout->addWidget(pBox);
-	mainLayout->addWidget(wtBox);
-	setLayout(mainLayout);
+	QGridLayout *mLayout = new QGridLayout;
+	mLayout->addWidget(pBox);
+	mLayout->addWidget(wtBox);
+	setLayout(mLayout);
 	setWindowTitle(tr("Additional APBS Parameters"));
 }
 ///////////////////////////////////////////////////
@@ -3362,9 +3362,9 @@ hydroproOptions::hydroproOptions(QWidget *parent) : QWidget(parent)
 	pBox->setLayout(lot);
 	pBox->setStyleSheet("background-color:lightgrey;");
 
-	QGridLayout *mainLayout = new QGridLayout;
-	mainLayout->addWidget(pBox);
-	setLayout(mainLayout);
+	QGridLayout *mLayout = new QGridLayout;
+	mLayout->addWidget(pBox);
+	setLayout(mLayout);
 	setWindowTitle(tr("Additional HYDROPRO Parameters"));
 }
 //////////////////////////////////////////////////////
@@ -3459,9 +3459,9 @@ msmsOptions::msmsOptions(QWidget *parent) : QWidget(parent)
 	pBox->setLayout(lot);
 	pBox->setStyleSheet("background-color:lightgrey;");
 
-	QGridLayout *mainLayout = new QGridLayout;
-	mainLayout->addWidget(pBox);
-	setLayout(mainLayout);
+	QGridLayout *mLayout = new QGridLayout;
+	mLayout->addWidget(pBox);
+	setLayout(mLayout);
 	setWindowTitle(tr("Additional MSMS Parameters"));
 }
 ///////////////////////////////////////////////////
@@ -3543,9 +3543,9 @@ pdb2pqrOptions::pdb2pqrOptions(QWidget *parent) : QWidget(parent)
 	pBox->setLayout(lot);
 	pBox->setStyleSheet("background-color:lightgrey;");
 
-	QGridLayout *mainLayout = new QGridLayout;
-	mainLayout->addWidget(pBox);
-	setLayout(mainLayout);
+	QGridLayout *mLayout = new QGridLayout;
+	mLayout->addWidget(pBox);
+	setLayout(mLayout);
 	setWindowTitle(tr("Additional PDB2PQR Parameters"));
 }
 
@@ -5161,14 +5161,14 @@ methodsInfo::methodsInfo(QWidget *parent) : QWidget(parent)
 	scrollBox->setLayout(lastoutlo);
 	//scrollBox->setMinimumHeight(figHeight);
 	//
-	QGridLayout *mainLayout = new QGridLayout;
-	//mainLayout->setSizeConstraint(QLayout::SetFixedSize);
-	mainLayout->addWidget(desc,0,0);
-	mainLayout->addWidget(topBox,1,0);
-	mainLayout->addWidget(scrollBox,2,0);
-	//mainLayout->addWidget(cBox,2,0);
+	QGridLayout *mLayout = new QGridLayout;
+	//mLayout->setSizeConstraint(QLayout::SetFixedSize);
+	mLayout->addWidget(desc,0,0);
+	mLayout->addWidget(topBox,1,0);
+	mLayout->addWidget(scrollBox,2,0);
+	//mLayout->addWidget(cBox,2,0);
 
-	setLayout(mainLayout);
+	setLayout(mLayout);
 	setWindowTitle(tr("Experimental Methods and Validation"));
 	resize(QDesktopWidget().availableGeometry(this).size());
 }
@@ -5530,12 +5530,12 @@ zpredInfo::zpredInfo(QWidget *parent) : QWidget(parent)
 	QGroupBox* OutBox=new QGroupBox;
 	OutBox->setLayout(outlo);
  
-	QGridLayout *mainLayout = new QGridLayout;
-	//mainLayout->setSizeConstraint(QLayout::SetFixedSize);
-	//mainLayout->addWidget(gOutBox);
-	mainLayout->addWidget(desc,0,0);
-	mainLayout->addWidget(OutBox,1,0);
-	setLayout(mainLayout);
+	QGridLayout *mLayout = new QGridLayout;
+	//mLayout->setSizeConstraint(QLayout::SetFixedSize);
+	//mLayout->addWidget(gOutBox);
+	mLayout->addWidget(desc,0,0);
+	mLayout->addWidget(OutBox,1,0);
+	setLayout(mLayout);
 	setWindowTitle(tr("ZPRED Computation Information"));
 	resize(QDesktopWidget().availableGeometry(this).size());
 }
@@ -6480,10 +6480,10 @@ solventInfo::solventInfo(QWidget *parent) : QWidget(parent)
 	//gOutBox->setFont(font);
 	gOutBox->setLayout(goutlo);
 
-	QGridLayout *mainLayout = new QGridLayout;
-	//mainLayout->setSizeConstraint(QLayout::SetFixedSize);
-	mainLayout->addWidget(gOutBox);
-	setLayout(mainLayout);
+	QGridLayout *mLayout = new QGridLayout;
+	//mLayout->setSizeConstraint(QLayout::SetFixedSize);
+	mLayout->addWidget(gOutBox);
+	setLayout(mLayout);
 	setWindowTitle(tr("Solvent Property Computation Information"));
 	resize(QDesktopWidget().availableGeometry(this).size());
 }
@@ -6506,10 +6506,10 @@ msgBox::msgBox(QWidget *parent) : QWidget(parent)
 	displayLabel->setWordWrap(true);
 	displayLabel->setFixedWidth(width);
 	
-	QGridLayout *mainLayout = new QGridLayout;
-	mainLayout->setSizeConstraint(QLayout::SetFixedSize);
-	mainLayout->addWidget(displayLabel);
-	setLayout(mainLayout);
+	QGridLayout *mLayout = new QGridLayout;
+	mLayout->setSizeConstraint(QLayout::SetFixedSize);
+	mLayout->addWidget(displayLabel);
+	setLayout(mLayout);
 	setWindowTitle(tr("ZPRED Message"));
 	//resize(QDesktopWidget().availableGeometry(this).size());
 }
@@ -6536,10 +6536,10 @@ apbsInstallInfo::apbsInstallInfo(QWidget *parent) : QWidget(parent)
 	tLabel->setFixedWidth(width);
 	tLabel->setTextInteractionFlags(Qt::TextBrowserInteraction);tLabel->setOpenExternalLinks(true);tLabel->setAlignment(Qt::AlignLeft);
 	
-	QGridLayout *mainLayout = new QGridLayout;
-	mainLayout->setSizeConstraint(QLayout::SetFixedSize);
-	mainLayout->addWidget(tLabel);
-	setLayout(mainLayout);
+	QGridLayout *mLayout = new QGridLayout;
+	mLayout->setSizeConstraint(QLayout::SetFixedSize);
+	mLayout->addWidget(tLabel);
+	setLayout(mLayout);
 	setWindowTitle(tr("APBS Installation Information"));
 }
 
@@ -6557,10 +6557,10 @@ hydroproInstallInfo::hydroproInstallInfo(QWidget *parent) : QWidget(parent)
 	tLabel->setFixedWidth(width);
 	tLabel->setTextInteractionFlags(Qt::TextBrowserInteraction);tLabel->setOpenExternalLinks(true);tLabel->setAlignment(Qt::AlignLeft);
 	
-	QGridLayout *mainLayout = new QGridLayout;
-	mainLayout->setSizeConstraint(QLayout::SetFixedSize);
-	mainLayout->addWidget(tLabel);
-	setLayout(mainLayout);
+	QGridLayout *mLayout = new QGridLayout;
+	mLayout->setSizeConstraint(QLayout::SetFixedSize);
+	mLayout->addWidget(tLabel);
+	setLayout(mLayout);
 	setWindowTitle(tr("HYDROPRO Installation Information"));
 }
 
@@ -6582,10 +6582,10 @@ msmsInstallInfo::msmsInstallInfo(QWidget *parent)
 	tLabel->setFixedWidth(width);
 	tLabel->setTextInteractionFlags(Qt::TextBrowserInteraction);tLabel->setOpenExternalLinks(true);tLabel->setAlignment(Qt::AlignLeft);
 	
-	QGridLayout *mainLayout = new QGridLayout;
-	mainLayout->setSizeConstraint(QLayout::SetFixedSize);
-	mainLayout->addWidget(tLabel);
-	setLayout(mainLayout);
+	QGridLayout *mLayout = new QGridLayout;
+	mLayout->setSizeConstraint(QLayout::SetFixedSize);
+	mLayout->addWidget(tLabel);
+	setLayout(mLayout);
 	setWindowTitle(tr("MSMS Installation Information"));
 }
 
@@ -6609,10 +6609,10 @@ pInstallInfo::pInstallInfo(QWidget *parent) : QWidget(parent)
 	tLabel->setFixedWidth(width);
 	tLabel->setTextInteractionFlags(Qt::TextBrowserInteraction);tLabel->setOpenExternalLinks(true);tLabel->setAlignment(Qt::AlignLeft);
 	
-	QGridLayout *mainLayout = new QGridLayout;
-	mainLayout->setSizeConstraint(QLayout::SetFixedSize);
-	mainLayout->addWidget(tLabel);
-	setLayout(mainLayout);
+	QGridLayout *mLayout = new QGridLayout;
+	mLayout->setSizeConstraint(QLayout::SetFixedSize);
+	mLayout->addWidget(tLabel);
+	setLayout(mLayout);
 	setWindowTitle(tr("PDB2PQR Installation Information"));
 }
 
@@ -6644,10 +6644,10 @@ zpredInstallInfo::zpredInstallInfo(QWidget *parent) : QWidget(parent)
 	tLabel->setFixedWidth(width);
 	tLabel->setTextInteractionFlags(Qt::TextBrowserInteraction);tLabel->setOpenExternalLinks(true);tLabel->setAlignment(Qt::AlignLeft);
 	
-	QGridLayout *mainLayout = new QGridLayout;
-	mainLayout->setSizeConstraint(QLayout::SetFixedSize);
-	mainLayout->addWidget(tLabel);
-	setLayout(mainLayout);
+	QGridLayout *mLayout = new QGridLayout;
+	mLayout->setSizeConstraint(QLayout::SetFixedSize);
+	mLayout->addWidget(tLabel);
+	setLayout(mLayout);
 	setWindowTitle(tr("ZPRED Installation Information"));
 }
 
@@ -6680,11 +6680,11 @@ zpredProgressDisplay::zpredProgressDisplay(QWidget *parent) : QWidget(parent)
 	sButton->setFixedWidth(200);
 	connect(sButton,SIGNAL(clicked()),this,SLOT(killZPRED()));
 	
-	QGridLayout *mainLayout = new QGridLayout;
-	mainLayout->setSizeConstraint(QLayout::SetFixedSize);
-	mainLayout->addWidget(displayLabel,0,0,1,3);
-	mainLayout->addWidget(uButton,1,0,1,1);mainLayout->addWidget(sButton,1,2,1,1);
-	setLayout(mainLayout);
+	QGridLayout *mLayout = new QGridLayout;
+	mLayout->setSizeConstraint(QLayout::SetFixedSize);
+	mLayout->addWidget(displayLabel,0,0,1,3);
+	mLayout->addWidget(uButton,1,0,1,1);mLayout->addWidget(sButton,1,2,1,1);
+	setLayout(mLayout);
 	setWindowTitle(tr("ZPRED Computations In Progress..."));
 }
 
@@ -6758,11 +6758,11 @@ gUI::gUI(QWidget *parent) : QWidget(parent)
 	brlayout->addWidget(xButton,2,0,1,1);
 	botRight->setLayout(brlayout);
 
-	QGridLayout *mainLayout = new QGridLayout;
-	mainLayout->setSizeConstraint(QLayout::SetFixedSize);
-	mainLayout->addWidget(theBox,0,0);
-	mainLayout->addWidget(botRight,0,1);
-	setLayout(mainLayout);
+	QGridLayout *mLayout = new QGridLayout;
+	mLayout->setSizeConstraint(QLayout::SetFixedSize);
+	mLayout->addWidget(theBox,0,0);
+	mLayout->addWidget(botRight,0,1);
+	setLayout(mLayout);
 	setWindowTitle(tr("Make Gif"));
 	resize(QDesktopWidget().availableGeometry(this).size());
 }
