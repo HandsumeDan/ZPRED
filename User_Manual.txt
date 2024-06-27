@@ -1,4 +1,5 @@
 ZPRED v1.0.0 (Daniel R. Grisham Oct. 2018)
+ZPRED v2.0.0 (Daniel R. Grisham June 2024)
 
 ZPRED computes the zeta potential of a molecular structure given the solution
 conditions as input.  This is accomplished by modeling an electric double layer
@@ -11,7 +12,7 @@ of the molecule.
 
 In a nutshell:  
      - ZPRED is free for academic use, for commercial use please contact me. 
-    (molecularcollisions@gmail.com)
+    (danielrgrisham@gmail.com OR daniel.grisham@navy.mil)
 
 THIS IS WHAT YOU AGREED TO BY DOWNLOADING THE SOFTWARE:
 
@@ -265,6 +266,7 @@ Solute(s) Selection
 • Solution Property Computation Button <- provides information about the empirical relations used to model pertinent solvent properties (relative dielectric, density, viscosity)
 • How to Use ZPRED Button <- provides information about using ZPRED
 • Experimental Methods and Validation Button <- provides information on the experimental validation of the software
+
 
 
 
