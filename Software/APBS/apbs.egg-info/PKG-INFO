@@ -1,0 +1,40 @@
+Metadata-Version: 2.1
+Name: apbs
+Version: 3.4.1
+Summary: APBS biomolecular solvation software
+Home-page: https://www.poissonboltzmann.org
+Author: Nathan Baker
+Author-email: nathanandrewbaker@gmail.com
+Keywords: science chemistry biophysics biochemistry
+Classifier: Development Status :: 4 - Beta
+Classifier: Environment :: Console
+Classifier: Intended Audience :: Science/Research
+Classifier: License :: OSI Approved :: Common Public License
+Classifier: Natural Language :: English
+Classifier: Operating System :: MacOS
+Classifier: Operating System :: Microsoft :: Windows
+Classifier: Operating System :: POSIX
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Topic :: Scientific/Engineering :: Bio-Informatics
+Classifier: Topic :: Scientific/Engineering :: Chemistry
+Classifier: Topic :: Scientific/Engineering :: Physics
+Requires-Python: >=3.7
+License-File: LICENSE.md
+License-File: COPYING
+Requires-Dist: numpy
+Requires-Dist: pyyaml
+
+APBS - Adaptive Poisson-Boltzmann Solver
+========================================
+
+[![Documentation Status](https://readthedocs.org/projects/apbs/badge/?version=latest)](https://apbs.readthedocs.io/en/latest/?badge=latest)
+[![Github Action Build Status](https://github.com/Electrostatics/apbs/workflows/Build/badge.svg)](https://github.com/Electrostatics/apbs/actions)
+
+This repository contains the APBS software.
+
+For more information about APBS, please see
+
+* Home page:  http://www.poissonboltzmann.org/
+* Documentation: http://apbs.readthedocs.io
