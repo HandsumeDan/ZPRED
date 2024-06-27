@@ -1,0 +1,1718 @@
+
+---
+events:
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/opt/cmake-3.29.3-linux-x86_64/share/cmake-3.29/Modules/CMakeDetermineSystem.cmake:205 (message)"
+      - "CMakeLists.txt:55 (project)"
+    message: |
+      The system is: Linux - 5.4.0-150-generic - x86_64
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/opt/cmake-3.29.3-linux-x86_64/share/cmake-3.29/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "/opt/cmake-3.29.3-linux-x86_64/share/cmake-3.29/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "/opt/cmake-3.29.3-linux-x86_64/share/cmake-3.29/Modules/CMakeDetermineCCompiler.cmake:123 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:55 (project)"
+    message: |
+      Compiling the C compiler identification source file "CMakeCCompilerId.c" succeeded.
+      Compiler: /usr/bin/cc 
+      Build flags: 
+      Id flags:  
+      
+      The output was:
+      0
+      
+      
+      Compilation of the C compiler identification source "CMakeCCompilerId.c" produced "a.out"
+      
+      The C compiler identification is GNU, found in:
+        /home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/bld/CMakeFiles/3.29.3/CompilerIdC/a.out
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/opt/cmake-3.29.3-linux-x86_64/share/cmake-3.29/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "/opt/cmake-3.29.3-linux-x86_64/share/cmake-3.29/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "/opt/cmake-3.29.3-linux-x86_64/share/cmake-3.29/Modules/CMakeDetermineCXXCompiler.cmake:126 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:55 (project)"
+    message: |
+      Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" succeeded.
+      Compiler: /usr/bin/c++ 
+      Build flags: 
+      Id flags:  
+      
+      The output was:
+      0
+      
+      
+      Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" produced "a.out"
+      
+      The CXX compiler identification is GNU, found in:
+        /home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/bld/CMakeFiles/3.29.3/CompilerIdCXX/a.out
+      
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/opt/cmake-3.29.3-linux-x86_64/share/cmake-3.29/Modules/CMakeDetermineCompilerABI.cmake:67 (try_compile)"
+      - "/opt/cmake-3.29.3-linux-x86_64/share/cmake-3.29/Modules/CMakeTestCCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:55 (project)"
+    checks:
+      - "Detecting C compiler ABI info"
+    directories:
+      source: "/home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/bld/CMakeFiles/CMakeScratch/TryCompile-FNxARl"
+      binary: "/home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/bld/CMakeFiles/CMakeScratch/TryCompile-FNxARl"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+    buildResult:
+      variable: "CMAKE_C_ABI_COMPILED"
+      cached: true
+      stdout: |
+        Change Dir: '/home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/bld/CMakeFiles/CMakeScratch/TryCompile-FNxARl'
+        
+        Run Build Command(s): /opt/cmake-3.29.3-linux-x86_64/bin/cmake -E env VERBOSE=1 /usr/bin/make -f Makefile cmTC_182dc/fast
+        /usr/bin/make  -f CMakeFiles/cmTC_182dc.dir/build.make CMakeFiles/cmTC_182dc.dir/build
+        make[1]: Entering directory '/home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/bld/CMakeFiles/CMakeScratch/TryCompile-FNxARl'
+        Building C object CMakeFiles/cmTC_182dc.dir/CMakeCCompilerABI.c.o
+        /usr/bin/cc   -v -o CMakeFiles/cmTC_182dc.dir/CMakeCCompilerABI.c.o -c /opt/cmake-3.29.3-linux-x86_64/share/cmake-3.29/Modules/CMakeCCompilerABI.c
+        Using built-in specs.
+        COLLECT_GCC=/usr/bin/cc
+        OFFLOAD_TARGET_NAMES=nvptx-none
+        OFFLOAD_TARGET_DEFAULT=1
+        Target: x86_64-linux-gnu
+        Configured with: ../src/configure -v --with-pkgversion='Ubuntu 7.5.0-3ubuntu1~18.04' --with-bugurl=file:///usr/share/doc/gcc-7/README.Bugs --enable-languages=c,ada,c++,go,brig,d,fortran,objc,obj-c++ --prefix=/usr --with-gcc-major-version-only --program-suffix=-7 --program-prefix=x86_64-linux-gnu- --enable-shared --enable-linker-build-id --libexecdir=/usr/lib --without-included-gettext --enable-threads=posix --libdir=/usr/lib --enable-nls --enable-bootstrap --enable-clocale=gnu --enable-libstdcxx-debug --enable-libstdcxx-time=yes --with-default-libstdcxx-abi=new --enable-gnu-unique-object --disable-vtable-verify --enable-libmpx --enable-plugin --enable-default-pie --with-system-zlib --with-target-system-zlib --enable-objc-gc=auto --enable-multiarch --disable-werror --with-arch-32=i686 --with-abi=m64 --with-multilib-list=m32,m64,mx32 --enable-multilib --with-tune=generic --enable-offload-targets=nvptx-none --without-cuda-driver --enable-checking=release --build=x86_64-linux-gnu --host=x86_64-linux-gnu --target=x86_64-linux-gnu
+        Thread model: posix
+        gcc version 7.5.0 (Ubuntu 7.5.0-3ubuntu1~18.04) 
+        COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_182dc.dir/CMakeCCompilerABI.c.o' '-c' '-mtune=generic' '-march=x86-64'
+         /usr/lib/gcc/x86_64-linux-gnu/7/cc1 -quiet -v -imultiarch x86_64-linux-gnu /opt/cmake-3.29.3-linux-x86_64/share/cmake-3.29/Modules/CMakeCCompilerABI.c -quiet -dumpbase CMakeCCompilerABI.c -mtune=generic -march=x86-64 -auxbase-strip CMakeFiles/cmTC_182dc.dir/CMakeCCompilerABI.c.o -version -fstack-protector-strong -Wformat -Wformat-security -o /tmp/cc9bb9bl.s
+        GNU C11 (Ubuntu 7.5.0-3ubuntu1~18.04) version 7.5.0 (x86_64-linux-gnu)
+        	compiled by GNU C version 7.5.0, GMP version 6.1.2, MPFR version 4.0.1, MPC version 1.1.0, isl version isl-0.19-GMP
+        
+        GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072
+        ignoring nonexistent directory "/usr/local/include/x86_64-linux-gnu"
+        ignoring nonexistent directory "/usr/lib/gcc/x86_64-linux-gnu/7/../../../../x86_64-linux-gnu/include"
+        #include "..." search starts here:
+        #include <...> search starts here:
+         /usr/lib/gcc/x86_64-linux-gnu/7/include
+         /usr/local/include
+         /usr/lib/gcc/x86_64-linux-gnu/7/include-fixed
+         /usr/include/x86_64-linux-gnu
+         /usr/include
+        End of search list.
+        GNU C11 (Ubuntu 7.5.0-3ubuntu1~18.04) version 7.5.0 (x86_64-linux-gnu)
+        	compiled by GNU C version 7.5.0, GMP version 6.1.2, MPFR version 4.0.1, MPC version 1.1.0, isl version isl-0.19-GMP
+        
+        GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072
+        Compiler executable checksum: b62ed4a2880cd4159476ea8293b72fa8
+        COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_182dc.dir/CMakeCCompilerABI.c.o' '-c' '-mtune=generic' '-march=x86-64'
+         as -v --64 -o CMakeFiles/cmTC_182dc.dir/CMakeCCompilerABI.c.o /tmp/cc9bb9bl.s
+        GNU assembler version 2.30 (x86_64-linux-gnu) using BFD version (GNU Binutils for Ubuntu) 2.30
+        COMPILER_PATH=/usr/lib/gcc/x86_64-linux-gnu/7/:/usr/lib/gcc/x86_64-linux-gnu/7/:/usr/lib/gcc/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/7/:/usr/lib/gcc/x86_64-linux-gnu/
+        LIBRARY_PATH=/usr/lib/gcc/x86_64-linux-gnu/7/:/usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/7/../../../../lib/:/lib/x86_64-linux-gnu/:/lib/../lib/:/usr/lib/x86_64-linux-gnu/:/usr/lib/../lib/:/usr/lib/gcc/x86_64-linux-gnu/7/../../../:/lib/:/usr/lib/
+        COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_182dc.dir/CMakeCCompilerABI.c.o' '-c' '-mtune=generic' '-march=x86-64'
+        Linking C executable cmTC_182dc
+        /opt/cmake-3.29.3-linux-x86_64/bin/cmake -E cmake_link_script CMakeFiles/cmTC_182dc.dir/link.txt --verbose=1
+        /usr/bin/cc  -v -Wl,-v CMakeFiles/cmTC_182dc.dir/CMakeCCompilerABI.c.o -o cmTC_182dc
+        Using built-in specs.
+        COLLECT_GCC=/usr/bin/cc
+        COLLECT_LTO_WRAPPER=/usr/lib/gcc/x86_64-linux-gnu/7/lto-wrapper
+        OFFLOAD_TARGET_NAMES=nvptx-none
+        OFFLOAD_TARGET_DEFAULT=1
+        Target: x86_64-linux-gnu
+        Configured with: ../src/configure -v --with-pkgversion='Ubuntu 7.5.0-3ubuntu1~18.04' --with-bugurl=file:///usr/share/doc/gcc-7/README.Bugs --enable-languages=c,ada,c++,go,brig,d,fortran,objc,obj-c++ --prefix=/usr --with-gcc-major-version-only --program-suffix=-7 --program-prefix=x86_64-linux-gnu- --enable-shared --enable-linker-build-id --libexecdir=/usr/lib --without-included-gettext --enable-threads=posix --libdir=/usr/lib --enable-nls --enable-bootstrap --enable-clocale=gnu --enable-libstdcxx-debug --enable-libstdcxx-time=yes --with-default-libstdcxx-abi=new --enable-gnu-unique-object --disable-vtable-verify --enable-libmpx --enable-plugin --enable-default-pie --with-system-zlib --with-target-system-zlib --enable-objc-gc=auto --enable-multiarch --disable-werror --with-arch-32=i686 --with-abi=m64 --with-multilib-list=m32,m64,mx32 --enable-multilib --with-tune=generic --enable-offload-targets=nvptx-none --without-cuda-driver --enable-checking=release --build=x86_64-linux-gnu --host=x86_64-linux-gnu --target=x86_64-linux-gnu
+        Thread model: posix
+        gcc version 7.5.0 (Ubuntu 7.5.0-3ubuntu1~18.04) 
+        COMPILER_PATH=/usr/lib/gcc/x86_64-linux-gnu/7/:/usr/lib/gcc/x86_64-linux-gnu/7/:/usr/lib/gcc/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/7/:/usr/lib/gcc/x86_64-linux-gnu/
+        LIBRARY_PATH=/usr/lib/gcc/x86_64-linux-gnu/7/:/usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/7/../../../../lib/:/lib/x86_64-linux-gnu/:/lib/../lib/:/usr/lib/x86_64-linux-gnu/:/usr/lib/../lib/:/usr/lib/gcc/x86_64-linux-gnu/7/../../../:/lib/:/usr/lib/
+        COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_182dc' '-mtune=generic' '-march=x86-64'
+         /usr/lib/gcc/x86_64-linux-gnu/7/collect2 -plugin /usr/lib/gcc/x86_64-linux-gnu/7/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-linux-gnu/7/lto-wrapper -plugin-opt=-fresolution=/tmp/ccbDe6Cp.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -z now -z relro -o cmTC_182dc /usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/7/crtbeginS.o -L/usr/lib/gcc/x86_64-linux-gnu/7 -L/usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/7/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/7/../../.. -v CMakeFiles/cmTC_182dc.dir/CMakeCCompilerABI.c.o -lgcc --push-state --as-needed -lgcc_s --pop-state -lc -lgcc --push-state --as-needed -lgcc_s --pop-state /usr/lib/gcc/x86_64-linux-gnu/7/crtendS.o /usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/crtn.o
+        collect2 version 7.5.0
+        /usr/bin/ld -plugin /usr/lib/gcc/x86_64-linux-gnu/7/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-linux-gnu/7/lto-wrapper -plugin-opt=-fresolution=/tmp/ccbDe6Cp.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -z now -z relro -o cmTC_182dc /usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/7/crtbeginS.o -L/usr/lib/gcc/x86_64-linux-gnu/7 -L/usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/7/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/7/../../.. -v CMakeFiles/cmTC_182dc.dir/CMakeCCompilerABI.c.o -lgcc --push-state --as-needed -lgcc_s --pop-state -lc -lgcc --push-state --as-needed -lgcc_s --pop-state /usr/lib/gcc/x86_64-linux-gnu/7/crtendS.o /usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/crtn.o
+        GNU ld (GNU Binutils for Ubuntu) 2.30
+        COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_182dc' '-mtune=generic' '-march=x86-64'
+        make[1]: Leaving directory '/home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/bld/CMakeFiles/CMakeScratch/TryCompile-FNxARl'
+        
+      exitCode: 0
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/opt/cmake-3.29.3-linux-x86_64/share/cmake-3.29/Modules/CMakeDetermineCompilerABI.cmake:137 (message)"
+      - "/opt/cmake-3.29.3-linux-x86_64/share/cmake-3.29/Modules/CMakeTestCCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:55 (project)"
+    message: |
+      Parsed C implicit include dir info: rv=done
+        found start of include info
+        found start of implicit include info
+          add: [/usr/lib/gcc/x86_64-linux-gnu/7/include]
+          add: [/usr/local/include]
+          add: [/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed]
+          add: [/usr/include/x86_64-linux-gnu]
+          add: [/usr/include]
+        end of search list found
+        collapse include dir [/usr/lib/gcc/x86_64-linux-gnu/7/include] ==> [/usr/lib/gcc/x86_64-linux-gnu/7/include]
+        collapse include dir [/usr/local/include] ==> [/usr/local/include]
+        collapse include dir [/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed] ==> [/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed]
+        collapse include dir [/usr/include/x86_64-linux-gnu] ==> [/usr/include/x86_64-linux-gnu]
+        collapse include dir [/usr/include] ==> [/usr/include]
+        implicit include dirs: [/usr/lib/gcc/x86_64-linux-gnu/7/include;/usr/local/include;/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed;/usr/include/x86_64-linux-gnu;/usr/include]
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/opt/cmake-3.29.3-linux-x86_64/share/cmake-3.29/Modules/CMakeDetermineCompilerABI.cmake:173 (message)"
+      - "/opt/cmake-3.29.3-linux-x86_64/share/cmake-3.29/Modules/CMakeTestCCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:55 (project)"
+    message: |
+      Parsed C implicit link information:
+        link line regex: [^( *|.*[/\\])(ld[0-9]*(\\.[a-z]+)?|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\\]+-)?ld|collect2)[^/\\]*( |$)]
+        linker tool regex: [^[ 	]*(->|")?[ 	]*(([^"]*[/\\])?(ld[0-9]*(\\.[a-z]+)?))("|,| |$)]
+        ignore line: [Change Dir: '/home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/bld/CMakeFiles/CMakeScratch/TryCompile-FNxARl']
+        ignore line: []
+        ignore line: [Run Build Command(s): /opt/cmake-3.29.3-linux-x86_64/bin/cmake -E env VERBOSE=1 /usr/bin/make -f Makefile cmTC_182dc/fast]
+        ignore line: [/usr/bin/make  -f CMakeFiles/cmTC_182dc.dir/build.make CMakeFiles/cmTC_182dc.dir/build]
+        ignore line: [make[1]: Entering directory '/home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/bld/CMakeFiles/CMakeScratch/TryCompile-FNxARl']
+        ignore line: [Building C object CMakeFiles/cmTC_182dc.dir/CMakeCCompilerABI.c.o]
+        ignore line: [/usr/bin/cc   -v -o CMakeFiles/cmTC_182dc.dir/CMakeCCompilerABI.c.o -c /opt/cmake-3.29.3-linux-x86_64/share/cmake-3.29/Modules/CMakeCCompilerABI.c]
+        ignore line: [Using built-in specs.]
+        ignore line: [COLLECT_GCC=/usr/bin/cc]
+        ignore line: [OFFLOAD_TARGET_NAMES=nvptx-none]
+        ignore line: [OFFLOAD_TARGET_DEFAULT=1]
+        ignore line: [Target: x86_64-linux-gnu]
+        ignore line: [Configured with: ../src/configure -v --with-pkgversion='Ubuntu 7.5.0-3ubuntu1~18.04' --with-bugurl=file:///usr/share/doc/gcc-7/README.Bugs --enable-languages=c ada c++ go brig d fortran objc obj-c++ --prefix=/usr --with-gcc-major-version-only --program-suffix=-7 --program-prefix=x86_64-linux-gnu- --enable-shared --enable-linker-build-id --libexecdir=/usr/lib --without-included-gettext --enable-threads=posix --libdir=/usr/lib --enable-nls --enable-bootstrap --enable-clocale=gnu --enable-libstdcxx-debug --enable-libstdcxx-time=yes --with-default-libstdcxx-abi=new --enable-gnu-unique-object --disable-vtable-verify --enable-libmpx --enable-plugin --enable-default-pie --with-system-zlib --with-target-system-zlib --enable-objc-gc=auto --enable-multiarch --disable-werror --with-arch-32=i686 --with-abi=m64 --with-multilib-list=m32 m64 mx32 --enable-multilib --with-tune=generic --enable-offload-targets=nvptx-none --without-cuda-driver --enable-checking=release --build=x86_64-linux-gnu --host=x86_64-linux-gnu --target=x86_64-linux-gnu]
+        ignore line: [Thread model: posix]
+        ignore line: [gcc version 7.5.0 (Ubuntu 7.5.0-3ubuntu1~18.04) ]
+        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_182dc.dir/CMakeCCompilerABI.c.o' '-c' '-mtune=generic' '-march=x86-64']
+        ignore line: [ /usr/lib/gcc/x86_64-linux-gnu/7/cc1 -quiet -v -imultiarch x86_64-linux-gnu /opt/cmake-3.29.3-linux-x86_64/share/cmake-3.29/Modules/CMakeCCompilerABI.c -quiet -dumpbase CMakeCCompilerABI.c -mtune=generic -march=x86-64 -auxbase-strip CMakeFiles/cmTC_182dc.dir/CMakeCCompilerABI.c.o -version -fstack-protector-strong -Wformat -Wformat-security -o /tmp/cc9bb9bl.s]
+        ignore line: [GNU C11 (Ubuntu 7.5.0-3ubuntu1~18.04) version 7.5.0 (x86_64-linux-gnu)]
+        ignore line: [	compiled by GNU C version 7.5.0  GMP version 6.1.2  MPFR version 4.0.1  MPC version 1.1.0  isl version isl-0.19-GMP]
+        ignore line: []
+        ignore line: [GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072]
+        ignore line: [ignoring nonexistent directory "/usr/local/include/x86_64-linux-gnu"]
+        ignore line: [ignoring nonexistent directory "/usr/lib/gcc/x86_64-linux-gnu/7/../../../../x86_64-linux-gnu/include"]
+        ignore line: [#include "..." search starts here:]
+        ignore line: [#include <...> search starts here:]
+        ignore line: [ /usr/lib/gcc/x86_64-linux-gnu/7/include]
+        ignore line: [ /usr/local/include]
+        ignore line: [ /usr/lib/gcc/x86_64-linux-gnu/7/include-fixed]
+        ignore line: [ /usr/include/x86_64-linux-gnu]
+        ignore line: [ /usr/include]
+        ignore line: [End of search list.]
+        ignore line: [GNU C11 (Ubuntu 7.5.0-3ubuntu1~18.04) version 7.5.0 (x86_64-linux-gnu)]
+        ignore line: [	compiled by GNU C version 7.5.0  GMP version 6.1.2  MPFR version 4.0.1  MPC version 1.1.0  isl version isl-0.19-GMP]
+        ignore line: []
+        ignore line: [GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072]
+        ignore line: [Compiler executable checksum: b62ed4a2880cd4159476ea8293b72fa8]
+        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_182dc.dir/CMakeCCompilerABI.c.o' '-c' '-mtune=generic' '-march=x86-64']
+        ignore line: [ as -v --64 -o CMakeFiles/cmTC_182dc.dir/CMakeCCompilerABI.c.o /tmp/cc9bb9bl.s]
+        ignore line: [GNU assembler version 2.30 (x86_64-linux-gnu) using BFD version (GNU Binutils for Ubuntu) 2.30]
+        ignore line: [COMPILER_PATH=/usr/lib/gcc/x86_64-linux-gnu/7/:/usr/lib/gcc/x86_64-linux-gnu/7/:/usr/lib/gcc/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/7/:/usr/lib/gcc/x86_64-linux-gnu/]
+        ignore line: [LIBRARY_PATH=/usr/lib/gcc/x86_64-linux-gnu/7/:/usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/7/../../../../lib/:/lib/x86_64-linux-gnu/:/lib/../lib/:/usr/lib/x86_64-linux-gnu/:/usr/lib/../lib/:/usr/lib/gcc/x86_64-linux-gnu/7/../../../:/lib/:/usr/lib/]
+        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_182dc.dir/CMakeCCompilerABI.c.o' '-c' '-mtune=generic' '-march=x86-64']
+        ignore line: [Linking C executable cmTC_182dc]
+        ignore line: [/opt/cmake-3.29.3-linux-x86_64/bin/cmake -E cmake_link_script CMakeFiles/cmTC_182dc.dir/link.txt --verbose=1]
+        ignore line: [/usr/bin/cc  -v -Wl -v CMakeFiles/cmTC_182dc.dir/CMakeCCompilerABI.c.o -o cmTC_182dc]
+        ignore line: [Using built-in specs.]
+        ignore line: [COLLECT_GCC=/usr/bin/cc]
+        ignore line: [COLLECT_LTO_WRAPPER=/usr/lib/gcc/x86_64-linux-gnu/7/lto-wrapper]
+        ignore line: [OFFLOAD_TARGET_NAMES=nvptx-none]
+        ignore line: [OFFLOAD_TARGET_DEFAULT=1]
+        ignore line: [Target: x86_64-linux-gnu]
+        ignore line: [Configured with: ../src/configure -v --with-pkgversion='Ubuntu 7.5.0-3ubuntu1~18.04' --with-bugurl=file:///usr/share/doc/gcc-7/README.Bugs --enable-languages=c ada c++ go brig d fortran objc obj-c++ --prefix=/usr --with-gcc-major-version-only --program-suffix=-7 --program-prefix=x86_64-linux-gnu- --enable-shared --enable-linker-build-id --libexecdir=/usr/lib --without-included-gettext --enable-threads=posix --libdir=/usr/lib --enable-nls --enable-bootstrap --enable-clocale=gnu --enable-libstdcxx-debug --enable-libstdcxx-time=yes --with-default-libstdcxx-abi=new --enable-gnu-unique-object --disable-vtable-verify --enable-libmpx --enable-plugin --enable-default-pie --with-system-zlib --with-target-system-zlib --enable-objc-gc=auto --enable-multiarch --disable-werror --with-arch-32=i686 --with-abi=m64 --with-multilib-list=m32 m64 mx32 --enable-multilib --with-tune=generic --enable-offload-targets=nvptx-none --without-cuda-driver --enable-checking=release --build=x86_64-linux-gnu --host=x86_64-linux-gnu --target=x86_64-linux-gnu]
+        ignore line: [Thread model: posix]
+        ignore line: [gcc version 7.5.0 (Ubuntu 7.5.0-3ubuntu1~18.04) ]
+        ignore line: [COMPILER_PATH=/usr/lib/gcc/x86_64-linux-gnu/7/:/usr/lib/gcc/x86_64-linux-gnu/7/:/usr/lib/gcc/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/7/:/usr/lib/gcc/x86_64-linux-gnu/]
+        ignore line: [LIBRARY_PATH=/usr/lib/gcc/x86_64-linux-gnu/7/:/usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/7/../../../../lib/:/lib/x86_64-linux-gnu/:/lib/../lib/:/usr/lib/x86_64-linux-gnu/:/usr/lib/../lib/:/usr/lib/gcc/x86_64-linux-gnu/7/../../../:/lib/:/usr/lib/]
+        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_182dc' '-mtune=generic' '-march=x86-64']
+        link line: [ /usr/lib/gcc/x86_64-linux-gnu/7/collect2 -plugin /usr/lib/gcc/x86_64-linux-gnu/7/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-linux-gnu/7/lto-wrapper -plugin-opt=-fresolution=/tmp/ccbDe6Cp.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -z now -z relro -o cmTC_182dc /usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/7/crtbeginS.o -L/usr/lib/gcc/x86_64-linux-gnu/7 -L/usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/7/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/7/../../.. -v CMakeFiles/cmTC_182dc.dir/CMakeCCompilerABI.c.o -lgcc --push-state --as-needed -lgcc_s --pop-state -lc -lgcc --push-state --as-needed -lgcc_s --pop-state /usr/lib/gcc/x86_64-linux-gnu/7/crtendS.o /usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/crtn.o]
+          arg [/usr/lib/gcc/x86_64-linux-gnu/7/collect2] ==> ignore
+          arg [-plugin] ==> ignore
+          arg [/usr/lib/gcc/x86_64-linux-gnu/7/liblto_plugin.so] ==> ignore
+          arg [-plugin-opt=/usr/lib/gcc/x86_64-linux-gnu/7/lto-wrapper] ==> ignore
+          arg [-plugin-opt=-fresolution=/tmp/ccbDe6Cp.res] ==> ignore
+          arg [-plugin-opt=-pass-through=-lgcc] ==> ignore
+          arg [-plugin-opt=-pass-through=-lgcc_s] ==> ignore
+          arg [-plugin-opt=-pass-through=-lc] ==> ignore
+          arg [-plugin-opt=-pass-through=-lgcc] ==> ignore
+          arg [-plugin-opt=-pass-through=-lgcc_s] ==> ignore
+          arg [--build-id] ==> ignore
+          arg [--eh-frame-hdr] ==> ignore
+          arg [-m] ==> ignore
+          arg [elf_x86_64] ==> ignore
+          arg [--hash-style=gnu] ==> ignore
+          arg [--as-needed] ==> ignore
+          arg [-dynamic-linker] ==> ignore
+          arg [/lib64/ld-linux-x86-64.so.2] ==> ignore
+          arg [-pie] ==> ignore
+          arg [-znow] ==> ignore
+          arg [-zrelro] ==> ignore
+          arg [-o] ==> ignore
+          arg [cmTC_182dc] ==> ignore
+          arg [/usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/Scrt1.o] ==> obj [/usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/Scrt1.o]
+          arg [/usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/crti.o] ==> obj [/usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/crti.o]
+          arg [/usr/lib/gcc/x86_64-linux-gnu/7/crtbeginS.o] ==> obj [/usr/lib/gcc/x86_64-linux-gnu/7/crtbeginS.o]
+          arg [-L/usr/lib/gcc/x86_64-linux-gnu/7] ==> dir [/usr/lib/gcc/x86_64-linux-gnu/7]
+          arg [-L/usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu] ==> dir [/usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu]
+          arg [-L/usr/lib/gcc/x86_64-linux-gnu/7/../../../../lib] ==> dir [/usr/lib/gcc/x86_64-linux-gnu/7/../../../../lib]
+          arg [-L/lib/x86_64-linux-gnu] ==> dir [/lib/x86_64-linux-gnu]
+          arg [-L/lib/../lib] ==> dir [/lib/../lib]
+          arg [-L/usr/lib/x86_64-linux-gnu] ==> dir [/usr/lib/x86_64-linux-gnu]
+          arg [-L/usr/lib/../lib] ==> dir [/usr/lib/../lib]
+          arg [-L/usr/lib/gcc/x86_64-linux-gnu/7/../../..] ==> dir [/usr/lib/gcc/x86_64-linux-gnu/7/../../..]
+          arg [-v] ==> ignore
+          arg [CMakeFiles/cmTC_182dc.dir/CMakeCCompilerABI.c.o] ==> ignore
+          arg [-lgcc] ==> lib [gcc]
+          arg [--push-state] ==> ignore
+          arg [--as-needed] ==> ignore
+          arg [-lgcc_s] ==> lib [gcc_s]
+          arg [--pop-state] ==> ignore
+          arg [-lc] ==> lib [c]
+          arg [-lgcc] ==> lib [gcc]
+          arg [--push-state] ==> ignore
+          arg [--as-needed] ==> ignore
+          arg [-lgcc_s] ==> lib [gcc_s]
+          arg [--pop-state] ==> ignore
+          arg [/usr/lib/gcc/x86_64-linux-gnu/7/crtendS.o] ==> obj [/usr/lib/gcc/x86_64-linux-gnu/7/crtendS.o]
+          arg [/usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/crtn.o] ==> obj [/usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/crtn.o]
+        ignore line: [collect2 version 7.5.0]
+        ignore line: [/usr/bin/ld -plugin /usr/lib/gcc/x86_64-linux-gnu/7/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-linux-gnu/7/lto-wrapper -plugin-opt=-fresolution=/tmp/ccbDe6Cp.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -z now -z relro -o cmTC_182dc /usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/7/crtbeginS.o -L/usr/lib/gcc/x86_64-linux-gnu/7 -L/usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/7/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/7/../../.. -v CMakeFiles/cmTC_182dc.dir/CMakeCCompilerABI.c.o -lgcc --push-state --as-needed -lgcc_s --pop-state -lc -lgcc --push-state --as-needed -lgcc_s --pop-state /usr/lib/gcc/x86_64-linux-gnu/7/crtendS.o /usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/crtn.o]
+        linker tool for 'C': /usr/bin/ld
+        collapse obj [/usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/Scrt1.o] ==> [/usr/lib/x86_64-linux-gnu/Scrt1.o]
+        collapse obj [/usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/crti.o] ==> [/usr/lib/x86_64-linux-gnu/crti.o]
+        collapse obj [/usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/crtn.o] ==> [/usr/lib/x86_64-linux-gnu/crtn.o]
+        collapse library dir [/usr/lib/gcc/x86_64-linux-gnu/7] ==> [/usr/lib/gcc/x86_64-linux-gnu/7]
+        collapse library dir [/usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu] ==> [/usr/lib/x86_64-linux-gnu]
+        collapse library dir [/usr/lib/gcc/x86_64-linux-gnu/7/../../../../lib] ==> [/usr/lib]
+        collapse library dir [/lib/x86_64-linux-gnu] ==> [/lib/x86_64-linux-gnu]
+        collapse library dir [/lib/../lib] ==> [/lib]
+        collapse library dir [/usr/lib/x86_64-linux-gnu] ==> [/usr/lib/x86_64-linux-gnu]
+        collapse library dir [/usr/lib/../lib] ==> [/usr/lib]
+        collapse library dir [/usr/lib/gcc/x86_64-linux-gnu/7/../../..] ==> [/usr/lib]
+        implicit libs: [gcc;gcc_s;c;gcc;gcc_s]
+        implicit objs: [/usr/lib/x86_64-linux-gnu/Scrt1.o;/usr/lib/x86_64-linux-gnu/crti.o;/usr/lib/gcc/x86_64-linux-gnu/7/crtbeginS.o;/usr/lib/gcc/x86_64-linux-gnu/7/crtendS.o;/usr/lib/x86_64-linux-gnu/crtn.o]
+        implicit dirs: [/usr/lib/gcc/x86_64-linux-gnu/7;/usr/lib/x86_64-linux-gnu;/usr/lib;/lib/x86_64-linux-gnu;/lib]
+        implicit fwks: []
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/opt/cmake-3.29.3-linux-x86_64/share/cmake-3.29/Modules/Internal/CMakeDetermineLinkerId.cmake:40 (message)"
+      - "/opt/cmake-3.29.3-linux-x86_64/share/cmake-3.29/Modules/CMakeDetermineCompilerABI.cmake:210 (cmake_determine_linker_id)"
+      - "/opt/cmake-3.29.3-linux-x86_64/share/cmake-3.29/Modules/CMakeTestCCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:55 (project)"
+    message: |
+      Running the C compiler's linker: "/usr/bin/ld" "-v"
+      GNU ld (GNU Binutils for Ubuntu) 2.30
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/opt/cmake-3.29.3-linux-x86_64/share/cmake-3.29/Modules/CMakeDetermineCompilerABI.cmake:67 (try_compile)"
+      - "/opt/cmake-3.29.3-linux-x86_64/share/cmake-3.29/Modules/CMakeTestCXXCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:55 (project)"
+    checks:
+      - "Detecting CXX compiler ABI info"
+    directories:
+      source: "/home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/bld/CMakeFiles/CMakeScratch/TryCompile-qkypft"
+      binary: "/home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/bld/CMakeFiles/CMakeScratch/TryCompile-qkypft"
+    cmakeVariables:
+      CMAKE_CXX_FLAGS: ""
+      CMAKE_CXX_FLAGS_DEBUG: "-g"
+      CMAKE_CXX_SCAN_FOR_MODULES: "OFF"
+      CMAKE_EXE_LINKER_FLAGS: ""
+    buildResult:
+      variable: "CMAKE_CXX_ABI_COMPILED"
+      cached: true
+      stdout: |
+        Change Dir: '/home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/bld/CMakeFiles/CMakeScratch/TryCompile-qkypft'
+        
+        Run Build Command(s): /opt/cmake-3.29.3-linux-x86_64/bin/cmake -E env VERBOSE=1 /usr/bin/make -f Makefile cmTC_5e903/fast
+        /usr/bin/make  -f CMakeFiles/cmTC_5e903.dir/build.make CMakeFiles/cmTC_5e903.dir/build
+        make[1]: Entering directory '/home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/bld/CMakeFiles/CMakeScratch/TryCompile-qkypft'
+        Building CXX object CMakeFiles/cmTC_5e903.dir/CMakeCXXCompilerABI.cpp.o
+        /usr/bin/c++   -v -o CMakeFiles/cmTC_5e903.dir/CMakeCXXCompilerABI.cpp.o -c /opt/cmake-3.29.3-linux-x86_64/share/cmake-3.29/Modules/CMakeCXXCompilerABI.cpp
+        Using built-in specs.
+        COLLECT_GCC=/usr/bin/c++
+        OFFLOAD_TARGET_NAMES=nvptx-none
+        OFFLOAD_TARGET_DEFAULT=1
+        Target: x86_64-linux-gnu
+        Configured with: ../src/configure -v --with-pkgversion='Ubuntu 7.5.0-3ubuntu1~18.04' --with-bugurl=file:///usr/share/doc/gcc-7/README.Bugs --enable-languages=c,ada,c++,go,brig,d,fortran,objc,obj-c++ --prefix=/usr --with-gcc-major-version-only --program-suffix=-7 --program-prefix=x86_64-linux-gnu- --enable-shared --enable-linker-build-id --libexecdir=/usr/lib --without-included-gettext --enable-threads=posix --libdir=/usr/lib --enable-nls --enable-bootstrap --enable-clocale=gnu --enable-libstdcxx-debug --enable-libstdcxx-time=yes --with-default-libstdcxx-abi=new --enable-gnu-unique-object --disable-vtable-verify --enable-libmpx --enable-plugin --enable-default-pie --with-system-zlib --with-target-system-zlib --enable-objc-gc=auto --enable-multiarch --disable-werror --with-arch-32=i686 --with-abi=m64 --with-multilib-list=m32,m64,mx32 --enable-multilib --with-tune=generic --enable-offload-targets=nvptx-none --without-cuda-driver --enable-checking=release --build=x86_64-linux-gnu --host=x86_64-linux-gnu --target=x86_64-linux-gnu
+        Thread model: posix
+        gcc version 7.5.0 (Ubuntu 7.5.0-3ubuntu1~18.04) 
+        COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_5e903.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-shared-libgcc' '-mtune=generic' '-march=x86-64'
+         /usr/lib/gcc/x86_64-linux-gnu/7/cc1plus -quiet -v -imultiarch x86_64-linux-gnu -D_GNU_SOURCE /opt/cmake-3.29.3-linux-x86_64/share/cmake-3.29/Modules/CMakeCXXCompilerABI.cpp -quiet -dumpbase CMakeCXXCompilerABI.cpp -mtune=generic -march=x86-64 -auxbase-strip CMakeFiles/cmTC_5e903.dir/CMakeCXXCompilerABI.cpp.o -version -fstack-protector-strong -Wformat -Wformat-security -o /tmp/cc565Prr.s
+        GNU C++14 (Ubuntu 7.5.0-3ubuntu1~18.04) version 7.5.0 (x86_64-linux-gnu)
+        	compiled by GNU C version 7.5.0, GMP version 6.1.2, MPFR version 4.0.1, MPC version 1.1.0, isl version isl-0.19-GMP
+        
+        GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072
+        ignoring duplicate directory "/usr/include/x86_64-linux-gnu/c++/7"
+        ignoring nonexistent directory "/usr/local/include/x86_64-linux-gnu"
+        ignoring nonexistent directory "/usr/lib/gcc/x86_64-linux-gnu/7/../../../../x86_64-linux-gnu/include"
+        #include "..." search starts here:
+        #include <...> search starts here:
+         /usr/include/c++/7
+         /usr/include/x86_64-linux-gnu/c++/7
+         /usr/include/c++/7/backward
+         /usr/lib/gcc/x86_64-linux-gnu/7/include
+         /usr/local/include
+         /usr/lib/gcc/x86_64-linux-gnu/7/include-fixed
+         /usr/include/x86_64-linux-gnu
+         /usr/include
+        End of search list.
+        GNU C++14 (Ubuntu 7.5.0-3ubuntu1~18.04) version 7.5.0 (x86_64-linux-gnu)
+        	compiled by GNU C version 7.5.0, GMP version 6.1.2, MPFR version 4.0.1, MPC version 1.1.0, isl version isl-0.19-GMP
+        
+        GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072
+        Compiler executable checksum: 3eb3dc290cd5714c3e1c3ae751116f07
+        COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_5e903.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-shared-libgcc' '-mtune=generic' '-march=x86-64'
+         as -v --64 -o CMakeFiles/cmTC_5e903.dir/CMakeCXXCompilerABI.cpp.o /tmp/cc565Prr.s
+        GNU assembler version 2.30 (x86_64-linux-gnu) using BFD version (GNU Binutils for Ubuntu) 2.30
+        COMPILER_PATH=/usr/lib/gcc/x86_64-linux-gnu/7/:/usr/lib/gcc/x86_64-linux-gnu/7/:/usr/lib/gcc/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/7/:/usr/lib/gcc/x86_64-linux-gnu/
+        LIBRARY_PATH=/usr/lib/gcc/x86_64-linux-gnu/7/:/usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/7/../../../../lib/:/lib/x86_64-linux-gnu/:/lib/../lib/:/usr/lib/x86_64-linux-gnu/:/usr/lib/../lib/:/usr/lib/gcc/x86_64-linux-gnu/7/../../../:/lib/:/usr/lib/
+        COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_5e903.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-shared-libgcc' '-mtune=generic' '-march=x86-64'
+        Linking CXX executable cmTC_5e903
+        /opt/cmake-3.29.3-linux-x86_64/bin/cmake -E cmake_link_script CMakeFiles/cmTC_5e903.dir/link.txt --verbose=1
+        /usr/bin/c++  -v -Wl,-v CMakeFiles/cmTC_5e903.dir/CMakeCXXCompilerABI.cpp.o -o cmTC_5e903
+        Using built-in specs.
+        COLLECT_GCC=/usr/bin/c++
+        COLLECT_LTO_WRAPPER=/usr/lib/gcc/x86_64-linux-gnu/7/lto-wrapper
+        OFFLOAD_TARGET_NAMES=nvptx-none
+        OFFLOAD_TARGET_DEFAULT=1
+        Target: x86_64-linux-gnu
+        Configured with: ../src/configure -v --with-pkgversion='Ubuntu 7.5.0-3ubuntu1~18.04' --with-bugurl=file:///usr/share/doc/gcc-7/README.Bugs --enable-languages=c,ada,c++,go,brig,d,fortran,objc,obj-c++ --prefix=/usr --with-gcc-major-version-only --program-suffix=-7 --program-prefix=x86_64-linux-gnu- --enable-shared --enable-linker-build-id --libexecdir=/usr/lib --without-included-gettext --enable-threads=posix --libdir=/usr/lib --enable-nls --enable-bootstrap --enable-clocale=gnu --enable-libstdcxx-debug --enable-libstdcxx-time=yes --with-default-libstdcxx-abi=new --enable-gnu-unique-object --disable-vtable-verify --enable-libmpx --enable-plugin --enable-default-pie --with-system-zlib --with-target-system-zlib --enable-objc-gc=auto --enable-multiarch --disable-werror --with-arch-32=i686 --with-abi=m64 --with-multilib-list=m32,m64,mx32 --enable-multilib --with-tune=generic --enable-offload-targets=nvptx-none --without-cuda-driver --enable-checking=release --build=x86_64-linux-gnu --host=x86_64-linux-gnu --target=x86_64-linux-gnu
+        Thread model: posix
+        gcc version 7.5.0 (Ubuntu 7.5.0-3ubuntu1~18.04) 
+        COMPILER_PATH=/usr/lib/gcc/x86_64-linux-gnu/7/:/usr/lib/gcc/x86_64-linux-gnu/7/:/usr/lib/gcc/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/7/:/usr/lib/gcc/x86_64-linux-gnu/
+        LIBRARY_PATH=/usr/lib/gcc/x86_64-linux-gnu/7/:/usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/7/../../../../lib/:/lib/x86_64-linux-gnu/:/lib/../lib/:/usr/lib/x86_64-linux-gnu/:/usr/lib/../lib/:/usr/lib/gcc/x86_64-linux-gnu/7/../../../:/lib/:/usr/lib/
+        COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_5e903' '-shared-libgcc' '-mtune=generic' '-march=x86-64'
+         /usr/lib/gcc/x86_64-linux-gnu/7/collect2 -plugin /usr/lib/gcc/x86_64-linux-gnu/7/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-linux-gnu/7/lto-wrapper -plugin-opt=-fresolution=/tmp/ccm8P8Wi.res -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -z now -z relro -o cmTC_5e903 /usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/7/crtbeginS.o -L/usr/lib/gcc/x86_64-linux-gnu/7 -L/usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/7/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/7/../../.. -v CMakeFiles/cmTC_5e903.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -lm -lgcc_s -lgcc -lc -lgcc_s -lgcc /usr/lib/gcc/x86_64-linux-gnu/7/crtendS.o /usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/crtn.o
+        collect2 version 7.5.0
+        /usr/bin/ld -plugin /usr/lib/gcc/x86_64-linux-gnu/7/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-linux-gnu/7/lto-wrapper -plugin-opt=-fresolution=/tmp/ccm8P8Wi.res -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -z now -z relro -o cmTC_5e903 /usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/7/crtbeginS.o -L/usr/lib/gcc/x86_64-linux-gnu/7 -L/usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/7/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/7/../../.. -v CMakeFiles/cmTC_5e903.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -lm -lgcc_s -lgcc -lc -lgcc_s -lgcc /usr/lib/gcc/x86_64-linux-gnu/7/crtendS.o /usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/crtn.o
+        GNU ld (GNU Binutils for Ubuntu) 2.30
+        COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_5e903' '-shared-libgcc' '-mtune=generic' '-march=x86-64'
+        make[1]: Leaving directory '/home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/bld/CMakeFiles/CMakeScratch/TryCompile-qkypft'
+        
+      exitCode: 0
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/opt/cmake-3.29.3-linux-x86_64/share/cmake-3.29/Modules/CMakeDetermineCompilerABI.cmake:137 (message)"
+      - "/opt/cmake-3.29.3-linux-x86_64/share/cmake-3.29/Modules/CMakeTestCXXCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:55 (project)"
+    message: |
+      Parsed CXX implicit include dir info: rv=done
+        found start of include info
+        found start of implicit include info
+          add: [/usr/include/c++/7]
+          add: [/usr/include/x86_64-linux-gnu/c++/7]
+          add: [/usr/include/c++/7/backward]
+          add: [/usr/lib/gcc/x86_64-linux-gnu/7/include]
+          add: [/usr/local/include]
+          add: [/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed]
+          add: [/usr/include/x86_64-linux-gnu]
+          add: [/usr/include]
+        end of search list found
+        collapse include dir [/usr/include/c++/7] ==> [/usr/include/c++/7]
+        collapse include dir [/usr/include/x86_64-linux-gnu/c++/7] ==> [/usr/include/x86_64-linux-gnu/c++/7]
+        collapse include dir [/usr/include/c++/7/backward] ==> [/usr/include/c++/7/backward]
+        collapse include dir [/usr/lib/gcc/x86_64-linux-gnu/7/include] ==> [/usr/lib/gcc/x86_64-linux-gnu/7/include]
+        collapse include dir [/usr/local/include] ==> [/usr/local/include]
+        collapse include dir [/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed] ==> [/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed]
+        collapse include dir [/usr/include/x86_64-linux-gnu] ==> [/usr/include/x86_64-linux-gnu]
+        collapse include dir [/usr/include] ==> [/usr/include]
+        implicit include dirs: [/usr/include/c++/7;/usr/include/x86_64-linux-gnu/c++/7;/usr/include/c++/7/backward;/usr/lib/gcc/x86_64-linux-gnu/7/include;/usr/local/include;/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed;/usr/include/x86_64-linux-gnu;/usr/include]
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/opt/cmake-3.29.3-linux-x86_64/share/cmake-3.29/Modules/CMakeDetermineCompilerABI.cmake:173 (message)"
+      - "/opt/cmake-3.29.3-linux-x86_64/share/cmake-3.29/Modules/CMakeTestCXXCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:55 (project)"
+    message: |
+      Parsed CXX implicit link information:
+        link line regex: [^( *|.*[/\\])(ld[0-9]*(\\.[a-z]+)?|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\\]+-)?ld|collect2)[^/\\]*( |$)]
+        linker tool regex: [^[ 	]*(->|")?[ 	]*(([^"]*[/\\])?(ld[0-9]*(\\.[a-z]+)?))("|,| |$)]
+        ignore line: [Change Dir: '/home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/bld/CMakeFiles/CMakeScratch/TryCompile-qkypft']
+        ignore line: []
+        ignore line: [Run Build Command(s): /opt/cmake-3.29.3-linux-x86_64/bin/cmake -E env VERBOSE=1 /usr/bin/make -f Makefile cmTC_5e903/fast]
+        ignore line: [/usr/bin/make  -f CMakeFiles/cmTC_5e903.dir/build.make CMakeFiles/cmTC_5e903.dir/build]
+        ignore line: [make[1]: Entering directory '/home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/bld/CMakeFiles/CMakeScratch/TryCompile-qkypft']
+        ignore line: [Building CXX object CMakeFiles/cmTC_5e903.dir/CMakeCXXCompilerABI.cpp.o]
+        ignore line: [/usr/bin/c++   -v -o CMakeFiles/cmTC_5e903.dir/CMakeCXXCompilerABI.cpp.o -c /opt/cmake-3.29.3-linux-x86_64/share/cmake-3.29/Modules/CMakeCXXCompilerABI.cpp]
+        ignore line: [Using built-in specs.]
+        ignore line: [COLLECT_GCC=/usr/bin/c++]
+        ignore line: [OFFLOAD_TARGET_NAMES=nvptx-none]
+        ignore line: [OFFLOAD_TARGET_DEFAULT=1]
+        ignore line: [Target: x86_64-linux-gnu]
+        ignore line: [Configured with: ../src/configure -v --with-pkgversion='Ubuntu 7.5.0-3ubuntu1~18.04' --with-bugurl=file:///usr/share/doc/gcc-7/README.Bugs --enable-languages=c ada c++ go brig d fortran objc obj-c++ --prefix=/usr --with-gcc-major-version-only --program-suffix=-7 --program-prefix=x86_64-linux-gnu- --enable-shared --enable-linker-build-id --libexecdir=/usr/lib --without-included-gettext --enable-threads=posix --libdir=/usr/lib --enable-nls --enable-bootstrap --enable-clocale=gnu --enable-libstdcxx-debug --enable-libstdcxx-time=yes --with-default-libstdcxx-abi=new --enable-gnu-unique-object --disable-vtable-verify --enable-libmpx --enable-plugin --enable-default-pie --with-system-zlib --with-target-system-zlib --enable-objc-gc=auto --enable-multiarch --disable-werror --with-arch-32=i686 --with-abi=m64 --with-multilib-list=m32 m64 mx32 --enable-multilib --with-tune=generic --enable-offload-targets=nvptx-none --without-cuda-driver --enable-checking=release --build=x86_64-linux-gnu --host=x86_64-linux-gnu --target=x86_64-linux-gnu]
+        ignore line: [Thread model: posix]
+        ignore line: [gcc version 7.5.0 (Ubuntu 7.5.0-3ubuntu1~18.04) ]
+        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_5e903.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-shared-libgcc' '-mtune=generic' '-march=x86-64']
+        ignore line: [ /usr/lib/gcc/x86_64-linux-gnu/7/cc1plus -quiet -v -imultiarch x86_64-linux-gnu -D_GNU_SOURCE /opt/cmake-3.29.3-linux-x86_64/share/cmake-3.29/Modules/CMakeCXXCompilerABI.cpp -quiet -dumpbase CMakeCXXCompilerABI.cpp -mtune=generic -march=x86-64 -auxbase-strip CMakeFiles/cmTC_5e903.dir/CMakeCXXCompilerABI.cpp.o -version -fstack-protector-strong -Wformat -Wformat-security -o /tmp/cc565Prr.s]
+        ignore line: [GNU C++14 (Ubuntu 7.5.0-3ubuntu1~18.04) version 7.5.0 (x86_64-linux-gnu)]
+        ignore line: [	compiled by GNU C version 7.5.0  GMP version 6.1.2  MPFR version 4.0.1  MPC version 1.1.0  isl version isl-0.19-GMP]
+        ignore line: []
+        ignore line: [GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072]
+        ignore line: [ignoring duplicate directory "/usr/include/x86_64-linux-gnu/c++/7"]
+        ignore line: [ignoring nonexistent directory "/usr/local/include/x86_64-linux-gnu"]
+        ignore line: [ignoring nonexistent directory "/usr/lib/gcc/x86_64-linux-gnu/7/../../../../x86_64-linux-gnu/include"]
+        ignore line: [#include "..." search starts here:]
+        ignore line: [#include <...> search starts here:]
+        ignore line: [ /usr/include/c++/7]
+        ignore line: [ /usr/include/x86_64-linux-gnu/c++/7]
+        ignore line: [ /usr/include/c++/7/backward]
+        ignore line: [ /usr/lib/gcc/x86_64-linux-gnu/7/include]
+        ignore line: [ /usr/local/include]
+        ignore line: [ /usr/lib/gcc/x86_64-linux-gnu/7/include-fixed]
+        ignore line: [ /usr/include/x86_64-linux-gnu]
+        ignore line: [ /usr/include]
+        ignore line: [End of search list.]
+        ignore line: [GNU C++14 (Ubuntu 7.5.0-3ubuntu1~18.04) version 7.5.0 (x86_64-linux-gnu)]
+        ignore line: [	compiled by GNU C version 7.5.0  GMP version 6.1.2  MPFR version 4.0.1  MPC version 1.1.0  isl version isl-0.19-GMP]
+        ignore line: []
+        ignore line: [GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072]
+        ignore line: [Compiler executable checksum: 3eb3dc290cd5714c3e1c3ae751116f07]
+        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_5e903.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-shared-libgcc' '-mtune=generic' '-march=x86-64']
+        ignore line: [ as -v --64 -o CMakeFiles/cmTC_5e903.dir/CMakeCXXCompilerABI.cpp.o /tmp/cc565Prr.s]
+        ignore line: [GNU assembler version 2.30 (x86_64-linux-gnu) using BFD version (GNU Binutils for Ubuntu) 2.30]
+        ignore line: [COMPILER_PATH=/usr/lib/gcc/x86_64-linux-gnu/7/:/usr/lib/gcc/x86_64-linux-gnu/7/:/usr/lib/gcc/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/7/:/usr/lib/gcc/x86_64-linux-gnu/]
+        ignore line: [LIBRARY_PATH=/usr/lib/gcc/x86_64-linux-gnu/7/:/usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/7/../../../../lib/:/lib/x86_64-linux-gnu/:/lib/../lib/:/usr/lib/x86_64-linux-gnu/:/usr/lib/../lib/:/usr/lib/gcc/x86_64-linux-gnu/7/../../../:/lib/:/usr/lib/]
+        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_5e903.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-shared-libgcc' '-mtune=generic' '-march=x86-64']
+        ignore line: [Linking CXX executable cmTC_5e903]
+        ignore line: [/opt/cmake-3.29.3-linux-x86_64/bin/cmake -E cmake_link_script CMakeFiles/cmTC_5e903.dir/link.txt --verbose=1]
+        ignore line: [/usr/bin/c++  -v -Wl -v CMakeFiles/cmTC_5e903.dir/CMakeCXXCompilerABI.cpp.o -o cmTC_5e903]
+        ignore line: [Using built-in specs.]
+        ignore line: [COLLECT_GCC=/usr/bin/c++]
+        ignore line: [COLLECT_LTO_WRAPPER=/usr/lib/gcc/x86_64-linux-gnu/7/lto-wrapper]
+        ignore line: [OFFLOAD_TARGET_NAMES=nvptx-none]
+        ignore line: [OFFLOAD_TARGET_DEFAULT=1]
+        ignore line: [Target: x86_64-linux-gnu]
+        ignore line: [Configured with: ../src/configure -v --with-pkgversion='Ubuntu 7.5.0-3ubuntu1~18.04' --with-bugurl=file:///usr/share/doc/gcc-7/README.Bugs --enable-languages=c ada c++ go brig d fortran objc obj-c++ --prefix=/usr --with-gcc-major-version-only --program-suffix=-7 --program-prefix=x86_64-linux-gnu- --enable-shared --enable-linker-build-id --libexecdir=/usr/lib --without-included-gettext --enable-threads=posix --libdir=/usr/lib --enable-nls --enable-bootstrap --enable-clocale=gnu --enable-libstdcxx-debug --enable-libstdcxx-time=yes --with-default-libstdcxx-abi=new --enable-gnu-unique-object --disable-vtable-verify --enable-libmpx --enable-plugin --enable-default-pie --with-system-zlib --with-target-system-zlib --enable-objc-gc=auto --enable-multiarch --disable-werror --with-arch-32=i686 --with-abi=m64 --with-multilib-list=m32 m64 mx32 --enable-multilib --with-tune=generic --enable-offload-targets=nvptx-none --without-cuda-driver --enable-checking=release --build=x86_64-linux-gnu --host=x86_64-linux-gnu --target=x86_64-linux-gnu]
+        ignore line: [Thread model: posix]
+        ignore line: [gcc version 7.5.0 (Ubuntu 7.5.0-3ubuntu1~18.04) ]
+        ignore line: [COMPILER_PATH=/usr/lib/gcc/x86_64-linux-gnu/7/:/usr/lib/gcc/x86_64-linux-gnu/7/:/usr/lib/gcc/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/7/:/usr/lib/gcc/x86_64-linux-gnu/]
+        ignore line: [LIBRARY_PATH=/usr/lib/gcc/x86_64-linux-gnu/7/:/usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/7/../../../../lib/:/lib/x86_64-linux-gnu/:/lib/../lib/:/usr/lib/x86_64-linux-gnu/:/usr/lib/../lib/:/usr/lib/gcc/x86_64-linux-gnu/7/../../../:/lib/:/usr/lib/]
+        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_5e903' '-shared-libgcc' '-mtune=generic' '-march=x86-64']
+        link line: [ /usr/lib/gcc/x86_64-linux-gnu/7/collect2 -plugin /usr/lib/gcc/x86_64-linux-gnu/7/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-linux-gnu/7/lto-wrapper -plugin-opt=-fresolution=/tmp/ccm8P8Wi.res -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -z now -z relro -o cmTC_5e903 /usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/7/crtbeginS.o -L/usr/lib/gcc/x86_64-linux-gnu/7 -L/usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/7/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/7/../../.. -v CMakeFiles/cmTC_5e903.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -lm -lgcc_s -lgcc -lc -lgcc_s -lgcc /usr/lib/gcc/x86_64-linux-gnu/7/crtendS.o /usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/crtn.o]
+          arg [/usr/lib/gcc/x86_64-linux-gnu/7/collect2] ==> ignore
+          arg [-plugin] ==> ignore
+          arg [/usr/lib/gcc/x86_64-linux-gnu/7/liblto_plugin.so] ==> ignore
+          arg [-plugin-opt=/usr/lib/gcc/x86_64-linux-gnu/7/lto-wrapper] ==> ignore
+          arg [-plugin-opt=-fresolution=/tmp/ccm8P8Wi.res] ==> ignore
+          arg [-plugin-opt=-pass-through=-lgcc_s] ==> ignore
+          arg [-plugin-opt=-pass-through=-lgcc] ==> ignore
+          arg [-plugin-opt=-pass-through=-lc] ==> ignore
+          arg [-plugin-opt=-pass-through=-lgcc_s] ==> ignore
+          arg [-plugin-opt=-pass-through=-lgcc] ==> ignore
+          arg [--build-id] ==> ignore
+          arg [--eh-frame-hdr] ==> ignore
+          arg [-m] ==> ignore
+          arg [elf_x86_64] ==> ignore
+          arg [--hash-style=gnu] ==> ignore
+          arg [--as-needed] ==> ignore
+          arg [-dynamic-linker] ==> ignore
+          arg [/lib64/ld-linux-x86-64.so.2] ==> ignore
+          arg [-pie] ==> ignore
+          arg [-znow] ==> ignore
+          arg [-zrelro] ==> ignore
+          arg [-o] ==> ignore
+          arg [cmTC_5e903] ==> ignore
+          arg [/usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/Scrt1.o] ==> obj [/usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/Scrt1.o]
+          arg [/usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/crti.o] ==> obj [/usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/crti.o]
+          arg [/usr/lib/gcc/x86_64-linux-gnu/7/crtbeginS.o] ==> obj [/usr/lib/gcc/x86_64-linux-gnu/7/crtbeginS.o]
+          arg [-L/usr/lib/gcc/x86_64-linux-gnu/7] ==> dir [/usr/lib/gcc/x86_64-linux-gnu/7]
+          arg [-L/usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu] ==> dir [/usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu]
+          arg [-L/usr/lib/gcc/x86_64-linux-gnu/7/../../../../lib] ==> dir [/usr/lib/gcc/x86_64-linux-gnu/7/../../../../lib]
+          arg [-L/lib/x86_64-linux-gnu] ==> dir [/lib/x86_64-linux-gnu]
+          arg [-L/lib/../lib] ==> dir [/lib/../lib]
+          arg [-L/usr/lib/x86_64-linux-gnu] ==> dir [/usr/lib/x86_64-linux-gnu]
+          arg [-L/usr/lib/../lib] ==> dir [/usr/lib/../lib]
+          arg [-L/usr/lib/gcc/x86_64-linux-gnu/7/../../..] ==> dir [/usr/lib/gcc/x86_64-linux-gnu/7/../../..]
+          arg [-v] ==> ignore
+          arg [CMakeFiles/cmTC_5e903.dir/CMakeCXXCompilerABI.cpp.o] ==> ignore
+          arg [-lstdc++] ==> lib [stdc++]
+          arg [-lm] ==> lib [m]
+          arg [-lgcc_s] ==> lib [gcc_s]
+          arg [-lgcc] ==> lib [gcc]
+          arg [-lc] ==> lib [c]
+          arg [-lgcc_s] ==> lib [gcc_s]
+          arg [-lgcc] ==> lib [gcc]
+          arg [/usr/lib/gcc/x86_64-linux-gnu/7/crtendS.o] ==> obj [/usr/lib/gcc/x86_64-linux-gnu/7/crtendS.o]
+          arg [/usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/crtn.o] ==> obj [/usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/crtn.o]
+        ignore line: [collect2 version 7.5.0]
+        ignore line: [/usr/bin/ld -plugin /usr/lib/gcc/x86_64-linux-gnu/7/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-linux-gnu/7/lto-wrapper -plugin-opt=-fresolution=/tmp/ccm8P8Wi.res -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -z now -z relro -o cmTC_5e903 /usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/7/crtbeginS.o -L/usr/lib/gcc/x86_64-linux-gnu/7 -L/usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/7/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/7/../../.. -v CMakeFiles/cmTC_5e903.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -lm -lgcc_s -lgcc -lc -lgcc_s -lgcc /usr/lib/gcc/x86_64-linux-gnu/7/crtendS.o /usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/crtn.o]
+        linker tool for 'CXX': /usr/bin/ld
+        collapse obj [/usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/Scrt1.o] ==> [/usr/lib/x86_64-linux-gnu/Scrt1.o]
+        collapse obj [/usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/crti.o] ==> [/usr/lib/x86_64-linux-gnu/crti.o]
+        collapse obj [/usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/crtn.o] ==> [/usr/lib/x86_64-linux-gnu/crtn.o]
+        collapse library dir [/usr/lib/gcc/x86_64-linux-gnu/7] ==> [/usr/lib/gcc/x86_64-linux-gnu/7]
+        collapse library dir [/usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu] ==> [/usr/lib/x86_64-linux-gnu]
+        collapse library dir [/usr/lib/gcc/x86_64-linux-gnu/7/../../../../lib] ==> [/usr/lib]
+        collapse library dir [/lib/x86_64-linux-gnu] ==> [/lib/x86_64-linux-gnu]
+        collapse library dir [/lib/../lib] ==> [/lib]
+        collapse library dir [/usr/lib/x86_64-linux-gnu] ==> [/usr/lib/x86_64-linux-gnu]
+        collapse library dir [/usr/lib/../lib] ==> [/usr/lib]
+        collapse library dir [/usr/lib/gcc/x86_64-linux-gnu/7/../../..] ==> [/usr/lib]
+        implicit libs: [stdc++;m;gcc_s;gcc;c;gcc_s;gcc]
+        implicit objs: [/usr/lib/x86_64-linux-gnu/Scrt1.o;/usr/lib/x86_64-linux-gnu/crti.o;/usr/lib/gcc/x86_64-linux-gnu/7/crtbeginS.o;/usr/lib/gcc/x86_64-linux-gnu/7/crtendS.o;/usr/lib/x86_64-linux-gnu/crtn.o]
+        implicit dirs: [/usr/lib/gcc/x86_64-linux-gnu/7;/usr/lib/x86_64-linux-gnu;/usr/lib;/lib/x86_64-linux-gnu;/lib]
+        implicit fwks: []
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/opt/cmake-3.29.3-linux-x86_64/share/cmake-3.29/Modules/Internal/CMakeDetermineLinkerId.cmake:40 (message)"
+      - "/opt/cmake-3.29.3-linux-x86_64/share/cmake-3.29/Modules/CMakeDetermineCompilerABI.cmake:210 (cmake_determine_linker_id)"
+      - "/opt/cmake-3.29.3-linux-x86_64/share/cmake-3.29/Modules/CMakeTestCXXCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:55 (project)"
+    message: |
+      Running the CXX compiler's linker: "/usr/bin/ld" "-v"
+      GNU ld (GNU Binutils for Ubuntu) 2.30
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/opt/cmake-3.29.3-linux-x86_64/share/cmake-3.29/Modules/CheckIncludeFile.cmake:90 (try_compile)"
+      - "/opt/cmake-3.29.3-linux-x86_64/share/cmake-3.29/Modules/CheckTypeSize.cmake:250 (check_include_file)"
+      - "bld/_deps/fetk-src/cmake/FETKBuildFunctions.cmake:144 (CHECK_TYPE_SIZE)"
+      - "bld/_deps/fetk-src/maloc/CMakeLists.txt:49 (header_and_type_checks)"
+    checks:
+      - "Looking for sys/types.h"
+    directories:
+      source: "/home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/bld/CMakeFiles/CMakeScratch/TryCompile-RKQ2bK"
+      binary: "/home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/bld/CMakeFiles/CMakeScratch/TryCompile-RKQ2bK"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_LINK_SEARCH_END_STATIC: "ON"
+      CMAKE_LINK_SEARCH_START_STATIC: "ON"
+      CMAKE_MODULE_PATH: "/home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/cmake;/home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/bld/_deps/fetk-src/cmake;/home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/bld/_deps/fetk-src/maloc/../cmake"
+    buildResult:
+      variable: "HAVE_SYS_TYPES_H"
+      cached: true
+      stdout: |
+        Change Dir: '/home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/bld/CMakeFiles/CMakeScratch/TryCompile-RKQ2bK'
+        
+        Run Build Command(s): /opt/cmake-3.29.3-linux-x86_64/bin/cmake -E env VERBOSE=1 /usr/bin/make -f Makefile cmTC_db742/fast
+        /usr/bin/make  -f CMakeFiles/cmTC_db742.dir/build.make CMakeFiles/cmTC_db742.dir/build
+        make[1]: Entering directory '/home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/bld/CMakeFiles/CMakeScratch/TryCompile-RKQ2bK'
+        Building C object CMakeFiles/cmTC_db742.dir/CheckIncludeFile.c.o
+        /usr/bin/cc    -o CMakeFiles/cmTC_db742.dir/CheckIncludeFile.c.o -c /home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/bld/CMakeFiles/CMakeScratch/TryCompile-RKQ2bK/CheckIncludeFile.c
+        Linking C executable cmTC_db742
+        /opt/cmake-3.29.3-linux-x86_64/bin/cmake -E cmake_link_script CMakeFiles/cmTC_db742.dir/link.txt --verbose=1
+        /usr/bin/cc CMakeFiles/cmTC_db742.dir/CheckIncludeFile.c.o -o cmTC_db742
+        make[1]: Leaving directory '/home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/bld/CMakeFiles/CMakeScratch/TryCompile-RKQ2bK'
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/opt/cmake-3.29.3-linux-x86_64/share/cmake-3.29/Modules/CheckIncludeFile.cmake:90 (try_compile)"
+      - "/opt/cmake-3.29.3-linux-x86_64/share/cmake-3.29/Modules/CheckTypeSize.cmake:251 (check_include_file)"
+      - "bld/_deps/fetk-src/cmake/FETKBuildFunctions.cmake:144 (CHECK_TYPE_SIZE)"
+      - "bld/_deps/fetk-src/maloc/CMakeLists.txt:49 (header_and_type_checks)"
+    checks:
+      - "Looking for stdint.h"
+    directories:
+      source: "/home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/bld/CMakeFiles/CMakeScratch/TryCompile-Kmq4g1"
+      binary: "/home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/bld/CMakeFiles/CMakeScratch/TryCompile-Kmq4g1"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_LINK_SEARCH_END_STATIC: "ON"
+      CMAKE_LINK_SEARCH_START_STATIC: "ON"
+      CMAKE_MODULE_PATH: "/home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/cmake;/home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/bld/_deps/fetk-src/cmake;/home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/bld/_deps/fetk-src/maloc/../cmake"
+    buildResult:
+      variable: "HAVE_STDINT_H"
+      cached: true
+      stdout: |
+        Change Dir: '/home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/bld/CMakeFiles/CMakeScratch/TryCompile-Kmq4g1'
+        
+        Run Build Command(s): /opt/cmake-3.29.3-linux-x86_64/bin/cmake -E env VERBOSE=1 /usr/bin/make -f Makefile cmTC_4fc3f/fast
+        /usr/bin/make  -f CMakeFiles/cmTC_4fc3f.dir/build.make CMakeFiles/cmTC_4fc3f.dir/build
+        make[1]: Entering directory '/home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/bld/CMakeFiles/CMakeScratch/TryCompile-Kmq4g1'
+        Building C object CMakeFiles/cmTC_4fc3f.dir/CheckIncludeFile.c.o
+        /usr/bin/cc    -o CMakeFiles/cmTC_4fc3f.dir/CheckIncludeFile.c.o -c /home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/bld/CMakeFiles/CMakeScratch/TryCompile-Kmq4g1/CheckIncludeFile.c
+        Linking C executable cmTC_4fc3f
+        /opt/cmake-3.29.3-linux-x86_64/bin/cmake -E cmake_link_script CMakeFiles/cmTC_4fc3f.dir/link.txt --verbose=1
+        /usr/bin/cc CMakeFiles/cmTC_4fc3f.dir/CheckIncludeFile.c.o -o cmTC_4fc3f
+        make[1]: Leaving directory '/home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/bld/CMakeFiles/CMakeScratch/TryCompile-Kmq4g1'
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/opt/cmake-3.29.3-linux-x86_64/share/cmake-3.29/Modules/CheckIncludeFile.cmake:90 (try_compile)"
+      - "/opt/cmake-3.29.3-linux-x86_64/share/cmake-3.29/Modules/CheckTypeSize.cmake:252 (check_include_file)"
+      - "bld/_deps/fetk-src/cmake/FETKBuildFunctions.cmake:144 (CHECK_TYPE_SIZE)"
+      - "bld/_deps/fetk-src/maloc/CMakeLists.txt:49 (header_and_type_checks)"
+    checks:
+      - "Looking for stddef.h"
+    directories:
+      source: "/home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/bld/CMakeFiles/CMakeScratch/TryCompile-ZWIcui"
+      binary: "/home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/bld/CMakeFiles/CMakeScratch/TryCompile-ZWIcui"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_LINK_SEARCH_END_STATIC: "ON"
+      CMAKE_LINK_SEARCH_START_STATIC: "ON"
+      CMAKE_MODULE_PATH: "/home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/cmake;/home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/bld/_deps/fetk-src/cmake;/home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/bld/_deps/fetk-src/maloc/../cmake"
+    buildResult:
+      variable: "HAVE_STDDEF_H"
+      cached: true
+      stdout: |
+        Change Dir: '/home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/bld/CMakeFiles/CMakeScratch/TryCompile-ZWIcui'
+        
+        Run Build Command(s): /opt/cmake-3.29.3-linux-x86_64/bin/cmake -E env VERBOSE=1 /usr/bin/make -f Makefile cmTC_bee64/fast
+        /usr/bin/make  -f CMakeFiles/cmTC_bee64.dir/build.make CMakeFiles/cmTC_bee64.dir/build
+        make[1]: Entering directory '/home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/bld/CMakeFiles/CMakeScratch/TryCompile-ZWIcui'
+        Building C object CMakeFiles/cmTC_bee64.dir/CheckIncludeFile.c.o
+        /usr/bin/cc    -o CMakeFiles/cmTC_bee64.dir/CheckIncludeFile.c.o -c /home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/bld/CMakeFiles/CMakeScratch/TryCompile-ZWIcui/CheckIncludeFile.c
+        Linking C executable cmTC_bee64
+        /opt/cmake-3.29.3-linux-x86_64/bin/cmake -E cmake_link_script CMakeFiles/cmTC_bee64.dir/link.txt --verbose=1
+        /usr/bin/cc CMakeFiles/cmTC_bee64.dir/CheckIncludeFile.c.o -o cmTC_bee64
+        make[1]: Leaving directory '/home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/bld/CMakeFiles/CMakeScratch/TryCompile-ZWIcui'
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/opt/cmake-3.29.3-linux-x86_64/share/cmake-3.29/Modules/CheckTypeSize.cmake:146 (try_compile)"
+      - "/opt/cmake-3.29.3-linux-x86_64/share/cmake-3.29/Modules/CheckTypeSize.cmake:271 (__check_type_size_impl)"
+      - "bld/_deps/fetk-src/cmake/FETKBuildFunctions.cmake:144 (CHECK_TYPE_SIZE)"
+      - "bld/_deps/fetk-src/maloc/CMakeLists.txt:49 (header_and_type_checks)"
+    checks:
+      - "Check size of mode_t"
+    directories:
+      source: "/home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/bld/CMakeFiles/CMakeScratch/TryCompile-CegpPz"
+      binary: "/home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/bld/CMakeFiles/CMakeScratch/TryCompile-CegpPz"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_LINK_SEARCH_END_STATIC: "ON"
+      CMAKE_LINK_SEARCH_START_STATIC: "ON"
+      CMAKE_MODULE_PATH: "/home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/cmake;/home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/bld/_deps/fetk-src/cmake;/home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/bld/_deps/fetk-src/maloc/../cmake"
+    buildResult:
+      variable: "HAVE_MODE_T"
+      cached: true
+      stdout: |
+        Change Dir: '/home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/bld/CMakeFiles/CMakeScratch/TryCompile-CegpPz'
+        
+        Run Build Command(s): /opt/cmake-3.29.3-linux-x86_64/bin/cmake -E env VERBOSE=1 /usr/bin/make -f Makefile cmTC_28057/fast
+        /usr/bin/make  -f CMakeFiles/cmTC_28057.dir/build.make CMakeFiles/cmTC_28057.dir/build
+        make[1]: Entering directory '/home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/bld/CMakeFiles/CMakeScratch/TryCompile-CegpPz'
+        Building C object CMakeFiles/cmTC_28057.dir/MODE_T.c.o
+        /usr/bin/cc    -o CMakeFiles/cmTC_28057.dir/MODE_T.c.o -c /home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/bld/CMakeFiles/CMakeScratch/TryCompile-CegpPz/MODE_T.c
+        Linking C executable cmTC_28057
+        /opt/cmake-3.29.3-linux-x86_64/bin/cmake -E cmake_link_script CMakeFiles/cmTC_28057.dir/link.txt --verbose=1
+        /usr/bin/cc CMakeFiles/cmTC_28057.dir/MODE_T.c.o -o cmTC_28057
+        make[1]: Leaving directory '/home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/bld/CMakeFiles/CMakeScratch/TryCompile-CegpPz'
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/opt/cmake-3.29.3-linux-x86_64/share/cmake-3.29/Modules/CheckTypeSize.cmake:146 (try_compile)"
+      - "/opt/cmake-3.29.3-linux-x86_64/share/cmake-3.29/Modules/CheckTypeSize.cmake:271 (__check_type_size_impl)"
+      - "bld/_deps/fetk-src/cmake/FETKBuildFunctions.cmake:145 (CHECK_TYPE_SIZE)"
+      - "bld/_deps/fetk-src/maloc/CMakeLists.txt:49 (header_and_type_checks)"
+    checks:
+      - "Check size of pid_t"
+    directories:
+      source: "/home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/bld/CMakeFiles/CMakeScratch/TryCompile-1yQjjR"
+      binary: "/home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/bld/CMakeFiles/CMakeScratch/TryCompile-1yQjjR"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_LINK_SEARCH_END_STATIC: "ON"
+      CMAKE_LINK_SEARCH_START_STATIC: "ON"
+      CMAKE_MODULE_PATH: "/home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/cmake;/home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/bld/_deps/fetk-src/cmake;/home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/bld/_deps/fetk-src/maloc/../cmake"
+    buildResult:
+      variable: "HAVE_PID_T"
+      cached: true
+      stdout: |
+        Change Dir: '/home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/bld/CMakeFiles/CMakeScratch/TryCompile-1yQjjR'
+        
+        Run Build Command(s): /opt/cmake-3.29.3-linux-x86_64/bin/cmake -E env VERBOSE=1 /usr/bin/make -f Makefile cmTC_cddd7/fast
+        /usr/bin/make  -f CMakeFiles/cmTC_cddd7.dir/build.make CMakeFiles/cmTC_cddd7.dir/build
+        make[1]: Entering directory '/home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/bld/CMakeFiles/CMakeScratch/TryCompile-1yQjjR'
+        Building C object CMakeFiles/cmTC_cddd7.dir/PID_T.c.o
+        /usr/bin/cc    -o CMakeFiles/cmTC_cddd7.dir/PID_T.c.o -c /home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/bld/CMakeFiles/CMakeScratch/TryCompile-1yQjjR/PID_T.c
+        Linking C executable cmTC_cddd7
+        /opt/cmake-3.29.3-linux-x86_64/bin/cmake -E cmake_link_script CMakeFiles/cmTC_cddd7.dir/link.txt --verbose=1
+        /usr/bin/cc CMakeFiles/cmTC_cddd7.dir/PID_T.c.o -o cmTC_cddd7
+        make[1]: Leaving directory '/home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/bld/CMakeFiles/CMakeScratch/TryCompile-1yQjjR'
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/opt/cmake-3.29.3-linux-x86_64/share/cmake-3.29/Modules/CheckTypeSize.cmake:146 (try_compile)"
+      - "/opt/cmake-3.29.3-linux-x86_64/share/cmake-3.29/Modules/CheckTypeSize.cmake:271 (__check_type_size_impl)"
+      - "bld/_deps/fetk-src/cmake/FETKBuildFunctions.cmake:146 (CHECK_TYPE_SIZE)"
+      - "bld/_deps/fetk-src/maloc/CMakeLists.txt:49 (header_and_type_checks)"
+    checks:
+      - "Check size of size_t"
+    directories:
+      source: "/home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/bld/CMakeFiles/CMakeScratch/TryCompile-cMyZV8"
+      binary: "/home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/bld/CMakeFiles/CMakeScratch/TryCompile-cMyZV8"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_LINK_SEARCH_END_STATIC: "ON"
+      CMAKE_LINK_SEARCH_START_STATIC: "ON"
+      CMAKE_MODULE_PATH: "/home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/cmake;/home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/bld/_deps/fetk-src/cmake;/home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/bld/_deps/fetk-src/maloc/../cmake"
+    buildResult:
+      variable: "HAVE_SIZE_T"
+      cached: true
+      stdout: |
+        Change Dir: '/home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/bld/CMakeFiles/CMakeScratch/TryCompile-cMyZV8'
+        
+        Run Build Command(s): /opt/cmake-3.29.3-linux-x86_64/bin/cmake -E env VERBOSE=1 /usr/bin/make -f Makefile cmTC_8b8a9/fast
+        /usr/bin/make  -f CMakeFiles/cmTC_8b8a9.dir/build.make CMakeFiles/cmTC_8b8a9.dir/build
+        make[1]: Entering directory '/home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/bld/CMakeFiles/CMakeScratch/TryCompile-cMyZV8'
+        Building C object CMakeFiles/cmTC_8b8a9.dir/SIZE_T.c.o
+        /usr/bin/cc    -o CMakeFiles/cmTC_8b8a9.dir/SIZE_T.c.o -c /home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/bld/CMakeFiles/CMakeScratch/TryCompile-cMyZV8/SIZE_T.c
+        Linking C executable cmTC_8b8a9
+        /opt/cmake-3.29.3-linux-x86_64/bin/cmake -E cmake_link_script CMakeFiles/cmTC_8b8a9.dir/link.txt --verbose=1
+        /usr/bin/cc CMakeFiles/cmTC_8b8a9.dir/SIZE_T.c.o -o cmTC_8b8a9
+        make[1]: Leaving directory '/home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/bld/CMakeFiles/CMakeScratch/TryCompile-cMyZV8'
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/opt/cmake-3.29.3-linux-x86_64/share/cmake-3.29/Modules/CheckIncludeFiles.cmake:132 (try_compile)"
+      - "bld/_deps/fetk-src/cmake/FETKBuildFunctions.cmake:164 (CHECK_INCLUDE_FILES)"
+      - "bld/_deps/fetk-src/maloc/CMakeLists.txt:49 (header_and_type_checks)"
+    checks:
+      - "Looking for 4 include files stdlib.h, ..., float.h"
+    directories:
+      source: "/home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/bld/CMakeFiles/CMakeScratch/TryCompile-LLDrHq"
+      binary: "/home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/bld/CMakeFiles/CMakeScratch/TryCompile-LLDrHq"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_LINK_SEARCH_END_STATIC: "ON"
+      CMAKE_LINK_SEARCH_START_STATIC: "ON"
+      CMAKE_MODULE_PATH: "/home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/cmake;/home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/bld/_deps/fetk-src/cmake;/home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/bld/_deps/fetk-src/maloc/../cmake"
+    buildResult:
+      variable: "STDC_HEADERS"
+      cached: true
+      stdout: |
+        Change Dir: '/home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/bld/CMakeFiles/CMakeScratch/TryCompile-LLDrHq'
+        
+        Run Build Command(s): /opt/cmake-3.29.3-linux-x86_64/bin/cmake -E env VERBOSE=1 /usr/bin/make -f Makefile cmTC_1c6bd/fast
+        /usr/bin/make  -f CMakeFiles/cmTC_1c6bd.dir/build.make CMakeFiles/cmTC_1c6bd.dir/build
+        make[1]: Entering directory '/home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/bld/CMakeFiles/CMakeScratch/TryCompile-LLDrHq'
+        Building C object CMakeFiles/cmTC_1c6bd.dir/STDC_HEADERS.c.o
+        /usr/bin/cc    -o CMakeFiles/cmTC_1c6bd.dir/STDC_HEADERS.c.o -c /home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/bld/CMakeFiles/CMakeScratch/TryCompile-LLDrHq/STDC_HEADERS.c
+        Linking C executable cmTC_1c6bd
+        /opt/cmake-3.29.3-linux-x86_64/bin/cmake -E cmake_link_script CMakeFiles/cmTC_1c6bd.dir/link.txt --verbose=1
+        /usr/bin/cc CMakeFiles/cmTC_1c6bd.dir/STDC_HEADERS.c.o -o cmTC_1c6bd
+        make[1]: Leaving directory '/home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/bld/CMakeFiles/CMakeScratch/TryCompile-LLDrHq'
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/opt/cmake-3.29.3-linux-x86_64/share/cmake-3.29/Modules/CheckIncludeFiles.cmake:132 (try_compile)"
+      - "bld/_deps/fetk-src/cmake/FETKBuildFunctions.cmake:171 (CHECK_INCLUDE_FILES)"
+      - "bld/_deps/fetk-src/maloc/CMakeLists.txt:49 (header_and_type_checks)"
+    checks:
+      - "Looking for include file unistd.h"
+    directories:
+      source: "/home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/bld/CMakeFiles/CMakeScratch/TryCompile-iJSSBI"
+      binary: "/home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/bld/CMakeFiles/CMakeScratch/TryCompile-iJSSBI"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_LINK_SEARCH_END_STATIC: "ON"
+      CMAKE_LINK_SEARCH_START_STATIC: "ON"
+      CMAKE_MODULE_PATH: "/home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/cmake;/home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/bld/_deps/fetk-src/cmake;/home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/bld/_deps/fetk-src/maloc/../cmake"
+    buildResult:
+      variable: "HAVE_UNISTD_H"
+      cached: true
+      stdout: |
+        Change Dir: '/home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/bld/CMakeFiles/CMakeScratch/TryCompile-iJSSBI'
+        
+        Run Build Command(s): /opt/cmake-3.29.3-linux-x86_64/bin/cmake -E env VERBOSE=1 /usr/bin/make -f Makefile cmTC_7b472/fast
+        /usr/bin/make  -f CMakeFiles/cmTC_7b472.dir/build.make CMakeFiles/cmTC_7b472.dir/build
+        make[1]: Entering directory '/home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/bld/CMakeFiles/CMakeScratch/TryCompile-iJSSBI'
+        Building C object CMakeFiles/cmTC_7b472.dir/HAVE_UNISTD_H.c.o
+        /usr/bin/cc    -o CMakeFiles/cmTC_7b472.dir/HAVE_UNISTD_H.c.o -c /home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/bld/CMakeFiles/CMakeScratch/TryCompile-iJSSBI/HAVE_UNISTD_H.c
+        Linking C executable cmTC_7b472
+        /opt/cmake-3.29.3-linux-x86_64/bin/cmake -E cmake_link_script CMakeFiles/cmTC_7b472.dir/link.txt --verbose=1
+        /usr/bin/cc CMakeFiles/cmTC_7b472.dir/HAVE_UNISTD_H.c.o -o cmTC_7b472
+        make[1]: Leaving directory '/home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/bld/CMakeFiles/CMakeScratch/TryCompile-iJSSBI'
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/opt/cmake-3.29.3-linux-x86_64/share/cmake-3.29/Modules/CheckIncludeFiles.cmake:132 (try_compile)"
+      - "bld/_deps/fetk-src/cmake/FETKBuildFunctions.cmake:176 (CHECK_INCLUDE_FILES)"
+      - "bld/_deps/fetk-src/maloc/CMakeLists.txt:49 (header_and_type_checks)"
+    checks:
+      - "Looking for include file sys/socket.h"
+    directories:
+      source: "/home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/bld/CMakeFiles/CMakeScratch/TryCompile-DQMIE0"
+      binary: "/home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/bld/CMakeFiles/CMakeScratch/TryCompile-DQMIE0"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_LINK_SEARCH_END_STATIC: "ON"
+      CMAKE_LINK_SEARCH_START_STATIC: "ON"
+      CMAKE_MODULE_PATH: "/home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/cmake;/home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/bld/_deps/fetk-src/cmake;/home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/bld/_deps/fetk-src/maloc/../cmake"
+    buildResult:
+      variable: "HAVE_SYS_SOCKET_H"
+      cached: true
+      stdout: |
+        Change Dir: '/home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/bld/CMakeFiles/CMakeScratch/TryCompile-DQMIE0'
+        
+        Run Build Command(s): /opt/cmake-3.29.3-linux-x86_64/bin/cmake -E env VERBOSE=1 /usr/bin/make -f Makefile cmTC_1b4c5/fast
+        /usr/bin/make  -f CMakeFiles/cmTC_1b4c5.dir/build.make CMakeFiles/cmTC_1b4c5.dir/build
+        make[1]: Entering directory '/home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/bld/CMakeFiles/CMakeScratch/TryCompile-DQMIE0'
+        Building C object CMakeFiles/cmTC_1b4c5.dir/HAVE_SYS_SOCKET_H.c.o
+        /usr/bin/cc    -o CMakeFiles/cmTC_1b4c5.dir/HAVE_SYS_SOCKET_H.c.o -c /home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/bld/CMakeFiles/CMakeScratch/TryCompile-DQMIE0/HAVE_SYS_SOCKET_H.c
+        Linking C executable cmTC_1b4c5
+        /opt/cmake-3.29.3-linux-x86_64/bin/cmake -E cmake_link_script CMakeFiles/cmTC_1b4c5.dir/link.txt --verbose=1
+        /usr/bin/cc CMakeFiles/cmTC_1b4c5.dir/HAVE_SYS_SOCKET_H.c.o -o cmTC_1b4c5
+        make[1]: Leaving directory '/home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/bld/CMakeFiles/CMakeScratch/TryCompile-DQMIE0'
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/opt/cmake-3.29.3-linux-x86_64/share/cmake-3.29/Modules/CheckIncludeFiles.cmake:132 (try_compile)"
+      - "bld/_deps/fetk-src/cmake/FETKBuildFunctions.cmake:181 (CHECK_INCLUDE_FILES)"
+      - "bld/_deps/fetk-src/maloc/CMakeLists.txt:49 (header_and_type_checks)"
+    checks:
+      - "Looking for include file sys/time.h"
+    directories:
+      source: "/home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/bld/CMakeFiles/CMakeScratch/TryCompile-WLv7Pi"
+      binary: "/home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/bld/CMakeFiles/CMakeScratch/TryCompile-WLv7Pi"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_LINK_SEARCH_END_STATIC: "ON"
+      CMAKE_LINK_SEARCH_START_STATIC: "ON"
+      CMAKE_MODULE_PATH: "/home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/cmake;/home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/bld/_deps/fetk-src/cmake;/home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/bld/_deps/fetk-src/maloc/../cmake"
+    buildResult:
+      variable: "HAVE_SYS_TIME_H"
+      cached: true
+      stdout: |
+        Change Dir: '/home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/bld/CMakeFiles/CMakeScratch/TryCompile-WLv7Pi'
+        
+        Run Build Command(s): /opt/cmake-3.29.3-linux-x86_64/bin/cmake -E env VERBOSE=1 /usr/bin/make -f Makefile cmTC_31ff0/fast
+        /usr/bin/make  -f CMakeFiles/cmTC_31ff0.dir/build.make CMakeFiles/cmTC_31ff0.dir/build
+        make[1]: Entering directory '/home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/bld/CMakeFiles/CMakeScratch/TryCompile-WLv7Pi'
+        Building C object CMakeFiles/cmTC_31ff0.dir/HAVE_SYS_TIME_H.c.o
+        /usr/bin/cc    -o CMakeFiles/cmTC_31ff0.dir/HAVE_SYS_TIME_H.c.o -c /home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/bld/CMakeFiles/CMakeScratch/TryCompile-WLv7Pi/HAVE_SYS_TIME_H.c
+        Linking C executable cmTC_31ff0
+        /opt/cmake-3.29.3-linux-x86_64/bin/cmake -E cmake_link_script CMakeFiles/cmTC_31ff0.dir/link.txt --verbose=1
+        /usr/bin/cc CMakeFiles/cmTC_31ff0.dir/HAVE_SYS_TIME_H.c.o -o cmTC_31ff0
+        make[1]: Leaving directory '/home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/bld/CMakeFiles/CMakeScratch/TryCompile-WLv7Pi'
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/opt/cmake-3.29.3-linux-x86_64/share/cmake-3.29/Modules/CheckIncludeFiles.cmake:132 (try_compile)"
+      - "bld/_deps/fetk-src/cmake/FETKBuildFunctions.cmake:186 (CHECK_INCLUDE_FILES)"
+      - "bld/_deps/fetk-src/maloc/CMakeLists.txt:49 (header_and_type_checks)"
+    checks:
+      - "Looking for include file sys/un.h"
+    directories:
+      source: "/home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/bld/CMakeFiles/CMakeScratch/TryCompile-B3eO9A"
+      binary: "/home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/bld/CMakeFiles/CMakeScratch/TryCompile-B3eO9A"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_LINK_SEARCH_END_STATIC: "ON"
+      CMAKE_LINK_SEARCH_START_STATIC: "ON"
+      CMAKE_MODULE_PATH: "/home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/cmake;/home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/bld/_deps/fetk-src/cmake;/home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/bld/_deps/fetk-src/maloc/../cmake"
+    buildResult:
+      variable: "HAVE_SYS_UN_H"
+      cached: true
+      stdout: |
+        Change Dir: '/home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/bld/CMakeFiles/CMakeScratch/TryCompile-B3eO9A'
+        
+        Run Build Command(s): /opt/cmake-3.29.3-linux-x86_64/bin/cmake -E env VERBOSE=1 /usr/bin/make -f Makefile cmTC_da201/fast
+        /usr/bin/make  -f CMakeFiles/cmTC_da201.dir/build.make CMakeFiles/cmTC_da201.dir/build
+        make[1]: Entering directory '/home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/bld/CMakeFiles/CMakeScratch/TryCompile-B3eO9A'
+        Building C object CMakeFiles/cmTC_da201.dir/HAVE_SYS_UN_H.c.o
+        /usr/bin/cc    -o CMakeFiles/cmTC_da201.dir/HAVE_SYS_UN_H.c.o -c /home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/bld/CMakeFiles/CMakeScratch/TryCompile-B3eO9A/HAVE_SYS_UN_H.c
+        Linking C executable cmTC_da201
+        /opt/cmake-3.29.3-linux-x86_64/bin/cmake -E cmake_link_script CMakeFiles/cmTC_da201.dir/link.txt --verbose=1
+        /usr/bin/cc CMakeFiles/cmTC_da201.dir/HAVE_SYS_UN_H.c.o -o cmTC_da201
+        make[1]: Leaving directory '/home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/bld/CMakeFiles/CMakeScratch/TryCompile-B3eO9A'
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/opt/cmake-3.29.3-linux-x86_64/share/cmake-3.29/Modules/CheckIncludeFiles.cmake:132 (try_compile)"
+      - "bld/_deps/fetk-src/cmake/FETKBuildFunctions.cmake:191 (CHECK_INCLUDE_FILES)"
+      - "bld/_deps/fetk-src/maloc/CMakeLists.txt:49 (header_and_type_checks)"
+    checks:
+      - "Looking for include file sys/wait.h"
+    directories:
+      source: "/home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/bld/CMakeFiles/CMakeScratch/TryCompile-WhWNBT"
+      binary: "/home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/bld/CMakeFiles/CMakeScratch/TryCompile-WhWNBT"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_LINK_SEARCH_END_STATIC: "ON"
+      CMAKE_LINK_SEARCH_START_STATIC: "ON"
+      CMAKE_MODULE_PATH: "/home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/cmake;/home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/bld/_deps/fetk-src/cmake;/home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/bld/_deps/fetk-src/maloc/../cmake"
+    buildResult:
+      variable: "HAVE_SYS_WAIT_H"
+      cached: true
+      stdout: |
+        Change Dir: '/home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/bld/CMakeFiles/CMakeScratch/TryCompile-WhWNBT'
+        
+        Run Build Command(s): /opt/cmake-3.29.3-linux-x86_64/bin/cmake -E env VERBOSE=1 /usr/bin/make -f Makefile cmTC_0ee4e/fast
+        /usr/bin/make  -f CMakeFiles/cmTC_0ee4e.dir/build.make CMakeFiles/cmTC_0ee4e.dir/build
+        make[1]: Entering directory '/home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/bld/CMakeFiles/CMakeScratch/TryCompile-WhWNBT'
+        Building C object CMakeFiles/cmTC_0ee4e.dir/HAVE_SYS_WAIT_H.c.o
+        /usr/bin/cc    -o CMakeFiles/cmTC_0ee4e.dir/HAVE_SYS_WAIT_H.c.o -c /home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/bld/CMakeFiles/CMakeScratch/TryCompile-WhWNBT/HAVE_SYS_WAIT_H.c
+        Linking C executable cmTC_0ee4e
+        /opt/cmake-3.29.3-linux-x86_64/bin/cmake -E cmake_link_script CMakeFiles/cmTC_0ee4e.dir/link.txt --verbose=1
+        /usr/bin/cc CMakeFiles/cmTC_0ee4e.dir/HAVE_SYS_WAIT_H.c.o -o cmTC_0ee4e
+        make[1]: Leaving directory '/home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/bld/CMakeFiles/CMakeScratch/TryCompile-WhWNBT'
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/opt/cmake-3.29.3-linux-x86_64/share/cmake-3.29/Modules/CheckIncludeFiles.cmake:132 (try_compile)"
+      - "bld/_deps/fetk-src/cmake/FETKBuildFunctions.cmake:196 (CHECK_INCLUDE_FILES)"
+      - "bld/_deps/fetk-src/maloc/CMakeLists.txt:49 (header_and_type_checks)"
+    checks:
+      - "Looking for include file netinet/in.h"
+    directories:
+      source: "/home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/bld/CMakeFiles/CMakeScratch/TryCompile-16Ilcc"
+      binary: "/home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/bld/CMakeFiles/CMakeScratch/TryCompile-16Ilcc"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_LINK_SEARCH_END_STATIC: "ON"
+      CMAKE_LINK_SEARCH_START_STATIC: "ON"
+      CMAKE_MODULE_PATH: "/home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/cmake;/home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/bld/_deps/fetk-src/cmake;/home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/bld/_deps/fetk-src/maloc/../cmake"
+    buildResult:
+      variable: "HAVE_NETINET_IN_H"
+      cached: true
+      stdout: |
+        Change Dir: '/home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/bld/CMakeFiles/CMakeScratch/TryCompile-16Ilcc'
+        
+        Run Build Command(s): /opt/cmake-3.29.3-linux-x86_64/bin/cmake -E env VERBOSE=1 /usr/bin/make -f Makefile cmTC_90998/fast
+        /usr/bin/make  -f CMakeFiles/cmTC_90998.dir/build.make CMakeFiles/cmTC_90998.dir/build
+        make[1]: Entering directory '/home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/bld/CMakeFiles/CMakeScratch/TryCompile-16Ilcc'
+        Building C object CMakeFiles/cmTC_90998.dir/HAVE_NETINET_IN_H.c.o
+        /usr/bin/cc    -o CMakeFiles/cmTC_90998.dir/HAVE_NETINET_IN_H.c.o -c /home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/bld/CMakeFiles/CMakeScratch/TryCompile-16Ilcc/HAVE_NETINET_IN_H.c
+        Linking C executable cmTC_90998
+        /opt/cmake-3.29.3-linux-x86_64/bin/cmake -E cmake_link_script CMakeFiles/cmTC_90998.dir/link.txt --verbose=1
+        /usr/bin/cc CMakeFiles/cmTC_90998.dir/HAVE_NETINET_IN_H.c.o -o cmTC_90998
+        make[1]: Leaving directory '/home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/bld/CMakeFiles/CMakeScratch/TryCompile-16Ilcc'
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/opt/cmake-3.29.3-linux-x86_64/share/cmake-3.29/Modules/CheckIncludeFiles.cmake:132 (try_compile)"
+      - "bld/_deps/fetk-src/cmake/FETKBuildFunctions.cmake:201 (CHECK_INCLUDE_FILES)"
+      - "bld/_deps/fetk-src/maloc/CMakeLists.txt:49 (header_and_type_checks)"
+    checks:
+      - "Looking for include file arpa/inet.h"
+    directories:
+      source: "/home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/bld/CMakeFiles/CMakeScratch/TryCompile-UDZDVu"
+      binary: "/home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/bld/CMakeFiles/CMakeScratch/TryCompile-UDZDVu"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_LINK_SEARCH_END_STATIC: "ON"
+      CMAKE_LINK_SEARCH_START_STATIC: "ON"
+      CMAKE_MODULE_PATH: "/home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/cmake;/home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/bld/_deps/fetk-src/cmake;/home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/bld/_deps/fetk-src/maloc/../cmake"
+    buildResult:
+      variable: "HAVE_ARPA_INET_H"
+      cached: true
+      stdout: |
+        Change Dir: '/home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/bld/CMakeFiles/CMakeScratch/TryCompile-UDZDVu'
+        
+        Run Build Command(s): /opt/cmake-3.29.3-linux-x86_64/bin/cmake -E env VERBOSE=1 /usr/bin/make -f Makefile cmTC_9a972/fast
+        /usr/bin/make  -f CMakeFiles/cmTC_9a972.dir/build.make CMakeFiles/cmTC_9a972.dir/build
+        make[1]: Entering directory '/home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/bld/CMakeFiles/CMakeScratch/TryCompile-UDZDVu'
+        Building C object CMakeFiles/cmTC_9a972.dir/HAVE_ARPA_INET_H.c.o
+        /usr/bin/cc    -o CMakeFiles/cmTC_9a972.dir/HAVE_ARPA_INET_H.c.o -c /home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/bld/CMakeFiles/CMakeScratch/TryCompile-UDZDVu/HAVE_ARPA_INET_H.c
+        Linking C executable cmTC_9a972
+        /opt/cmake-3.29.3-linux-x86_64/bin/cmake -E cmake_link_script CMakeFiles/cmTC_9a972.dir/link.txt --verbose=1
+        /usr/bin/cc CMakeFiles/cmTC_9a972.dir/HAVE_ARPA_INET_H.c.o -o cmTC_9a972
+        make[1]: Leaving directory '/home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/bld/CMakeFiles/CMakeScratch/TryCompile-UDZDVu'
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/opt/cmake-3.29.3-linux-x86_64/share/cmake-3.29/Modules/CheckIncludeFiles.cmake:132 (try_compile)"
+      - "bld/_deps/fetk-src/cmake/FETKBuildFunctions.cmake:206 (CHECK_INCLUDE_FILES)"
+      - "bld/_deps/fetk-src/maloc/CMakeLists.txt:49 (header_and_type_checks)"
+    checks:
+      - "Looking for include file netdb.h"
+    directories:
+      source: "/home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/bld/CMakeFiles/CMakeScratch/TryCompile-l1fMNN"
+      binary: "/home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/bld/CMakeFiles/CMakeScratch/TryCompile-l1fMNN"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_LINK_SEARCH_END_STATIC: "ON"
+      CMAKE_LINK_SEARCH_START_STATIC: "ON"
+      CMAKE_MODULE_PATH: "/home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/cmake;/home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/bld/_deps/fetk-src/cmake;/home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/bld/_deps/fetk-src/maloc/../cmake"
+    buildResult:
+      variable: "HAVE_NETDB_H"
+      cached: true
+      stdout: |
+        Change Dir: '/home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/bld/CMakeFiles/CMakeScratch/TryCompile-l1fMNN'
+        
+        Run Build Command(s): /opt/cmake-3.29.3-linux-x86_64/bin/cmake -E env VERBOSE=1 /usr/bin/make -f Makefile cmTC_3a37c/fast
+        /usr/bin/make  -f CMakeFiles/cmTC_3a37c.dir/build.make CMakeFiles/cmTC_3a37c.dir/build
+        make[1]: Entering directory '/home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/bld/CMakeFiles/CMakeScratch/TryCompile-l1fMNN'
+        Building C object CMakeFiles/cmTC_3a37c.dir/HAVE_NETDB_H.c.o
+        /usr/bin/cc    -o CMakeFiles/cmTC_3a37c.dir/HAVE_NETDB_H.c.o -c /home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/bld/CMakeFiles/CMakeScratch/TryCompile-l1fMNN/HAVE_NETDB_H.c
+        Linking C executable cmTC_3a37c
+        /opt/cmake-3.29.3-linux-x86_64/bin/cmake -E cmake_link_script CMakeFiles/cmTC_3a37c.dir/link.txt --verbose=1
+        /usr/bin/cc CMakeFiles/cmTC_3a37c.dir/HAVE_NETDB_H.c.o -o cmTC_3a37c
+        make[1]: Leaving directory '/home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/bld/CMakeFiles/CMakeScratch/TryCompile-l1fMNN'
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/opt/cmake-3.29.3-linux-x86_64/share/cmake-3.29/Modules/CheckIncludeFiles.cmake:132 (try_compile)"
+      - "bld/_deps/fetk-src/cmake/FETKBuildFunctions.cmake:213 (CHECK_INCLUDE_FILES)"
+      - "bld/_deps/fetk-src/maloc/CMakeLists.txt:49 (header_and_type_checks)"
+    checks:
+      - "Looking for include file sys/stat.h"
+    directories:
+      source: "/home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/bld/CMakeFiles/CMakeScratch/TryCompile-8GsMO6"
+      binary: "/home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/bld/CMakeFiles/CMakeScratch/TryCompile-8GsMO6"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_LINK_SEARCH_END_STATIC: "ON"
+      CMAKE_LINK_SEARCH_START_STATIC: "ON"
+      CMAKE_MODULE_PATH: "/home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/cmake;/home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/bld/_deps/fetk-src/cmake;/home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/bld/_deps/fetk-src/maloc/../cmake"
+    buildResult:
+      variable: "HAVE_SYS_STAT_H"
+      cached: true
+      stdout: |
+        Change Dir: '/home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/bld/CMakeFiles/CMakeScratch/TryCompile-8GsMO6'
+        
+        Run Build Command(s): /opt/cmake-3.29.3-linux-x86_64/bin/cmake -E env VERBOSE=1 /usr/bin/make -f Makefile cmTC_d7e33/fast
+        /usr/bin/make  -f CMakeFiles/cmTC_d7e33.dir/build.make CMakeFiles/cmTC_d7e33.dir/build
+        make[1]: Entering directory '/home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/bld/CMakeFiles/CMakeScratch/TryCompile-8GsMO6'
+        Building C object CMakeFiles/cmTC_d7e33.dir/HAVE_SYS_STAT_H.c.o
+        /usr/bin/cc    -o CMakeFiles/cmTC_d7e33.dir/HAVE_SYS_STAT_H.c.o -c /home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/bld/CMakeFiles/CMakeScratch/TryCompile-8GsMO6/HAVE_SYS_STAT_H.c
+        Linking C executable cmTC_d7e33
+        /opt/cmake-3.29.3-linux-x86_64/bin/cmake -E cmake_link_script CMakeFiles/cmTC_d7e33.dir/link.txt --verbose=1
+        /usr/bin/cc CMakeFiles/cmTC_d7e33.dir/HAVE_SYS_STAT_H.c.o -o cmTC_d7e33
+        make[1]: Leaving directory '/home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/bld/CMakeFiles/CMakeScratch/TryCompile-8GsMO6'
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/opt/cmake-3.29.3-linux-x86_64/share/cmake-3.29/Modules/CheckIncludeFiles.cmake:132 (try_compile)"
+      - "bld/_deps/fetk-src/cmake/FETKBuildFunctions.cmake:223 (CHECK_INCLUDE_FILES)"
+      - "bld/_deps/fetk-src/maloc/CMakeLists.txt:49 (header_and_type_checks)"
+    checks:
+      - "Looking for include file fcntl.h"
+    directories:
+      source: "/home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/bld/CMakeFiles/CMakeScratch/TryCompile-v6wbYp"
+      binary: "/home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/bld/CMakeFiles/CMakeScratch/TryCompile-v6wbYp"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_LINK_SEARCH_END_STATIC: "ON"
+      CMAKE_LINK_SEARCH_START_STATIC: "ON"
+      CMAKE_MODULE_PATH: "/home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/cmake;/home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/bld/_deps/fetk-src/cmake;/home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/bld/_deps/fetk-src/maloc/../cmake"
+    buildResult:
+      variable: "HAVE_FCNTL_H"
+      cached: true
+      stdout: |
+        Change Dir: '/home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/bld/CMakeFiles/CMakeScratch/TryCompile-v6wbYp'
+        
+        Run Build Command(s): /opt/cmake-3.29.3-linux-x86_64/bin/cmake -E env VERBOSE=1 /usr/bin/make -f Makefile cmTC_4891d/fast
+        /usr/bin/make  -f CMakeFiles/cmTC_4891d.dir/build.make CMakeFiles/cmTC_4891d.dir/build
+        make[1]: Entering directory '/home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/bld/CMakeFiles/CMakeScratch/TryCompile-v6wbYp'
+        Building C object CMakeFiles/cmTC_4891d.dir/HAVE_FCNTL_H.c.o
+        /usr/bin/cc    -o CMakeFiles/cmTC_4891d.dir/HAVE_FCNTL_H.c.o -c /home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/bld/CMakeFiles/CMakeScratch/TryCompile-v6wbYp/HAVE_FCNTL_H.c
+        Linking C executable cmTC_4891d
+        /opt/cmake-3.29.3-linux-x86_64/bin/cmake -E cmake_link_script CMakeFiles/cmTC_4891d.dir/link.txt --verbose=1
+        /usr/bin/cc CMakeFiles/cmTC_4891d.dir/HAVE_FCNTL_H.c.o -o cmTC_4891d
+        make[1]: Leaving directory '/home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/bld/CMakeFiles/CMakeScratch/TryCompile-v6wbYp'
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/opt/cmake-3.29.3-linux-x86_64/share/cmake-3.29/Modules/CheckIncludeFiles.cmake:132 (try_compile)"
+      - "bld/_deps/fetk-src/cmake/FETKBuildFunctions.cmake:228 (CHECK_INCLUDE_FILES)"
+      - "bld/_deps/fetk-src/maloc/CMakeLists.txt:49 (header_and_type_checks)"
+    checks:
+      - "Looking for include file rpc/rpc.h"
+    directories:
+      source: "/home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/bld/CMakeFiles/CMakeScratch/TryCompile-aB4PfJ"
+      binary: "/home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/bld/CMakeFiles/CMakeScratch/TryCompile-aB4PfJ"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_LINK_SEARCH_END_STATIC: "ON"
+      CMAKE_LINK_SEARCH_START_STATIC: "ON"
+      CMAKE_MODULE_PATH: "/home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/cmake;/home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/bld/_deps/fetk-src/cmake;/home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/bld/_deps/fetk-src/maloc/../cmake"
+    buildResult:
+      variable: "HAVE_RPC_RPC_H"
+      cached: true
+      stdout: |
+        Change Dir: '/home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/bld/CMakeFiles/CMakeScratch/TryCompile-aB4PfJ'
+        
+        Run Build Command(s): /opt/cmake-3.29.3-linux-x86_64/bin/cmake -E env VERBOSE=1 /usr/bin/make -f Makefile cmTC_e30b5/fast
+        /usr/bin/make  -f CMakeFiles/cmTC_e30b5.dir/build.make CMakeFiles/cmTC_e30b5.dir/build
+        make[1]: Entering directory '/home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/bld/CMakeFiles/CMakeScratch/TryCompile-aB4PfJ'
+        Building C object CMakeFiles/cmTC_e30b5.dir/HAVE_RPC_RPC_H.c.o
+        /usr/bin/cc    -o CMakeFiles/cmTC_e30b5.dir/HAVE_RPC_RPC_H.c.o -c /home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/bld/CMakeFiles/CMakeScratch/TryCompile-aB4PfJ/HAVE_RPC_RPC_H.c
+        Linking C executable cmTC_e30b5
+        /opt/cmake-3.29.3-linux-x86_64/bin/cmake -E cmake_link_script CMakeFiles/cmTC_e30b5.dir/link.txt --verbose=1
+        /usr/bin/cc CMakeFiles/cmTC_e30b5.dir/HAVE_RPC_RPC_H.c.o -o cmTC_e30b5
+        make[1]: Leaving directory '/home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/bld/CMakeFiles/CMakeScratch/TryCompile-aB4PfJ'
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/opt/cmake-3.29.3-linux-x86_64/share/cmake-3.29/Modules/CheckFunctionExists.cmake:86 (try_compile)"
+      - "bld/_deps/fetk-src/cmake/FETKBuildFunctions.cmake:244 (CHECK_FUNCTION_EXISTS)"
+      - "bld/_deps/fetk-src/maloc/CMakeLists.txt:49 (header_and_type_checks)"
+    checks:
+      - "Looking for getcwd"
+    directories:
+      source: "/home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/bld/CMakeFiles/CMakeScratch/TryCompile-JbXJH2"
+      binary: "/home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/bld/CMakeFiles/CMakeScratch/TryCompile-JbXJH2"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_LINK_SEARCH_END_STATIC: "ON"
+      CMAKE_LINK_SEARCH_START_STATIC: "ON"
+      CMAKE_MODULE_PATH: "/home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/cmake;/home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/bld/_deps/fetk-src/cmake;/home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/bld/_deps/fetk-src/maloc/../cmake"
+    buildResult:
+      variable: "HAVE_GETCWD"
+      cached: true
+      stdout: |
+        Change Dir: '/home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/bld/CMakeFiles/CMakeScratch/TryCompile-JbXJH2'
+        
+        Run Build Command(s): /opt/cmake-3.29.3-linux-x86_64/bin/cmake -E env VERBOSE=1 /usr/bin/make -f Makefile cmTC_09c9e/fast
+        /usr/bin/make  -f CMakeFiles/cmTC_09c9e.dir/build.make CMakeFiles/cmTC_09c9e.dir/build
+        make[1]: Entering directory '/home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/bld/CMakeFiles/CMakeScratch/TryCompile-JbXJH2'
+        Building C object CMakeFiles/cmTC_09c9e.dir/CheckFunctionExists.c.o
+        /usr/bin/cc   -DCHECK_FUNCTION_EXISTS=getcwd -o CMakeFiles/cmTC_09c9e.dir/CheckFunctionExists.c.o -c /home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/bld/CMakeFiles/CMakeScratch/TryCompile-JbXJH2/CheckFunctionExists.c
+        Linking C executable cmTC_09c9e
+        /opt/cmake-3.29.3-linux-x86_64/bin/cmake -E cmake_link_script CMakeFiles/cmTC_09c9e.dir/link.txt --verbose=1
+        /usr/bin/cc  -DCHECK_FUNCTION_EXISTS=getcwd CMakeFiles/cmTC_09c9e.dir/CheckFunctionExists.c.o -o cmTC_09c9e
+        make[1]: Leaving directory '/home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/bld/CMakeFiles/CMakeScratch/TryCompile-JbXJH2'
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/opt/cmake-3.29.3-linux-x86_64/share/cmake-3.29/Modules/CheckSymbolExists.cmake:140 (try_compile)"
+      - "/opt/cmake-3.29.3-linux-x86_64/share/cmake-3.29/Modules/CheckSymbolExists.cmake:66 (__CHECK_SYMBOL_EXISTS_IMPL)"
+      - "bld/_deps/fetk-src/cmake/FETKBuildFunctions.cmake:253 (CHECK_SYMBOL_EXISTS)"
+      - "bld/_deps/fetk-src/maloc/CMakeLists.txt:49 (header_and_type_checks)"
+    checks:
+      - "Looking for O_NONBLOCK"
+    directories:
+      source: "/home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/bld/CMakeFiles/CMakeScratch/TryCompile-KplQhm"
+      binary: "/home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/bld/CMakeFiles/CMakeScratch/TryCompile-KplQhm"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_LINK_SEARCH_END_STATIC: "ON"
+      CMAKE_LINK_SEARCH_START_STATIC: "ON"
+      CMAKE_MODULE_PATH: "/home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/cmake;/home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/bld/_deps/fetk-src/cmake;/home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/bld/_deps/fetk-src/maloc/../cmake"
+    buildResult:
+      variable: "HAVE_O_NONBLOCK"
+      cached: true
+      stdout: |
+        Change Dir: '/home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/bld/CMakeFiles/CMakeScratch/TryCompile-KplQhm'
+        
+        Run Build Command(s): /opt/cmake-3.29.3-linux-x86_64/bin/cmake -E env VERBOSE=1 /usr/bin/make -f Makefile cmTC_39e60/fast
+        /usr/bin/make  -f CMakeFiles/cmTC_39e60.dir/build.make CMakeFiles/cmTC_39e60.dir/build
+        make[1]: Entering directory '/home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/bld/CMakeFiles/CMakeScratch/TryCompile-KplQhm'
+        Building C object CMakeFiles/cmTC_39e60.dir/CheckSymbolExists.c.o
+        /usr/bin/cc    -o CMakeFiles/cmTC_39e60.dir/CheckSymbolExists.c.o -c /home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/bld/CMakeFiles/CMakeScratch/TryCompile-KplQhm/CheckSymbolExists.c
+        Linking C executable cmTC_39e60
+        /opt/cmake-3.29.3-linux-x86_64/bin/cmake -E cmake_link_script CMakeFiles/cmTC_39e60.dir/link.txt --verbose=1
+        /usr/bin/cc CMakeFiles/cmTC_39e60.dir/CheckSymbolExists.c.o -o cmTC_39e60
+        make[1]: Leaving directory '/home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/bld/CMakeFiles/CMakeScratch/TryCompile-KplQhm'
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "bld/_deps/fetk-src/maloc/CMakeLists.txt:56 (try_compile)"
+    directories:
+      source: "/home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/bld/_deps/fetk-build/maloc/CMakeFiles/CMakeTmp"
+      binary: "/home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/bld/_deps/fetk-build/maloc/CMakeFiles/CMakeTmp"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_LINK_SEARCH_END_STATIC: "ON"
+      CMAKE_LINK_SEARCH_START_STATIC: "ON"
+      CMAKE_MODULE_PATH: "/home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/cmake;/home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/bld/_deps/fetk-src/cmake;/home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/bld/_deps/fetk-src/maloc/../cmake"
+    buildResult:
+      variable: "HAVE_EMBED"
+      cached: true
+      stdout: |
+        Change Dir: '/home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/bld/_deps/fetk-build/maloc/CMakeFiles/CMakeTmp'
+        
+        Run Build Command(s): /opt/cmake-3.29.3-linux-x86_64/bin/cmake -E env VERBOSE=1 /usr/bin/make -f Makefile cmTC_0cbb1/fast
+        /usr/bin/make  -f CMakeFiles/cmTC_0cbb1.dir/build.make CMakeFiles/cmTC_0cbb1.dir/build
+        make[1]: Entering directory '/home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/bld/_deps/fetk-build/maloc/CMakeFiles/CMakeTmp'
+        Building C object CMakeFiles/cmTC_0cbb1.dir/embed_test.c.o
+        /usr/bin/cc    -o CMakeFiles/cmTC_0cbb1.dir/embed_test.c.o -c /home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/bld/_deps/fetk-src/maloc/src/config/embed_test.c
+        /home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/bld/_deps/fetk-src/maloc/src/config/embed_test.c:6:51: error: ‘rcsid’ undeclared here (not in a function)
+         static void* use_rcsid=(0 ? &use_rcsid : (void**)&rcsid);
+                                                           ^~~~~
+        CMakeFiles/cmTC_0cbb1.dir/build.make:77: recipe for target 'CMakeFiles/cmTC_0cbb1.dir/embed_test.c.o' failed
+        make[1]: *** [CMakeFiles/cmTC_0cbb1.dir/embed_test.c.o] Error 1
+        make[1]: Leaving directory '/home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/bld/_deps/fetk-build/maloc/CMakeFiles/CMakeTmp'
+        Makefile:127: recipe for target 'cmTC_0cbb1/fast' failed
+        make: *** [cmTC_0cbb1/fast] Error 2
+        
+      exitCode: 2
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/opt/cmake-3.29.3-linux-x86_64/share/cmake-3.29/Modules/Internal/CheckSourceCompiles.cmake:101 (try_compile)"
+      - "/opt/cmake-3.29.3-linux-x86_64/share/cmake-3.29/Modules/CheckCSourceCompiles.cmake:52 (cmake_check_source_compiles)"
+      - "/opt/cmake-3.29.3-linux-x86_64/share/cmake-3.29/Modules/FindThreads.cmake:97 (CHECK_C_SOURCE_COMPILES)"
+      - "/opt/cmake-3.29.3-linux-x86_64/share/cmake-3.29/Modules/FindThreads.cmake:163 (_threads_check_libc)"
+      - "bld/_deps/fetk-src/cmake/FindLAPACK.cmake:251 (find_package)"
+      - "bld/_deps/fetk-src/cmake/FindLAPACK.cmake:324 (_lapack_find_dependency)"
+      - "bld/_deps/fetk-src/cmake/FindSuiteSparse.cmake:293 (find_package)"
+      - "bld/_deps/fetk-src/mc/CMakeLists.txt:38 (find_package)"
+    checks:
+      - "Performing Test CMAKE_HAVE_LIBC_PTHREAD"
+    directories:
+      source: "/home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/bld/CMakeFiles/CMakeScratch/TryCompile-LuQ7MK"
+      binary: "/home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/bld/CMakeFiles/CMakeScratch/TryCompile-LuQ7MK"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_LINK_SEARCH_END_STATIC: "ON"
+      CMAKE_LINK_SEARCH_START_STATIC: "ON"
+      CMAKE_MODULE_PATH: "/home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/cmake;/home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/bld/_deps/fetk-src/cmake;/home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/bld/_deps/fetk-src/mc/../cmake"
+    buildResult:
+      variable: "CMAKE_HAVE_LIBC_PTHREAD"
+      cached: true
+      stdout: |
+        Change Dir: '/home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/bld/CMakeFiles/CMakeScratch/TryCompile-LuQ7MK'
+        
+        Run Build Command(s): /opt/cmake-3.29.3-linux-x86_64/bin/cmake -E env VERBOSE=1 /usr/bin/make -f Makefile cmTC_0e67c/fast
+        /usr/bin/make  -f CMakeFiles/cmTC_0e67c.dir/build.make CMakeFiles/cmTC_0e67c.dir/build
+        make[1]: Entering directory '/home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/bld/CMakeFiles/CMakeScratch/TryCompile-LuQ7MK'
+        Building C object CMakeFiles/cmTC_0e67c.dir/src.c.o
+        /usr/bin/cc -DCMAKE_HAVE_LIBC_PTHREAD   -o CMakeFiles/cmTC_0e67c.dir/src.c.o -c /home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/bld/CMakeFiles/CMakeScratch/TryCompile-LuQ7MK/src.c
+        Linking C executable cmTC_0e67c
+        /opt/cmake-3.29.3-linux-x86_64/bin/cmake -E cmake_link_script CMakeFiles/cmTC_0e67c.dir/link.txt --verbose=1
+        /usr/bin/cc CMakeFiles/cmTC_0e67c.dir/src.c.o -o cmTC_0e67c
+        CMakeFiles/cmTC_0e67c.dir/src.c.o: In function `main':
+        src.c:(.text+0x3e): undefined reference to `pthread_create'
+        src.c:(.text+0x4a): undefined reference to `pthread_detach'
+        src.c:(.text+0x56): undefined reference to `pthread_cancel'
+        src.c:(.text+0x67): undefined reference to `pthread_join'
+        src.c:(.text+0x7b): undefined reference to `pthread_atfork'
+        collect2: error: ld returned 1 exit status
+        CMakeFiles/cmTC_0e67c.dir/build.make:98: recipe for target 'cmTC_0e67c' failed
+        make[1]: *** [cmTC_0e67c] Error 1
+        make[1]: Leaving directory '/home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/bld/CMakeFiles/CMakeScratch/TryCompile-LuQ7MK'
+        Makefile:127: recipe for target 'cmTC_0e67c/fast' failed
+        make: *** [cmTC_0e67c/fast] Error 2
+        
+      exitCode: 2
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/opt/cmake-3.29.3-linux-x86_64/share/cmake-3.29/Modules/CheckLibraryExists.cmake:69 (try_compile)"
+      - "/opt/cmake-3.29.3-linux-x86_64/share/cmake-3.29/Modules/FindThreads.cmake:112 (CHECK_LIBRARY_EXISTS)"
+      - "/opt/cmake-3.29.3-linux-x86_64/share/cmake-3.29/Modules/FindThreads.cmake:175 (_threads_check_lib)"
+      - "bld/_deps/fetk-src/cmake/FindLAPACK.cmake:251 (find_package)"
+      - "bld/_deps/fetk-src/cmake/FindLAPACK.cmake:324 (_lapack_find_dependency)"
+      - "bld/_deps/fetk-src/cmake/FindSuiteSparse.cmake:293 (find_package)"
+      - "bld/_deps/fetk-src/mc/CMakeLists.txt:38 (find_package)"
+    checks:
+      - "Looking for pthread_create in pthreads"
+    directories:
+      source: "/home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/bld/CMakeFiles/CMakeScratch/TryCompile-gpsEr9"
+      binary: "/home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/bld/CMakeFiles/CMakeScratch/TryCompile-gpsEr9"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_LINK_SEARCH_END_STATIC: "ON"
+      CMAKE_LINK_SEARCH_START_STATIC: "ON"
+      CMAKE_MODULE_PATH: "/home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/cmake;/home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/bld/_deps/fetk-src/cmake;/home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/bld/_deps/fetk-src/mc/../cmake"
+    buildResult:
+      variable: "CMAKE_HAVE_PTHREADS_CREATE"
+      cached: true
+      stdout: |
+        Change Dir: '/home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/bld/CMakeFiles/CMakeScratch/TryCompile-gpsEr9'
+        
+        Run Build Command(s): /opt/cmake-3.29.3-linux-x86_64/bin/cmake -E env VERBOSE=1 /usr/bin/make -f Makefile cmTC_c6ea9/fast
+        /usr/bin/make  -f CMakeFiles/cmTC_c6ea9.dir/build.make CMakeFiles/cmTC_c6ea9.dir/build
+        make[1]: Entering directory '/home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/bld/CMakeFiles/CMakeScratch/TryCompile-gpsEr9'
+        Building C object CMakeFiles/cmTC_c6ea9.dir/CheckFunctionExists.c.o
+        /usr/bin/cc   -DCHECK_FUNCTION_EXISTS=pthread_create -o CMakeFiles/cmTC_c6ea9.dir/CheckFunctionExists.c.o -c /home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/bld/CMakeFiles/CMakeScratch/TryCompile-gpsEr9/CheckFunctionExists.c
+        Linking C executable cmTC_c6ea9
+        /opt/cmake-3.29.3-linux-x86_64/bin/cmake -E cmake_link_script CMakeFiles/cmTC_c6ea9.dir/link.txt --verbose=1
+        /usr/bin/cc  -DCHECK_FUNCTION_EXISTS=pthread_create CMakeFiles/cmTC_c6ea9.dir/CheckFunctionExists.c.o -o cmTC_c6ea9  -lpthreads
+        /usr/bin/ld: cannot find -lpthreads
+        collect2: error: ld returned 1 exit status
+        CMakeFiles/cmTC_c6ea9.dir/build.make:98: recipe for target 'cmTC_c6ea9' failed
+        make[1]: *** [cmTC_c6ea9] Error 1
+        make[1]: Leaving directory '/home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/bld/CMakeFiles/CMakeScratch/TryCompile-gpsEr9'
+        Makefile:127: recipe for target 'cmTC_c6ea9/fast' failed
+        make: *** [cmTC_c6ea9/fast] Error 2
+        
+      exitCode: 2
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/opt/cmake-3.29.3-linux-x86_64/share/cmake-3.29/Modules/CheckLibraryExists.cmake:69 (try_compile)"
+      - "/opt/cmake-3.29.3-linux-x86_64/share/cmake-3.29/Modules/FindThreads.cmake:112 (CHECK_LIBRARY_EXISTS)"
+      - "/opt/cmake-3.29.3-linux-x86_64/share/cmake-3.29/Modules/FindThreads.cmake:176 (_threads_check_lib)"
+      - "bld/_deps/fetk-src/cmake/FindLAPACK.cmake:251 (find_package)"
+      - "bld/_deps/fetk-src/cmake/FindLAPACK.cmake:324 (_lapack_find_dependency)"
+      - "bld/_deps/fetk-src/cmake/FindSuiteSparse.cmake:293 (find_package)"
+      - "bld/_deps/fetk-src/mc/CMakeLists.txt:38 (find_package)"
+    checks:
+      - "Looking for pthread_create in pthread"
+    directories:
+      source: "/home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/bld/CMakeFiles/CMakeScratch/TryCompile-j6jHcy"
+      binary: "/home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/bld/CMakeFiles/CMakeScratch/TryCompile-j6jHcy"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_LINK_SEARCH_END_STATIC: "ON"
+      CMAKE_LINK_SEARCH_START_STATIC: "ON"
+      CMAKE_MODULE_PATH: "/home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/cmake;/home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/bld/_deps/fetk-src/cmake;/home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/bld/_deps/fetk-src/mc/../cmake"
+    buildResult:
+      variable: "CMAKE_HAVE_PTHREAD_CREATE"
+      cached: true
+      stdout: |
+        Change Dir: '/home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/bld/CMakeFiles/CMakeScratch/TryCompile-j6jHcy'
+        
+        Run Build Command(s): /opt/cmake-3.29.3-linux-x86_64/bin/cmake -E env VERBOSE=1 /usr/bin/make -f Makefile cmTC_d3bff/fast
+        /usr/bin/make  -f CMakeFiles/cmTC_d3bff.dir/build.make CMakeFiles/cmTC_d3bff.dir/build
+        make[1]: Entering directory '/home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/bld/CMakeFiles/CMakeScratch/TryCompile-j6jHcy'
+        Building C object CMakeFiles/cmTC_d3bff.dir/CheckFunctionExists.c.o
+        /usr/bin/cc   -DCHECK_FUNCTION_EXISTS=pthread_create -o CMakeFiles/cmTC_d3bff.dir/CheckFunctionExists.c.o -c /home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/bld/CMakeFiles/CMakeScratch/TryCompile-j6jHcy/CheckFunctionExists.c
+        Linking C executable cmTC_d3bff
+        /opt/cmake-3.29.3-linux-x86_64/bin/cmake -E cmake_link_script CMakeFiles/cmTC_d3bff.dir/link.txt --verbose=1
+        /usr/bin/cc  -DCHECK_FUNCTION_EXISTS=pthread_create CMakeFiles/cmTC_d3bff.dir/CheckFunctionExists.c.o -o cmTC_d3bff  -lpthread
+        make[1]: Leaving directory '/home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/bld/CMakeFiles/CMakeScratch/TryCompile-j6jHcy'
+        
+      exitCode: 0
+  -
+    kind: "try_run-v1"
+    backtrace:
+      - "CMakeLists.txt:281 (try_run)"
+    directories:
+      source: "/home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/bld/temp/CMakeFiles/CMakeTmp"
+      binary: "/home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/bld/temp/CMakeFiles/CMakeTmp"
+    cmakeVariables:
+      CMAKE_C_FLAGS: " -fPIC"
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: " -Wl,--no-as-needed"
+      CMAKE_MODULE_PATH: "/home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/cmake;/home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/bld/_deps/fetk-src/cmake"
+    buildResult:
+      variable: "FLOAT_EPSILON_COMPUTED"
+      cached: true
+      stdout: |
+        Change Dir: '/home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/bld/temp/CMakeFiles/CMakeTmp'
+        
+        Run Build Command(s): /opt/cmake-3.29.3-linux-x86_64/bin/cmake -E env VERBOSE=1 /usr/bin/make -f Makefile cmTC_81f8d/fast
+        /usr/bin/make  -f CMakeFiles/cmTC_81f8d.dir/build.make CMakeFiles/cmTC_81f8d.dir/build
+        make[1]: Entering directory '/home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/bld/temp/CMakeFiles/CMakeTmp'
+        Building C object CMakeFiles/cmTC_81f8d.dir/float_epsilon.c.o
+        /usr/bin/cc   -fPIC  -o CMakeFiles/cmTC_81f8d.dir/float_epsilon.c.o -c /home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/src/.config/float_epsilon.c
+        Linking C executable cmTC_81f8d
+        /opt/cmake-3.29.3-linux-x86_64/bin/cmake -E cmake_link_script CMakeFiles/cmTC_81f8d.dir/link.txt --verbose=1
+        /usr/bin/cc  -fPIC   -Wl,--no-as-needed  CMakeFiles/cmTC_81f8d.dir/float_epsilon.c.o -o cmTC_81f8d
+        make[1]: Leaving directory '/home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/bld/temp/CMakeFiles/CMakeTmp'
+        
+      exitCode: 0
+    runResult:
+      variable: "FLOAT_EPSILON_COMPILED"
+      cached: true
+      stdout: |
+        2.220446e-16
+      exitCode: 0
+  -
+    kind: "try_run-v1"
+    backtrace:
+      - "CMakeLists.txt:296 (try_run)"
+    directories:
+      source: "/home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/bld/temp/CMakeFiles/CMakeTmp"
+      binary: "/home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/bld/temp/CMakeFiles/CMakeTmp"
+    cmakeVariables:
+      CMAKE_C_FLAGS: " -fPIC"
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: " -Wl,--no-as-needed"
+      CMAKE_MODULE_PATH: "/home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/cmake;/home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/bld/_deps/fetk-src/cmake"
+    buildResult:
+      variable: "DOUBLE_EPSILON_COMPUTED"
+      cached: true
+      stdout: |
+        Change Dir: '/home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/bld/temp/CMakeFiles/CMakeTmp'
+        
+        Run Build Command(s): /opt/cmake-3.29.3-linux-x86_64/bin/cmake -E env VERBOSE=1 /usr/bin/make -f Makefile cmTC_12978/fast
+        /usr/bin/make  -f CMakeFiles/cmTC_12978.dir/build.make CMakeFiles/cmTC_12978.dir/build
+        make[1]: Entering directory '/home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/bld/temp/CMakeFiles/CMakeTmp'
+        Building C object CMakeFiles/cmTC_12978.dir/double_epsilon.c.o
+        /usr/bin/cc   -fPIC  -o CMakeFiles/cmTC_12978.dir/double_epsilon.c.o -c /home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/src/.config/double_epsilon.c
+        Linking C executable cmTC_12978
+        /opt/cmake-3.29.3-linux-x86_64/bin/cmake -E cmake_link_script CMakeFiles/cmTC_12978.dir/link.txt --verbose=1
+        /usr/bin/cc  -fPIC   -Wl,--no-as-needed  CMakeFiles/cmTC_12978.dir/double_epsilon.c.o -o cmTC_12978
+        make[1]: Leaving directory '/home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/bld/temp/CMakeFiles/CMakeTmp'
+        
+      exitCode: 0
+    runResult:
+      variable: "DOUBLE_EPSILON_COMPILED"
+      cached: true
+      stdout: |
+        2.220446e-16
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/opt/cmake-3.29.3-linux-x86_64/share/cmake-3.29/Modules/CheckFunctionExists.cmake:86 (try_compile)"
+      - "CMakeLists.txt:320 (CHECK_FUNCTION_EXISTS)"
+    checks:
+      - "Looking for time"
+    directories:
+      source: "/home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/bld/CMakeFiles/CMakeScratch/TryCompile-CUszsX"
+      binary: "/home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/bld/CMakeFiles/CMakeScratch/TryCompile-CUszsX"
+    cmakeVariables:
+      CMAKE_C_FLAGS: " -fPIC"
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: " -Wl,--no-as-needed"
+      CMAKE_MODULE_PATH: "/home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/cmake;/home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/bld/_deps/fetk-src/cmake"
+    buildResult:
+      variable: "HAVE_TIME_FUNC"
+      cached: true
+      stdout: |
+        Change Dir: '/home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/bld/CMakeFiles/CMakeScratch/TryCompile-CUszsX'
+        
+        Run Build Command(s): /opt/cmake-3.29.3-linux-x86_64/bin/cmake -E env VERBOSE=1 /usr/bin/make -f Makefile cmTC_9dd83/fast
+        /usr/bin/make  -f CMakeFiles/cmTC_9dd83.dir/build.make CMakeFiles/cmTC_9dd83.dir/build
+        make[1]: Entering directory '/home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/bld/CMakeFiles/CMakeScratch/TryCompile-CUszsX'
+        Building C object CMakeFiles/cmTC_9dd83.dir/CheckFunctionExists.c.o
+        /usr/bin/cc   -fPIC -DCHECK_FUNCTION_EXISTS=time -o CMakeFiles/cmTC_9dd83.dir/CheckFunctionExists.c.o -c /home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/bld/CMakeFiles/CMakeScratch/TryCompile-CUszsX/CheckFunctionExists.c
+        Linking C executable cmTC_9dd83
+        /opt/cmake-3.29.3-linux-x86_64/bin/cmake -E cmake_link_script CMakeFiles/cmTC_9dd83.dir/link.txt --verbose=1
+        /usr/bin/cc  -fPIC -DCHECK_FUNCTION_EXISTS=time  -Wl,--no-as-needed  CMakeFiles/cmTC_9dd83.dir/CheckFunctionExists.c.o -o cmTC_9dd83
+        make[1]: Leaving directory '/home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/bld/CMakeFiles/CMakeScratch/TryCompile-CUszsX'
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/opt/cmake-3.29.3-linux-x86_64/share/cmake-3.29/Modules/CheckFunctionExists.cmake:86 (try_compile)"
+      - "CMakeLists.txt:326 (CHECK_FUNCTION_EXISTS)"
+    checks:
+      - "Looking for rand"
+    directories:
+      source: "/home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/bld/CMakeFiles/CMakeScratch/TryCompile-NbhNQm"
+      binary: "/home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/bld/CMakeFiles/CMakeScratch/TryCompile-NbhNQm"
+    cmakeVariables:
+      CMAKE_C_FLAGS: " -fPIC"
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: " -Wl,--no-as-needed"
+      CMAKE_MODULE_PATH: "/home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/cmake;/home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/bld/_deps/fetk-src/cmake"
+    buildResult:
+      variable: "HAVE_RAND_FUNC"
+      cached: true
+      stdout: |
+        Change Dir: '/home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/bld/CMakeFiles/CMakeScratch/TryCompile-NbhNQm'
+        
+        Run Build Command(s): /opt/cmake-3.29.3-linux-x86_64/bin/cmake -E env VERBOSE=1 /usr/bin/make -f Makefile cmTC_be802/fast
+        /usr/bin/make  -f CMakeFiles/cmTC_be802.dir/build.make CMakeFiles/cmTC_be802.dir/build
+        make[1]: Entering directory '/home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/bld/CMakeFiles/CMakeScratch/TryCompile-NbhNQm'
+        Building C object CMakeFiles/cmTC_be802.dir/CheckFunctionExists.c.o
+        /usr/bin/cc   -fPIC -DCHECK_FUNCTION_EXISTS=rand -o CMakeFiles/cmTC_be802.dir/CheckFunctionExists.c.o -c /home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/bld/CMakeFiles/CMakeScratch/TryCompile-NbhNQm/CheckFunctionExists.c
+        Linking C executable cmTC_be802
+        /opt/cmake-3.29.3-linux-x86_64/bin/cmake -E cmake_link_script CMakeFiles/cmTC_be802.dir/link.txt --verbose=1
+        /usr/bin/cc  -fPIC -DCHECK_FUNCTION_EXISTS=rand  -Wl,--no-as-needed  CMakeFiles/cmTC_be802.dir/CheckFunctionExists.c.o -o cmTC_be802
+        make[1]: Leaving directory '/home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/bld/CMakeFiles/CMakeScratch/TryCompile-NbhNQm'
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/opt/cmake-3.29.3-linux-x86_64/share/cmake-3.29/Modules/CheckFunctionExists.cmake:86 (try_compile)"
+      - "CMakeLists.txt:332 (CHECK_FUNCTION_EXISTS)"
+    checks:
+      - "Looking for srand"
+    directories:
+      source: "/home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/bld/CMakeFiles/CMakeScratch/TryCompile-aCIMnM"
+      binary: "/home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/bld/CMakeFiles/CMakeScratch/TryCompile-aCIMnM"
+    cmakeVariables:
+      CMAKE_C_FLAGS: " -fPIC"
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: " -Wl,--no-as-needed"
+      CMAKE_MODULE_PATH: "/home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/cmake;/home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/bld/_deps/fetk-src/cmake"
+    buildResult:
+      variable: "HAVE_SRAND_FUNC"
+      cached: true
+      stdout: |
+        Change Dir: '/home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/bld/CMakeFiles/CMakeScratch/TryCompile-aCIMnM'
+        
+        Run Build Command(s): /opt/cmake-3.29.3-linux-x86_64/bin/cmake -E env VERBOSE=1 /usr/bin/make -f Makefile cmTC_e5b30/fast
+        /usr/bin/make  -f CMakeFiles/cmTC_e5b30.dir/build.make CMakeFiles/cmTC_e5b30.dir/build
+        make[1]: Entering directory '/home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/bld/CMakeFiles/CMakeScratch/TryCompile-aCIMnM'
+        Building C object CMakeFiles/cmTC_e5b30.dir/CheckFunctionExists.c.o
+        /usr/bin/cc   -fPIC -DCHECK_FUNCTION_EXISTS=srand -o CMakeFiles/cmTC_e5b30.dir/CheckFunctionExists.c.o -c /home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/bld/CMakeFiles/CMakeScratch/TryCompile-aCIMnM/CheckFunctionExists.c
+        Linking C executable cmTC_e5b30
+        /opt/cmake-3.29.3-linux-x86_64/bin/cmake -E cmake_link_script CMakeFiles/cmTC_e5b30.dir/link.txt --verbose=1
+        /usr/bin/cc  -fPIC -DCHECK_FUNCTION_EXISTS=srand  -Wl,--no-as-needed  CMakeFiles/cmTC_e5b30.dir/CheckFunctionExists.c.o -o cmTC_e5b30
+        make[1]: Leaving directory '/home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/bld/CMakeFiles/CMakeScratch/TryCompile-aCIMnM'
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/opt/cmake-3.29.3-linux-x86_64/share/cmake-3.29/Modules/Internal/CheckSourceCompiles.cmake:101 (try_compile)"
+      - "/opt/cmake-3.29.3-linux-x86_64/share/cmake-3.29/Modules/CheckCSourceCompiles.cmake:52 (cmake_check_source_compiles)"
+      - "/opt/cmake-3.29.3-linux-x86_64/share/cmake-3.29/Modules/FindIntl.cmake:110 (check_c_source_compiles)"
+      - "CMakeLists.txt:343 (find_package)"
+    directories:
+      source: "/home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/bld/CMakeFiles/CMakeScratch/TryCompile-T8wN3b"
+      binary: "/home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/bld/CMakeFiles/CMakeScratch/TryCompile-T8wN3b"
+    cmakeVariables:
+      CMAKE_C_FLAGS: " -fPIC"
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: " -Wl,--no-as-needed"
+      CMAKE_MODULE_PATH: "/home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/cmake;/home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/bld/_deps/fetk-src/cmake"
+    buildResult:
+      variable: "Intl_IS_BUILT_IN"
+      cached: true
+      stdout: |
+        Change Dir: '/home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/bld/CMakeFiles/CMakeScratch/TryCompile-T8wN3b'
+        
+        Run Build Command(s): /opt/cmake-3.29.3-linux-x86_64/bin/cmake -E env VERBOSE=1 /usr/bin/make -f Makefile cmTC_51b5e/fast
+        /usr/bin/make  -f CMakeFiles/cmTC_51b5e.dir/build.make CMakeFiles/cmTC_51b5e.dir/build
+        make[1]: Entering directory '/home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/bld/CMakeFiles/CMakeScratch/TryCompile-T8wN3b'
+        Building C object CMakeFiles/cmTC_51b5e.dir/src.c.o
+        /usr/bin/cc -DIntl_IS_BUILT_IN  -fPIC  -o CMakeFiles/cmTC_51b5e.dir/src.c.o -c /home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/bld/CMakeFiles/CMakeScratch/TryCompile-T8wN3b/src.c
+        Linking C executable cmTC_51b5e
+        /opt/cmake-3.29.3-linux-x86_64/bin/cmake -E cmake_link_script CMakeFiles/cmTC_51b5e.dir/link.txt --verbose=1
+        /usr/bin/cc  -fPIC   -Wl,--no-as-needed  CMakeFiles/cmTC_51b5e.dir/src.c.o -o cmTC_51b5e
+        make[1]: Leaving directory '/home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/bld/CMakeFiles/CMakeScratch/TryCompile-T8wN3b'
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/opt/cmake-3.29.3-linux-x86_64/share/cmake-3.29/Modules/Internal/CheckSourceCompiles.cmake:101 (try_compile)"
+      - "/opt/cmake-3.29.3-linux-x86_64/share/cmake-3.29/Modules/CheckCSourceCompiles.cmake:52 (cmake_check_source_compiles)"
+      - "/opt/cmake-3.29.3-linux-x86_64/share/cmake-3.29/Modules/FindIconv.cmake:115 (check_c_source_compiles)"
+      - "CMakeLists.txt:344 (find_package)"
+    checks:
+      - "Performing Test Iconv_IS_BUILT_IN"
+    directories:
+      source: "/home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/bld/CMakeFiles/CMakeScratch/TryCompile-AxU4SB"
+      binary: "/home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/bld/CMakeFiles/CMakeScratch/TryCompile-AxU4SB"
+    cmakeVariables:
+      CMAKE_C_FLAGS: " -fPIC"
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: " -Wl,--no-as-needed"
+      CMAKE_MODULE_PATH: "/home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/cmake;/home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/bld/_deps/fetk-src/cmake"
+    buildResult:
+      variable: "Iconv_IS_BUILT_IN"
+      cached: true
+      stdout: |
+        Change Dir: '/home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/bld/CMakeFiles/CMakeScratch/TryCompile-AxU4SB'
+        
+        Run Build Command(s): /opt/cmake-3.29.3-linux-x86_64/bin/cmake -E env VERBOSE=1 /usr/bin/make -f Makefile cmTC_b2f1a/fast
+        /usr/bin/make  -f CMakeFiles/cmTC_b2f1a.dir/build.make CMakeFiles/cmTC_b2f1a.dir/build
+        make[1]: Entering directory '/home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/bld/CMakeFiles/CMakeScratch/TryCompile-AxU4SB'
+        Building C object CMakeFiles/cmTC_b2f1a.dir/src.c.o
+        /usr/bin/cc -DIconv_IS_BUILT_IN  -fPIC  -o CMakeFiles/cmTC_b2f1a.dir/src.c.o -c /home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/bld/CMakeFiles/CMakeScratch/TryCompile-AxU4SB/src.c
+        Linking C executable cmTC_b2f1a
+        /opt/cmake-3.29.3-linux-x86_64/bin/cmake -E cmake_link_script CMakeFiles/cmTC_b2f1a.dir/link.txt --verbose=1
+        /usr/bin/cc  -fPIC   -Wl,--no-as-needed  CMakeFiles/cmTC_b2f1a.dir/src.c.o -o cmTC_b2f1a
+        make[1]: Leaving directory '/home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/bld/CMakeFiles/CMakeScratch/TryCompile-AxU4SB'
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "CMakeLists.txt:638 (try_compile)"
+    directories:
+      source: "/home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/bld/build/CMakeFiles/CMakeTmp"
+      binary: "/home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/bld/build/CMakeFiles/CMakeTmp"
+    cmakeVariables:
+      CMAKE_C_FLAGS: " -fPIC"
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: " -Wl,--no-as-needed"
+      CMAKE_MODULE_PATH: "/home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/cmake;/home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/bld/_deps/fetk-src/cmake"
+    buildResult:
+      variable: "HAVE_EMBED"
+      cached: true
+      stdout: |
+        Change Dir: '/home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/bld/build/CMakeFiles/CMakeTmp'
+        
+        Run Build Command(s): /opt/cmake-3.29.3-linux-x86_64/bin/cmake -E env VERBOSE=1 /usr/bin/make -f Makefile cmTC_06272/fast
+        /usr/bin/make  -f CMakeFiles/cmTC_06272.dir/build.make CMakeFiles/cmTC_06272.dir/build
+        make[1]: Entering directory '/home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/bld/build/CMakeFiles/CMakeTmp'
+        Building C object CMakeFiles/cmTC_06272.dir/embed_test.c.o
+        /usr/bin/cc   -fPIC  -o CMakeFiles/cmTC_06272.dir/embed_test.c.o -c /home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/src/.config/embed_test.c
+        /home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/src/.config/embed_test.c:6:51: error: ‘rcsid’ undeclared here (not in a function)
+         static void* use_rcsid=(0 ? &use_rcsid : (void**)&rcsid);
+                                                           ^~~~~
+        CMakeFiles/cmTC_06272.dir/build.make:77: recipe for target 'CMakeFiles/cmTC_06272.dir/embed_test.c.o' failed
+        make[1]: *** [CMakeFiles/cmTC_06272.dir/embed_test.c.o] Error 1
+        make[1]: Leaving directory '/home/jenbunnyaqua/Desktop/ZPRED-master/Software/apbs-main/bld/build/CMakeFiles/CMakeTmp'
+        Makefile:127: recipe for target 'cmTC_06272/fast' failed
+        make: *** [cmTC_06272/fast] Error 2
+        
+      exitCode: 2
+...
