@@ -1,4 +1,4 @@
-#Zeta Potential Prediction in a General Aqueous Electrolyte Solution
+# Zeta Potential Prediction in a General Aqueous Electrolyte Solution
 ZPRED is a driver program in that it automates the use of various
 software components to compute the electrokinetic (or zeta) potential
 of a macromolecule.  Thus, successful implementation of ZPRED requires
