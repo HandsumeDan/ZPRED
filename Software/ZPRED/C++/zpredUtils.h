@@ -174,7 +174,7 @@ using namespace boost::numeric::odeint;
 
 	// Single ZPRED Output Data Structure Array
 	struct zOutput
-	{string proteinName;string solCondNum;double proteinRadius;double solvatedRadius;double zetaPotential;string Xsp;double charge;double semMobility;double henryMobility;double kuwabaraMobility;double diffusivity;solProp solution;electricProfile EP;};
+	{string proteinName;string solCondNum;double molecularWeight;double proteinRadius;double solvatedRadius;double zetaPotential;string Xsp;double charge;double semMobility;double henryMobility;double kuwabaraMobility;double diffusivity;solProp solution;electricProfile EP;};
 
 	// COLLIDE Input Data Structure Array
 	struct colInput
@@ -208,6 +208,8 @@ using namespace boost::numeric::odeint;
 	struct collisionParameters
 	{double zeta;double Rp;double Rh;double Xsp;};
 
+	double calc_coagulation_time(double protConc,double protMW,double viscosity,double T);
+	double calc_collision_efficiency(double Rp,double Rh,double zetaPot,double er,double debyeLength,double T);
 	string getBaseFolder(string f);
 	string checkWhiteSpaceInFilePath(string iFile);
 	double interpolate(double x,double x1,double x2,double y1,double y2);
@@ -267,6 +269,7 @@ using namespace boost::numeric::odeint;
 	long getFileSize(string inFile);
 	string initialize_ZPRED_display(int totalCalc,bool& MULTI_DISPLAY);
 	string initialize_ZPRED_gui_display(int totalCalc,bool& MULTI_DISPLAY);
+	string repStr(string Input,int Num);
 	string repeatString(string Input,int Num);
 	void rewind_display(string display);
 	void* runZPRED(void* Ptr);

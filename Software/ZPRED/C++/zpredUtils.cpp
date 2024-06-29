@@ -14,6 +14,117 @@ double calc_average(double* X,int Sz)
 	if(Counter==0){return 0;}
 	return Output/Counter;}
 
+double calc_coagulation_time(double protConc,double protMW,double viscosity,double T)
+	{// Input
+	// protConc		protein concentration (grams/Liter)
+	// protMW			molecular weight of protein structure (grams/mol)
+	// viscosity		dynamic viscosity (Pa s)
+	// T				absolute tempertaure (Kelvin)
+	double Output;		// [seconds]
+	
+	double trm1=3*viscosity;
+	double trm2=4*kb*T;
+	trm2*=Na;
+	trm2*=protConc;
+	trm2/=protMW;
+	trm2*=1000;
+
+	Output=trm1/trm2;
+	return Output;}
+
+double calc_collision_efficiency(double Rp,double Rh,double zetaPot,double er,double debyeLength,double T)
+	{// Input
+	// Rp			anhydrous protein radius (Angstroms)
+	// Rh			solvated protein radius (Angstroms)
+	// zetaPot		zeta potential (volts)
+	// er			solution relative diecltric constant (unitless)
+	// debyeLength		Debye/EDL Length (Angstroms)
+	// T				absolute temperature (Kelvin)
+	double Output;		// fraction of particles successfully colliding and sticking
+/*	
+	// Attraction Energy
+	double hamakerConstant=1e-21;		// Joules
+	double Ea=-hamakerConstant*Rp/(12.0*d);
+	
+	// Repulsion Energy
+	double trm1=exp(-(d-2*(Rh-Rp))/debyeLength);
+	double trm2=log(1+trm1);
+	double Er=2*pi*eo*er*Rh*zetaPot*zetaPot*trm2;
+
+
+	double incrmnt=0.1;		// tenth an Angstrom
+	double minDist=2*Rp;
+	double maxDist=minDist+10*debyeLength;
+	int minNumPnts=250;
+	int numPnts=(maxDist-minDist)/incrmnt + 1;
+	if(numPnts<minNumPnts)
+		{numPnts=minNumPnts;
+		incrmnt=(maxDist-minDist)/(numPnts-1);}
+	double *x=new double[numPnts];
+	double *y=new double[numPnts];
+	for(int i=0;i<numPnts;i++)
+		{x[i]=minDist+i*incrmnt;
+		// Attraction Energy
+		Ea=-hamakerConstant*Rp/(12.0*x[i]*1e-10);
+		// Repulsion Energy
+		trm1=exp(-(x[i]-2*(Rh-Rp))/debyeLength);
+		trm2=log(1+trm1);
+		Er=2*pi*eo*er*Rh*1e-10*zetaPot*zetaPot*trm2;
+		// Total Interaction Energy
+		Et=Ea+Er;
+		y=exp(Et/(kb*T))/(x[i]*x[i]*1e-20);
+		}
+	double W=calcAreaUnderCurve(x,y,numPnts);
+	Output=1/(2*Rp*1e-10*W);
+*/
+	// Attraction Energy
+	double hamakerConstant=4e-21;		// Joules
+	double Ea,Er,Et,trm1,trm2,Xsp;
+
+	Xsp=Rh-Rp;
+	if(Xsp<0){Xsp=0;}
+
+	double incrmnt=0.1;		// tenth an Angstrom
+	double minDist=2*Rp;
+	double maxDist=minDist+100*debyeLength;
+	int minNumPnts=250;
+	int numPnts=(maxDist-minDist)/incrmnt + 1;
+	if(numPnts<minNumPnts)
+		{numPnts=minNumPnts;
+		incrmnt=(maxDist-minDist)/(numPnts-1);}
+	double *x=new double[numPnts];
+	double *y=new double[numPnts];
+	for(int i=0;i<numPnts;i++)
+		{// Inter-Particle Distance
+		x[i]=minDist+i*incrmnt;
+		// Attraction Energy (J)
+		Ea=-hamakerConstant*Rp/(12.0*x[i]);
+		// Repulsion Energy (J)
+		trm1=exp(-(x[i]-2*Xsp)/debyeLength);
+		trm2=log(1+trm1);
+		Er=2*pi*eo*er*Rh*1e-10*zetaPot*zetaPot*trm2;
+		// Total Interaction Energy
+		Et=Ea+Er;
+/*		if(i%10==0)
+			{cout<<x[i]<<"|"<<i<<"/"<<numPnts<<endl;
+			cout<<"Attraction: "<<Ea<<endl;
+			cout<<"Repulsion:  "<<Er<<endl;
+			cout<<"Total:      "<<Et<<endl;}
+*/
+		trm1=Et/(kb*T);
+		trm2=exp(trm1);
+		//cout<<trm1<<"|"<<trm2<<endl;
+		y[i]=trm1/(x[i]*x[i]*1e-20);
+		}
+	
+	
+	double W=calcAreaUnderCurve(x,y,numPnts);
+
+	Output=abs(1/(2*Rp*1e-10*W));
+	
+	return Output;}
+
+
 double calc_std_dev(double* X,int Sz,double Avg)
 	{double Output=0;
 	int Counter=0;
@@ -210,24 +321,38 @@ void collect_all_files_in_dir(string dir2Search,string &fileLst,string delimiter
 	}
 
 void determine_dx_file_name_components(string fNm,string &pHVal,string &tVal,string &srVal)
-	{
-	int pos=fNm.find("pH",0);
+	{int pos,pos2;
+	pos=fNm.find("TIGERTOWN",0);
+	if(pos!=string::npos){fNm.replace(pos,9,"");}
+
+	pos=fNm.find("pH",0);
 	if(pos==string::npos)
 		{cerr<<"Error in determine_dx_file_name_components!Could not determine pH value\n";}
 	else
-		{pHVal=fNm.substr(pos+2,fNm.find("T",pos)-pos-2);
+		{pos2=fNm.find("T",pos);
+		pHVal=fNm.substr(pos+2,pos2-pos-2);
 		}
 	pos=fNm.find("T",pos);
 	if(pos==string::npos)
 		{cerr<<"Error in determine_dx_file_name_components!Could not determine temperature\n";}
 	else
-		{tVal=fNm.substr(pos+1,fNm.find("SR",pos)-pos-1);
-		}
-	pos=fNm.find("SR",pos);
-	if(pos==string::npos)
-		{cerr<<"Error in determine_dx_file_name_components!Could not determine ion radius\n";}
-	else
-		{srVal=fNm.substr(pos+2,fNm.find(".",pos)-pos+1);
+		{pos2=fNm.find("SR",pos);
+		if(pos2!=string::npos)
+			{tVal=fNm.substr(pos+1,pos2-pos-1);
+			pos=fNm.find("SR",pos);
+			if(pos==string::npos)
+				{cerr<<"Error in determine_dx_file_name_components!Could not determine ion radius\n";}
+			else
+				{srVal=fNm.substr(pos+2,fNm.find(".",pos)-pos+1);
+				}
+			}
+		else
+			{pos2=fNm.find("S",pos);
+			if(pos2!=string::npos)
+				{tVal=fNm.substr(pos+1,pos2-pos-1);}
+			else
+				{tVal=fNm.substr(pos+1,fNm.length()-pos-1);}
+			}
 		}
 
 	//cout<<"|"<<pHVal<<"|"<<tVal<<"|"<<sRVal<<"|\n";
@@ -455,11 +580,53 @@ int countNumLinesMSMSVertFile(string fileName)
 
 string cnvrtNumToStrng(int Num,int numberAfterDecimalpoint){stringstream ss;ss.setf(ios::fixed);if(numberAfterDecimalpoint>0){ss.setf(ios::showpoint);}ss.precision(numberAfterDecimalpoint);ss<<Num;return ss.str();}
 
-string cnvrtNumToStrng(double Num,int numberAfterDecimalpoint){stringstream ss;ss.setf(ios::fixed);if(numberAfterDecimalpoint>0){ss.setf(ios::showpoint);}ss.precision(numberAfterDecimalpoint);ss<<Num;return ss.str();}
+string cnvrtNumToStrng(double Num,int numberAfterDecimalpoint)
+	{stringstream ss;
+	//ss.setf(ios::scientific); //ss.setf(ios::fixed);
+	double testVal=log10(Num);
+	double tmpVal=BUFFER_SIZE;
+	tmpVal-=2;
+	tmpVal*=-1;
+	//if(numberAfterDecimalpoint>0){ss.setf(ios::showpoint);}
+	//cout<<testVal<<"|"<<tmpVal<<endl;
+	if(testVal>tmpVal)
+		{ss.setf(ios::fixed);
+		if(numberAfterDecimalpoint>0){ss.setf(ios::showpoint);}
+		ss.precision(numberAfterDecimalpoint);}
+	else
+		{ss.setf(ios::scientific);}
+	ss<<Num;
+	return ss.str();}
 
-string cnvrtNumToStrng(long double Num,int numberAfterDecimalpoint){stringstream ss;ss.setf(ios::fixed);if(numberAfterDecimalpoint>0){ss.setf(ios::showpoint);}ss.precision(numberAfterDecimalpoint);ss<<Num;return ss.str();}
+string cnvrtNumToStrng(long double Num,int numberAfterDecimalpoint)
+	{stringstream ss;
+	double testVal=log10(Num);
+	double tmpVal=BUFFER_SIZE;
+	tmpVal-=2;
+	tmpVal*=-1;
+	if(testVal>tmpVal)
+		{ss.setf(ios::fixed);
+		if(numberAfterDecimalpoint>0){ss.setf(ios::showpoint);}
+		ss.precision(numberAfterDecimalpoint);}
+	else
+		{ss.setf(ios::scientific);}
+	ss<<Num;
+	return ss.str();}
 
-string cnvrtNumToStrng(float Num,int numberAfterDecimalpoint){stringstream ss;ss.setf(ios::fixed);if(numberAfterDecimalpoint>0){ss.setf(ios::showpoint);}ss.precision(numberAfterDecimalpoint);ss<<Num;return ss.str();}
+string cnvrtNumToStrng(float Num,int numberAfterDecimalpoint)
+	{stringstream ss;
+	double testVal=log10(Num);
+	double tmpVal=BUFFER_SIZE;
+	tmpVal-=2;
+	tmpVal*=-1;
+	if(testVal>tmpVal)
+		{ss.setf(ios::fixed);
+		if(numberAfterDecimalpoint>0){ss.setf(ios::showpoint);}
+		ss.precision(numberAfterDecimalpoint);}
+	else
+		{ss.setf(ios::scientific);}
+	ss<<Num;
+	return ss.str();}
 
 string* cnvrtzInput2Str(zInput In,string delimiter,string zFldr)
 	{// Determine Number of Input Strings to Create
@@ -579,35 +746,15 @@ string* cnvrtzInput2Str(zInput In,string delimiter,string zFldr)
 zExeInput cnvrtStr2Input(string cmd,string delimiter,string& Fldr,string& calcNum,string& display)
 	{zExeInput Out;	
 	string tmp="";
-	int pos=cmd.find(delimiter,0);
-	// Solution Condition Calculation Number (1)
-	Out.id=cmd.substr(0,pos);
-	int oldPos=pos+1;
-	// PDB File Path (2)
-	oldPos=pos+1;
-	pos=cmd.find(delimiter,pos+1);
-	Out.file=cmd.substr(oldPos,pos-oldPos);
-	// Job Name/Output Tile (3)
-	oldPos=pos+1;
-	pos=cmd.find(delimiter,pos+1);
-	Out.outputTitle=cmd.substr(oldPos,pos-oldPos);
-	// pH Value (4)
-	oldPos=pos+1;
-	pos=cmd.find(delimiter,pos+1);
-	Out.pH=cmd.substr(oldPos,pos-oldPos);
-	// Temperature Value (5)
-	oldPos=pos+1;
-	pos=cmd.find(delimiter,pos+1);
-	tmp=cmd.substr(oldPos,pos-oldPos);
-	Out.temperature=strtod(tmp.c_str(),NULL);	
-	// Number of Solvents (6)
+	int pos,oldPos;
+	pos=cmd.find(delimiter,0); Out.id=cmd.substr(0,pos); oldPos=pos+1; oldPos=pos+1;									// Solution Condition Calculation Number (1)
+	pos=cmd.find(delimiter,pos+1); Out.file=cmd.substr(oldPos,pos-oldPos); oldPos=pos+1;									// PDB File Path (2)
+	pos=cmd.find(delimiter,pos+1); Out.outputTitle=cmd.substr(oldPos,pos-oldPos); oldPos=pos+1;							// Job Name/Output Tile (3)
+	pos=cmd.find(delimiter,pos+1); Out.pH=cmd.substr(oldPos,pos-oldPos); oldPos=pos+1;									// pH Value (4)
+	pos=cmd.find(delimiter,pos+1); tmp=cmd.substr(oldPos,pos-oldPos); Out.temperature=strtod(tmp.c_str(),NULL); oldPos=pos+1;	// Temperature Value (5)
+	pos=cmd.find(delimiter,pos+1); tmp=cmd.substr(oldPos,pos-oldPos); Out.numSolvent=atoi(tmp.c_str());						// Number of Solvents (6)
 	// Solvent Name String	(already delimited) (7)
 	// Solvent Concentration String (already delimited) (8)
-	// Solvent Concentration Type (9)
-	oldPos=pos+1;
-	pos=cmd.find(delimiter,pos+1);
-	tmp=cmd.substr(oldPos,pos-oldPos);
-	Out.numSolvent=atoi(tmp.c_str());
 	Out.solvent=new string[Out.numSolvent];
 	Out.solventConc=new double[Out.numSolvent];
 	// Extract Solvent(s) Name(s) (7)
@@ -621,17 +768,11 @@ zExeInput cnvrtStr2Input(string cmd,string delimiter,string& Fldr,string& calcNu
 		pos=cmd.find(delimiter,pos+1);
 		tmp=cmd.substr(oldPos,pos-oldPos);
 		Out.solventConc[i]=strtod(tmp.c_str(),NULL);}
-	// Solvent Concentration Type
 	oldPos=pos+1;
-	pos=cmd.find(delimiter,pos+1);
-	Out.solventConcType=cmd.substr(oldPos,pos-oldPos);
-	// Number of Solutes (10)
-	// Solute Name String	(already delimited) (10)
-	// Solute Concentration String (already delimited) (11)
-	oldPos=pos+1;
-	pos=cmd.find(delimiter,pos+1);
-	tmp=cmd.substr(oldPos,pos-oldPos);
-	Out.numSolute=atoi(tmp.c_str());
+	pos=cmd.find(delimiter,pos+1); Out.solventConcType=cmd.substr(oldPos,pos-oldPos); oldPos=pos+1;						// Solvent Concentration Type (9)	
+	pos=cmd.find(delimiter,pos+1); tmp=cmd.substr(oldPos,pos-oldPos); Out.numSolute=atoi(tmp.c_str());						// Number of Solutes (10)
+	// Solute Name String	(already delimited) (11)
+	// Solute Concentration String (already delimited) (12)
 	Out.solute=new string[Out.numSolute];
 	Out.soluteConc=new double[Out.numSolute];
 	// Extract Solute Name(s) (11)
@@ -645,167 +786,72 @@ zExeInput cnvrtStr2Input(string cmd,string delimiter,string& Fldr,string& calcNu
 		pos=cmd.find(delimiter,pos+1);
 		tmp=cmd.substr(oldPos,pos-oldPos);
 		Out.soluteConc[i]=strtod(tmp.c_str(),NULL);}
-	// Protein Concentration (13)
 	oldPos=pos+1;
-	pos=cmd.find(delimiter,pos+1);
-	tmp=cmd.substr(oldPos,pos-oldPos);
-	Out.proteinConc=strtod(tmp.c_str(),NULL);
-	// Number of APBS Write Types (14)
-	oldPos=pos+1;
-	pos=cmd.find(delimiter,pos+1);
-	tmp=cmd.substr(oldPos,pos-oldPos);
-	Out.numApbsWriteTypes=atoi(tmp.c_str());
+	pos=cmd.find(delimiter,pos+1); tmp=cmd.substr(oldPos,pos-oldPos); Out.proteinConc=strtod(tmp.c_str(),NULL); oldPos=pos+1;	// Protein Concentration (13)
+	pos=cmd.find(delimiter,pos+1); tmp=cmd.substr(oldPos,pos-oldPos); Out.numApbsWriteTypes=atoi(tmp.c_str());				// Number of APBS Write Types (14)
 	// APBS Write Types (15)
 	Out.apbsWriteTypes=new string[Out.numApbsWriteTypes];
 	for(int i=0;i<Out.numApbsWriteTypes;i++)
 		{oldPos=pos+1;
 		pos=cmd.find(delimiter,pos+1);
 		Out.apbsWriteTypes[i]=cmd.substr(oldPos,pos-oldPos);}
-	// APBS EXECUTABLE (16)
-	oldPos=pos+1;
-	pos=cmd.find(delimiter,pos+1);
-	Out.SC.apbsExecutable=cmd.substr(oldPos,pos-oldPos);
-	// MULTIVALUE Executable (17)
-	oldPos=pos+1;
-	pos=cmd.find(delimiter,pos+1);
-	Out.SC.multivalueExecutable=cmd.substr(oldPos,pos-oldPos);
-	// HYDROPRO Executable (18)
-	oldPos=pos+1;
-	pos=cmd.find(delimiter,pos+1);
-	Out.SC.hydroproExecutable=cmd.substr(oldPos,pos-oldPos);
-	// MSMS Executable (19)
-	oldPos=pos+1;
-	pos=cmd.find(delimiter,pos+1);
-	Out.SC.msmsExecutable=cmd.substr(oldPos,pos-oldPos);
-	// MSMS AtmTypeNumbers File (20)
-	oldPos=pos+1;
-	pos=cmd.find(delimiter,pos+1);
-	Out.SC.msmsAtmTypeNumbers=cmd.substr(oldPos,pos-oldPos);
-	// MSMS pdb_to_xyzr File (21)
-	oldPos=pos+1;
-	pos=cmd.find(delimiter,pos+1);
-	Out.SC.msmsPdbToXyzr=cmd.substr(oldPos,pos-oldPos);
-	// MSMS pdb_to_xyzrn File (22)
-	oldPos=pos+1;
-	pos=cmd.find(delimiter,pos+1);
-	Out.SC.msmsPdbToXyzrn=cmd.substr(oldPos,pos-oldPos);
-	// PDB2PQR main.py File (23)
-	oldPos=pos+1;
-	pos=cmd.find(delimiter,pos+1);
-	Out.SC.pdb2pqr=cmd.substr(oldPos,pos-oldPos);
-	// MSMS Parameter: Low Surface Density (24)
-	oldPos=pos+1;
-	pos=cmd.find(delimiter,pos+1);
-	Out.msms.surfPointDensity=cmd.substr(oldPos,pos-oldPos);
-	// MSMS Parameter: High Surface Density (25)
-	oldPos=pos+1;
-	pos=cmd.find(delimiter,pos+1);
-	Out.msms.surfPointHiDensity=cmd.substr(oldPos,pos-oldPos);
-	// HYDROPRO Parameter: Calculation Type (26)
-	oldPos=pos+1;
-	pos=cmd.find(delimiter,pos+1);
-	Out.hydroproCalcType=cmd.substr(oldPos,pos-oldPos);
-	// PDB2PQR Parameter: Force Field (27)
-	oldPos=pos+1;
-	pos=cmd.find(delimiter,pos+1);
-	Out.forceField=cmd.substr(oldPos,pos-oldPos);
-	// ZPRED Parameter: saveTemps Flag for Saving Calculation Files (28)
-	oldPos=pos+1;
-	pos=cmd.find(delimiter,pos+1);
-	tmp=cmd.substr(oldPos,pos-oldPos);
+	oldPos=pos+1;	
+	pos=cmd.find(delimiter,pos+1); Out.SC.apbsExecutable=cmd.substr(oldPos,pos-oldPos); oldPos=pos+1;						// APBS EXECUTABLE (16)
+	pos=cmd.find(delimiter,pos+1); Out.SC.multivalueExecutable=cmd.substr(oldPos,pos-oldPos); oldPos=pos+1;					// MULTIVALUE Executable (17)
+	pos=cmd.find(delimiter,pos+1); Out.SC.hydroproExecutable=cmd.substr(oldPos,pos-oldPos); oldPos=pos+1;					// HYDROPRO Executable (18)
+	pos=cmd.find(delimiter,pos+1); Out.SC.msmsExecutable=cmd.substr(oldPos,pos-oldPos); oldPos=pos+1;						// MSMS Executable (19)
+	pos=cmd.find(delimiter,pos+1); Out.SC.msmsAtmTypeNumbers=cmd.substr(oldPos,pos-oldPos); oldPos=pos+1;					// MSMS AtmTypeNumbers File (20)
+	pos=cmd.find(delimiter,pos+1); Out.SC.msmsPdbToXyzr=cmd.substr(oldPos,pos-oldPos); oldPos=pos+1;						// MSMS pdb_to_xyzr File (21)
+	pos=cmd.find(delimiter,pos+1); Out.SC.msmsPdbToXyzrn=cmd.substr(oldPos,pos-oldPos); oldPos=pos+1;						// MSMS pdb_to_xyzrn File (22)
+	pos=cmd.find(delimiter,pos+1); Out.SC.pdb2pqr=cmd.substr(oldPos,pos-oldPos); oldPos=pos+1;							// PDB2PQR main.py File (23)
+	pos=cmd.find(delimiter,pos+1); Out.msms.surfPointDensity=cmd.substr(oldPos,pos-oldPos); oldPos=pos+1;					// MSMS Parameter: Low Surface Density (24)
+	pos=cmd.find(delimiter,pos+1); Out.msms.surfPointHiDensity=cmd.substr(oldPos,pos-oldPos); oldPos=pos+1;					// MSMS Parameter: High Surface Density (25)
+	pos=cmd.find(delimiter,pos+1); Out.hydroproCalcType=cmd.substr(oldPos,pos-oldPos); oldPos=pos+1;						// HYDROPRO Parameter: Calculation Type (26)
+	pos=cmd.find(delimiter,pos+1); Out.forceField=cmd.substr(oldPos,pos-oldPos); oldPos=pos+1;							// PDB2PQR Parameter: Force Field (27)
+	pos=cmd.find(delimiter,pos+1); tmp=cmd.substr(oldPos,pos-oldPos);												// ZPRED Parameter: saveTemps Flag for Saving Calculation Files (28)
 	if(tmp.compare("FALSE")==0){Out.saveTemps=false;}
 	else{Out.saveTemps=true;}
-	// Protein Dielectric Constant (29)
 	oldPos=pos+1;
-	pos=cmd.find(delimiter,pos+1);
-	Out.pdie=cmd.substr(oldPos,pos-oldPos);
-	// APBS Parameter: X-Axis Grid Dimensions (30)
-	oldPos=pos+1;
-	pos=cmd.find(delimiter,pos+1);
-	Out.dime_x=cmd.substr(oldPos,pos-oldPos);
-	// APBS Parameter: Y-Axis Grid Dimensions (31)
-	oldPos=pos+1;
-	pos=cmd.find(delimiter,pos+1);
-	Out.dime_y=cmd.substr(oldPos,pos-oldPos);
-	// APBS Parameter: Z-Axis Grid Dimensions (32)
-	oldPos=pos+1;
-	pos=cmd.find(delimiter,pos+1);
-	Out.dime_z=cmd.substr(oldPos,pos-oldPos);
-	// ZPRED Parameter: APBS Control (33)
-	oldPos=pos+1;
-	pos=cmd.find(delimiter,pos+1);
-	tmp=cmd.substr(oldPos,pos-oldPos);
+	pos=cmd.find(delimiter,pos+1); Out.pdie=cmd.substr(oldPos,pos-oldPos); oldPos=pos+1;									// Protein Dielectric Constant (29)
+	pos=cmd.find(delimiter,pos+1); Out.dime_x=cmd.substr(oldPos,pos-oldPos); oldPos=pos+1;								// APBS Parameter: X-Axis Grid Dimensions (30)
+	pos=cmd.find(delimiter,pos+1); Out.dime_y=cmd.substr(oldPos,pos-oldPos); oldPos=pos+1;								// APBS Parameter: Y-Axis Grid Dimensions (31)
+	pos=cmd.find(delimiter,pos+1); Out.dime_z=cmd.substr(oldPos,pos-oldPos); oldPos=pos+1;								// APBS Parameter: Z-Axis Grid Dimensions (32)
+	pos=cmd.find(delimiter,pos+1); tmp=cmd.substr(oldPos,pos-oldPos);												// ZPRED Parameter: APBS Control (33)
 	if(tmp.compare("false")==0){Out.RUN_APBS=false;}
 	else{Out.RUN_APBS=true;}
-	// ZPRED Parameter: PDB2QPR Control (34)
 	oldPos=pos+1;
-	pos=cmd.find(delimiter,pos+1);
-	tmp=cmd.substr(oldPos,pos-oldPos);
+	pos=cmd.find(delimiter,pos+1); tmp=cmd.substr(oldPos,pos-oldPos);												// ZPRED Parameter: PDB2QPR Control (34)
 	if(tmp.compare("false")==0){Out.RUN_PDB2PQR=false;}
 	else{Out.RUN_PDB2PQR=true;}
-	// ZPRED Parameter: HYDROPRO Control (35)
 	oldPos=pos+1;
-	pos=cmd.find(delimiter,pos+1);
-	tmp=cmd.substr(oldPos,pos-oldPos);
+	pos=cmd.find(delimiter,pos+1); tmp=cmd.substr(oldPos,pos-oldPos);												// ZPRED Parameter: HYDROPRO Control (35)
 	if(tmp.compare("false")==0){Out.RUN_HYDROPRO=false;}
 	else{Out.RUN_HYDROPRO=true;}
-	// ZPRED Parameter: HULLRAD Control (36)
 	oldPos=pos+1;
-	pos=cmd.find(delimiter,pos+1);
-	tmp=cmd.substr(oldPos,pos-oldPos);
+	pos=cmd.find(delimiter,pos+1); tmp=cmd.substr(oldPos,pos-oldPos);												// ZPRED Parameter: HULLRAD Control (36)
 	if(tmp.compare("false")==0){Out.RUN_HULLRAD=false;}
 	else{Out.RUN_HULLRAD=true;}
-	// ZPRED Parameter: Final Output Control (37)
 	oldPos=pos+1;
-	pos=cmd.find(delimiter,pos+1);
-	tmp=cmd.substr(oldPos,pos-oldPos);
+	pos=cmd.find(delimiter,pos+1); tmp=cmd.substr(oldPos,pos-oldPos);												// ZPRED Parameter: Final Output Control (37)
 	if(tmp.compare("false")==0){Out.RUN_ZPRED=false;}
 	else{Out.RUN_ZPRED=true;}
-	// ZPRED Parameter: COLLIDE Control (38)
 	oldPos=pos+1;
-	pos=cmd.find(delimiter,pos+1);
-	tmp=cmd.substr(oldPos,pos-oldPos);
+	pos=cmd.find(delimiter,pos+1); tmp=cmd.substr(oldPos,pos-oldPos);												// ZPRED Parameter: COLLIDE Control (38)
 	if(tmp.compare("false")==0){Out.RUN_COLLIDE=false;}
 	else{Out.RUN_COLLIDE=true;}
-	// ZPRED Base Folder (39)
 	oldPos=pos+1;
-	pos=cmd.find(delimiter,pos+1);
-	Fldr=cmd.substr(oldPos,pos-oldPos);
-	// User-Specified Solution Density [kg/L] (40)
-	oldPos=pos+1;
-	pos=cmd.find(delimiter,pos+1);
-	tmp=cmd.substr(oldPos,pos-oldPos);
-	Out.density=strtod(tmp.c_str(),NULL);
-	// User-Specified Solution Relative Dielectric (41)
-	oldPos=pos+1;
-	pos=cmd.find(delimiter,pos+1);
-	tmp=cmd.substr(oldPos,pos-oldPos);
-	Out.dielectric=strtod(tmp.c_str(),NULL);
-	// User-Specified Solution Inflation Distance/Slip Plane Position [A] (42)
-	oldPos=pos+1;
-	pos=cmd.find(delimiter,pos+1);
-	tmp=cmd.substr(oldPos,pos-oldPos);
-	Out.inflationDistance=strtod(tmp.c_str(),NULL);
-	// User-Specified Solution Viscosity [Pa s] (43)
-	oldPos=pos+1;
-	pos=cmd.find(delimiter,pos+1);
-	tmp=cmd.substr(oldPos,pos-oldPos);
-	Out.viscosity=strtod(tmp.c_str(),NULL);
-	// Generate Electric Potential Profile? (44)
-	oldPos=pos+1;
-	pos=cmd.find(delimiter,pos+1);
-	tmp=cmd.substr(oldPos,pos-oldPos);
+	pos=cmd.find(delimiter,pos+1); Fldr=cmd.substr(oldPos,pos-oldPos); oldPos=pos+1;									// ZPRED Base Folder (39)
+	pos=cmd.find(delimiter,pos+1); tmp=cmd.substr(oldPos,pos-oldPos); Out.density=strtod(tmp.c_str(),NULL); oldPos=pos+1;		// User-Specified Solution Density [kg/L] (40)
+	pos=cmd.find(delimiter,pos+1); tmp=cmd.substr(oldPos,pos-oldPos); Out.dielectric=strtod(tmp.c_str(),NULL); oldPos=pos+1;	// User-Specified Solution Relative Dielectric (41)
+	pos=cmd.find(delimiter,pos+1); tmp=cmd.substr(oldPos,pos-oldPos); Out.inflationDistance=strtod(tmp.c_str(),NULL); oldPos=pos+1;// User-Specified Solution Inflation Distance/Slip Plane Position [A] (42)
+	pos=cmd.find(delimiter,pos+1); tmp=cmd.substr(oldPos,pos-oldPos); Out.viscosity=strtod(tmp.c_str(),NULL); oldPos=pos+1;		// User-Specified Solution Viscosity [Pa s] (43)
+	// Generate Electric Potential Profile? (44)	
+	pos=cmd.find(delimiter,pos+1); tmp=cmd.substr(oldPos,pos-oldPos);
 	if(tmp.compare("true")==0){Out.GENERATE_POT_PROFILE=true;}
 	else if(tmp.compare("false")==0){Out.GENERATE_POT_PROFILE=false;}
-	
-	// ZPRED Calculation Number (45)
-	oldPos=pos+1;
-	pos=cmd.find(delimiter,pos+1);
-	calcNum=cmd.substr(oldPos,pos-oldPos);
-	// Computation Progress Display String (46)
-	oldPos=pos+1;
-	pos=cmd.find(delimiter,pos+1);
-	display=cmd.substr(oldPos,pos-oldPos);
+	oldPos=pos+1;	
+	pos=cmd.find(delimiter,pos+1); calcNum=cmd.substr(oldPos,pos-oldPos); oldPos=pos+1;									// ZPRED Calculation Number (45)
+	pos=cmd.find(delimiter,pos+1); display=cmd.substr(oldPos,pos-oldPos);												// Computation Progress Display String (46)
 	return Out;}
 
 int count_delimiter(string Data,string delimiter)
@@ -1086,8 +1132,16 @@ string* fill_string_array(string Data,int numPnts,string delimiter)
 
 string formatNumberString(string Num)
 	{string Output,tmp,tmp2;
+	int i,pos;
+	/* Check if Scientific Notation */
+	pos=Num.find("e",0);
+	if(pos==string::npos)
+		{pos=Num.find("E",0);
+		if(pos!=string::npos){return Num;}
+		}
+	else if(pos!=string::npos){return Num;}
 	/* Check if contains decimal*/
-	int i,pos=Num.find(".",0);
+	pos=Num.find(".",0);
 	if(pos==string::npos)
 		{/* Number Value is an integer with no decimal*/
 		for(i=0;i<Num.length();i++)
@@ -1536,7 +1590,13 @@ zInput read_zpred_input_file(string inFile)
 	fIn.close();
 	return D;}
 
-string repeatString(string Input,int Num){string Output="";for(int i=0;i<Num;i++){Output+=Input;}return Output;}
+string repStr(string Input,int Num)
+	{return repeatString(Input,Num);}
+
+string repeatString(string Input,int Num)
+	{string Output="";
+	for(int i=0;i<Num;i++){Output+=Input;}
+	return Output;}
 
 void rewind_display(string display)
 	{// Determine Number of Rows
@@ -1598,7 +1658,7 @@ void* runZPRED(void* Ptr)
 		for(int i=0;i<currColOffset;i++)
 			{bld+=dispLn.substr(pos,dispLn.find("]",pos)-pos);
 			pos=dispLn.find("]",pos);
-			if(pos==string::npos){cerr<<"ERROR in runZPRED ["<<calcNum<<"]!\nDisplay Line could not be updated.\n"<<dispLn<<endl;exit(EXIT_FAILURE);}
+			if(pos==string::npos){cerr<<"ERROR in runZPRED ["<<calcNum<<"]!\nDisplay Line could not be updated.\n"<<dispLn<<endl; exit(EXIT_FAILURE);}
 			bld+=dispLn.substr(pos,2)+"COMPLETE";
 			pos=dispLn.find("|",pos);}
 		if(pos!=string::npos){bld+=dispLn.substr(pos,dispLn.length()-pos);}
@@ -1616,6 +1676,14 @@ void* runZPRED(void* Ptr)
 	string guiDisplayFile=Fldr+".gui_display.txt";
 	// Formatted Data Folders Folder (Also Holds ZPRED Configuration File)
 	string fFldr=Fldr+"Files/";
+	// COLLIDE Input File Containing List of ZPRED Output Files to Run
+	string collideFile=fFldr+"zpredOutFilesList.txt";
+	ofstream colIn;
+	if(calcNum.compare("1")==0)
+		{// At First Process Generate Empty File for Appending
+		colIn.open(collideFile.c_str(),ifstream::trunc);
+		if(colIn.fail()){cerr<<"ERROR in runZPRED!!!\nZPRED Output File List could not be opened.\n"<<collideFile<<endl; exit(EXIT_FAILURE);}
+		colIn.close();}
 	// Single ZPRED Computation Output Folder
 	string zpredFldr=fFldr+"Z/";
 	// Program Stdout/Stderr Log Folder
@@ -1634,7 +1702,8 @@ void* runZPRED(void* Ptr)
 	string surfFldr=fFldr+"S/";
 	string surfFldrContents[6]={"CGO/","colorCGO/","CSV/","fromMSMS/","SAS/","fromMV/"};
 	// Handle Special Operations Folders
-	string msmsFldr=fFldr+"msms/"; make_folder(msmsFldr);
+	string msmsFldr=fFldr+"msms/";
+	if(!directory_exist(msmsFldr)){make_folder(msmsFldr);}
 	// APBS Inputgen Python Script
 	string apbsInputgen=fFldr+"apbsInputgen.py"; //writeAPBSInputGen(apbsInputgen);
 	// APBS psize.py supports apbsInputgen.py
@@ -1657,7 +1726,8 @@ void* runZPRED(void* Ptr)
 		{pdbFile=tmp.substr(0,pos)+".pdb";
 		pos=tmp.rfind("/",tmp.length()-1);
 		PDB=tmp.substr(pos+1,tmp.find(".pqr",pos)-pos-1);
-		pdb_pqrFldr=pqrFldr+PDB+"/"; make_folder(pdb_pqrFldr);
+		pdb_pqrFldr=pqrFldr+PDB+"/";
+		if(!directory_exist(pdb_pqrFldr)){make_folder(pdb_pqrFldr);}
 		pqrFile=pdb_pqrFldr+"pH"+pHVal+"_"+calcNum+".pqr";
 		if(copyFile(tmp,pqrFile)){}
 		tmp2=Fldr.substr(0,Fldr.length()-2);
@@ -1667,7 +1737,8 @@ void* runZPRED(void* Ptr)
 	else
 		{pos=tmp.rfind("/",tmp.length()-1);
 		PDB=tmp.substr(pos+1,tmp.find(".pdb",pos)-pos-1);
-		pdb_pqrFldr=pqrFldr+PDB+"/"; make_folder(pdb_pqrFldr);
+		pdb_pqrFldr=pqrFldr+PDB+"/";
+		if(!directory_exist(pdb_pqrFldr)){make_folder(pdb_pqrFldr);}
 		// Define PDB File under Assessment
 		pdbFile=D.file;
 		}
@@ -1696,15 +1767,33 @@ void* runZPRED(void* Ptr)
 	//fldrExt="_"+buffer+"/";
 	// Create PDB Specific Fldrs (use PDB file name not PDB id)
 	// APBS Output Folder (dxFldr) Contents
-	string pdb_dxFldr=dxFldr+PDB+fldrExt; make_folder(pdb_dxFldr);
+	string pdb_dxFldr=dxFldr+PDB+fldrExt;
+	if(!directory_exist(pdb_dxFldr)){make_folder(pdb_dxFldr);}
 	string wtFldr="";
-	for(int d=0;d<D.numApbsWriteTypes;d++){wtFldr=pdb_dxFldr+D.apbsWriteTypes[d]+"/";make_folder(wtFldr);}
+	for(int d=0;d<D.numApbsWriteTypes;d++)
+		{wtFldr=pdb_dxFldr+D.apbsWriteTypes[d]+"/";
+		if(!directory_exist(wtFldr)){make_folder(wtFldr);}
+		}
 	// APBS Input File Folder
-	string pdb_inFldr=inFldr+PDB+fldrExt; make_folder(pdb_inFldr);
+	string pdb_inFldr=inFldr+PDB+fldrExt;
+	if(!directory_exist(pdb_inFldr)){make_folder(pdb_inFldr);}
 	// PROPKA Format Folder
-	string pdb_propkaFldr=propkaFldr+PDB+"/"; make_folder(pdb_propkaFldr);
+	string pdb_propkaFldr=propkaFldr+PDB+"/";
+	if(!directory_exist(pdb_propkaFldr)){make_folder(pdb_propkaFldr);}
 	// ZPRED Output Folder for Single Calculation
-	string pdb_zpredFldr=zpredFldr+PDB+fldrExt; make_folder(pdb_zpredFldr);
+	string pdb_zpredFldr=zpredFldr+PDB+fldrExt; 
+	if(!directory_exist(pdb_zpredFldr)){make_folder(pdb_zpredFldr);}
+
+	// Job Already Finished Check
+	string zpredOutFile=pdb_zpredFldr+"pH"+pHVal+"T"+formatNumberString(cnvrtNumToStrng(T,BUFFER_SIZE))+"PC"+cnvrtNumToStrng(D.proteinConc,ER_SIG_FIGS)+"_"+calcNum+".txt";
+	if(file_exist(zpredOutFile))
+		{// Add ZPRED Output File to List
+		colIn.open(collideFile.c_str(),ifstream::app);
+		if(colIn.fail()){cerr<<"ERROR in runZPRED!!!\nZPRED Output File List could not be updated.\n"<<collideFile<<endl; exit(EXIT_FAILURE);}
+		colIn<<zpredOutFile+"\n";
+		colIn.close();
+		return 0;}
+
 	// PDB Specific Log Folder
 	string pdb_logFldr=logFldr+PDB+"/"; make_folder(pdb_logFldr);
 	string logFile=pdb_logFldr+calcNum+".log"; //files2Delete+=logFile+delimiter;
@@ -1743,7 +1832,7 @@ void* runZPRED(void* Ptr)
 	// Copy PDB File into HYDROPRO Computation Folder
 	ifstream fIn;
 	bool ATTEMPTING=true;
-	int numTries=100000,Counter=0;
+	int numTries=MAX_FILE_OPEN_ATTEMPTS,Counter=0;
 	while(ATTEMPTING)
 		{fIn.open(pdbFile.c_str());
 		if(!fIn.fail()){break;ATTEMPTING=false;}
@@ -1791,15 +1880,7 @@ void* runZPRED(void* Ptr)
 	// APBS Input Command File
 	string apbsInputFile=pdb_inFldr+"pH"+pHVal+"_"+calcNum+"T"+formatNumberString(cnvrtNumToStrng(T,BUFFER_SIZE))+"SR";
 	// ZPRED Output File for Current Calculation (Not Total Calculation Output File!)
-	string zpredOutFile=pdb_zpredFldr+"pH"+pHVal+"T"+formatNumberString(cnvrtNumToStrng(T,BUFFER_SIZE));
-	// COLLIDE Input File Containing List of ZPRED Output Files to Run
-	string collideFile=fFldr+"zpredOutFilesList.txt";
-	ofstream colIn;
-	if(calcNum.compare("1")==0)
-		{// At First Process Generate Empty File for Appending
-		colIn.open(collideFile.c_str(),ifstream::trunc);
-		if(colIn.fail()){cerr<<"ERROR in runZPRED!!!\nZPRED Output File List could not be opened.\n"<<collideFile<<endl;exit(EXIT_FAILURE);}
-		colIn.close();}
+	zpredOutFile=pdb_zpredFldr+"pH"+pHVal+"T"+formatNumberString(cnvrtNumToStrng(T,BUFFER_SIZE));
 	
 	// Compute Solution Properties
 	Solution S(solvStr,solvConcStr,D.solventConcType,soluStr,soluConcStr,T,delimiter);
@@ -1964,6 +2045,7 @@ void* runZPRED(void* Ptr)
 	bool RUNNING;
 	//zpredOutFile+="SD"+cnvrtNumToStrng(er,ER_SIG_FIGS)+".txt";
 	zpredOutFile+="PC"+cnvrtNumToStrng(D.proteinConc,ER_SIG_FIGS)+"_"+calcNum+".txt";
+
 	// Add ZPRED Output File to List
 	colIn.open(collideFile.c_str(),ifstream::app);
 	if(colIn.fail()){cerr<<"ERROR in runZPRED!!!\nZPRED Output File List could not be updated.\n"<<collideFile<<endl;exit(EXIT_FAILURE);}
@@ -2082,6 +2164,8 @@ void* runZPRED(void* Ptr)
 		zpredSingleOutput+=".solCondNum: "+D.id+"\n";
 		zpredSingleOutput+="// Name of Protein Conformation\n";
 		zpredSingleOutput+=".proteinName: "+PDB+"\n";
+		zpredSingleOutput+="// Molecular Weight of Protein\n";
+		zpredSingleOutput+=".molecularWeight: "+formatNumberString(cnvrtNumToStrng(calcProteinMolecularWeight(pdbFile),BUFFER_SIZE))+"\n";
 		zpredSingleOutput+="// Anhydrous Protein Radius [A]\n";
 		zpredSingleOutput+=".proteinRadius: "+formatNumberString(cnvrtNumToStrng(proteinRadius,BUFFER_SIZE))+"\n";
 		zpredSingleOutput+="// Solvate (Hydrated) Protein Radius [A]\n";
@@ -2571,15 +2655,15 @@ double calc_Kuwabara_Correction_for_Sphere(double ka,double volFrac,double Zeta,
 	double *i1=fill_double_array(iList,numPnts,";");
 	double iArea=calcAreaUnderCurve(t1,i1,numPnts);
 	//cerr<<"I: "<<iArea<<"\n";
-	double trm1=1 + R*ka + ka2/16 - ka3*(5*Q/48 - R*y/4 + R*y3/12) - ka4/96;
-	double trm2=ka5*(Q/96 - R*y/48) + iArea*(ka4/8 - ka6/96);
+	double trm1=1 + R*ka + ka2/16.0 - ka3*(5*Q/48.0 - R*y/4.0 + R*y3/12.0) - ka4/96.0;
+	double trm2=ka5*(Q/96.0 - R*y/48.0) + iArea*(ka4/8.0 - ka6/96.0);
 	double trm3=-Zeta*(trm1+trm2);
 	//cerr<<"1st term: "<<trm3<<"\n";
-	trm1=1 + 3/ka2 + 3*Q/ka + ka*(R/y3 - R/10 + Q/10) - ka2/40;
-	trm2=ka3*(Q/120 - R*y3/30) - ka4/240 + ka5*(Q/240 - R*y/120) - iArea*ka6/240;
+	trm1=1 + 3/ka2 + 3*Q/ka + ka*(R/y3 - R/10.0 + Q/10.0) - ka2/40.0;
+	trm2=ka3*(Q/120.0 - R*y3/30.0) - ka4/240.0 + ka5*(Q/240.0 - R*y/120.0) - iArea*ka6/240.0;
 	double trm4=-Zeta*(trm1+trm2);
 	//cerr<<"2nd term: "<<trm4<<"\n";
-	double trm5=3*(1-y3)*Zeta/2;
+	double trm5=3*(1-y3)*Zeta/2.0;
 
 	Output=(-trm3+y3*trm4)/trm5;
 
@@ -3483,8 +3567,10 @@ void inFileEditer(string* writeTypes,int N,string pdie,strVec dim,string pqrFile
 void runMULTIVALUE(string exeFile,string csvFile,string potFile,string mvFile,string logFile)
 	{bool ATTEMPTING=true;
 	int statusCode,pN=0;
-	string potFldr=get_containing_folder(potFile);	
+	string potFldr=get_containing_folder(potFile),tmp,tmp2;	
 	string *potFiles=get_all_files_in_dir(potFldr,pN);
+	int *score=new int[pN],index,maxScore=0;
+	for(int i=0;i<pN;i++){score[i]=0;}
 	//cout<<"|"<<get_containing_folder(theHullRad)<<"|"<<get_file_name(theHullRad)<<"|"<<endl;
 	string pHVal,tVal,sRVal,pHVal2,tVal2,sRVal2;
 	determine_dx_file_name_components(get_file_name(potFile),pHVal,tVal,sRVal);
@@ -3495,11 +3581,22 @@ void runMULTIVALUE(string exeFile,string csvFile,string potFile,string mvFile,st
 	else
 		{for(int j=0;j<pN;j++)
 			{determine_dx_file_name_components(get_file_name(potFiles[j]),pHVal2,tVal2,sRVal2);
-			if(pHVal.compare(pHVal2)==0 && tVal.compare(tVal2)==0)
+			if(pHVal.compare(pHVal2)==0)
 				{// Rename
-				Res=syscall(SYS_rename,potFiles[j].c_str(),potFile.c_str());
+				if(tVal.compare(tVal2)==0){Res=syscall(SYS_rename,potFiles[j].c_str(),potFile.c_str());}
+				else
+					{if(tVal2.length()<tVal.length())
+						{for(int k=0;k<tVal2.length();k++)
+							{tmp=tVal[k];
+							tmp2=tVal2[k];
+							if(tmp.compare(tmp2)==0){score[j]++;}
+							}
+						}
+					}
 				}
 			}
+		for(int j=0;j<pN;j++){if(score[j]>=maxScore){index=j; maxScore=score[j];}}
+		Res=syscall(SYS_rename,potFiles[index].c_str(),potFile.c_str());
 		}	
 
 	string cmd=checkFilePathParantheses(exeFile)+" "+checkFilePathParantheses(csvFile)+" "+checkFilePathParantheses(potFile)+" "+checkFilePathParantheses(mvFile);
@@ -3592,6 +3689,7 @@ zOutput read_zpred_output_file(string zOutFile)
 	{// Define and Initialize Values
 	zOutput D;
 	D.proteinName="";
+	D.molecularWeight=-1;
 	D.proteinRadius=-1;
 	D.solvatedRadius=-1;
 	D.zetaPotential=NAN;
@@ -3651,6 +3749,9 @@ zOutput read_zpred_output_file(string zOutFile)
 					else if(inputName.compare("solCondNum")==0)
 						{// Name of Specific PDB File under Assessment
 						D.solCondNum=inputVal;}
+					else if(inputName.compare("molecularWeight")==0)
+						{// Molecular Weight
+						D.molecularWeight=strtod(inputVal.c_str(),NULL);}
 					else if(inputName.compare("solvatedRadius")==0)
 						{// Solvated Protein Radius (A)
 						D.solvatedRadius=strtod(inputVal.c_str(),NULL);}
