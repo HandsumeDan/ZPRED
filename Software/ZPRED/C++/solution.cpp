@@ -2206,7 +2206,7 @@ double Solution::getFunctionGroupInteractionParameter(string group,string group2
 	else if(group2.compare("*1CH(CH)4*1C[OH]")==0){return eV.a_phenol;}
 	else if(group2.compare("CH3C::O")==0){return eV.a_CH3CO;}
 	else if(group2.compare("C[::O]H")==0||group2.compare("CHO")==0){return eV.a_CHO;}
-	else if(group2.compare("C[::O]OH")==0group2.compare("COOH")==0){return eV.a_COOH;}
+	else if(group2.compare("C[::O]OH")==0||group2.compare("COOH")==0){return eV.a_COOH;}
 	else if(group2.compare("CH3C[::O]OH")==0){return eV.a_CH3COOH;}
 	else if(group2.compare("CH2O")==0){return eV.a_CH2O;}
 	else if(group2.compare("CHCl2")==0){return eV.a_CHCl2;}
