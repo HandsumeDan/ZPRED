@@ -57,6 +57,8 @@ using namespace boost::numeric::odeint;
 	# define MAX_PBE_ITERATIONS 1000
 	// Maximu Number of File Open Attempts
 	# define MAX_FILE_OPEN_ATTEMPTS 100000
+	// Generic Delimiter
+	# define GLOBAL_DELIMITER ";"
 
 	// Physical Constants
 	// Avogadro's Number (Particles per mole)

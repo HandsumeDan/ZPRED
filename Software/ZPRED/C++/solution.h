@@ -7,6 +7,10 @@ using namespace std;
 # ifndef solution_H
 # define solution_H
 
+	struct excessVolume
+	{double R;double Q;double a_CH3;double a_CH2;double a_CH;double a_benzene;double a_cyclohexane;double a_toluene;double a_OH;double a_CH3CHOHCH3;
+	double a_H2O;double a_phenol;double a_CH3CO;double a_CHO;double a_COOH;double a_CH3COOH;double a_CH2O;double a_CHCl2;double a_CCl3;double a_aniline;double a_CNH2;};
+
 	// Solution Properties Class
 	class Solution
 		{public:
@@ -25,8 +29,12 @@ using namespace std;
 			double calcSolutionDensity(double T);
 			double calcSolutionViscosity(double T);
 			double calcSolutionDielectric(double T);
+			excessVolume getFunctionGroupInformation(string group);
+			double getFunctionGroupInteractionParameter(string group,string group2);
 			string getIonData(string saltConc,string saltName,string delimiter);
+			int getSolventFunctionGroups(string theSolvent,string &theFunctionGroups);
 			string interpretSolute(string solute);
+			void initializeFunctionGroupInformation();
 			double calcDebyeLength(double T);
 			//void generateLEaPFile(string Molecule,string outFile);
 			// Ion Data: valence,molarConc,angstromRadius,
@@ -56,6 +64,9 @@ using namespace std;
 			double* ionRad;
 			// Structural Formula(e) of Solvent(s) under Assessment
 			string* solvents;
+			// Function Groups Composing the Molecule
+			string **solventFunctionGroup;		// [numSolvents][numFunctionGroup[numSolvents]]
+			int *numFunctionGroup;
 			// Mole Fractions of Solvent(s)
 			double* solventsConc;
 			// Molecular Weight of Solvent(s) [g/mol]
@@ -94,13 +105,43 @@ using namespace std;
 			string modeledIonsRadius[numIons]={"0.99","0.46","2.44","2.44","1.48","0.33","1.91","1.95","1.49","1.54","1.00","0.88","2.18","2.28","1.76","2.16","2.18","1.71","2.28","1.91","0.68","0.68","1.78","1.28","0.54","0.54","2.56","2.98","1.71","0.98","0.98","2.32","2.32","1.45","0.69","0.61","0.25","1.00","0.73","1.60","1.22","2.49","1.37","0.66","0.67","0.77","0.77","2.29","0.93","1.18","0.64","0.64","2.03","1.92","1.42","1.33","1.56","2.17","2.28","2.38","2.30","2.23","2.22","2.22","1.50","0.61","2.53","1.20","1.20","2.39","2.39","2.44","1.22","1.11","0.81","0.81","0.93","0.67","3.47"};
 			// Ion Charge Valence
 			string modeledIonsCharge[numIons]={"1","3","-3","-1","2","2","-3","-1","-1","-1","2","2","-1","1","-1","-1","-1","-1","-1","-1","2","3","-2","-1","2","3","-2","-2","1","1","2","-2","-1","-1","2","3","1","2","3","-1","-1","-1","1","1","2","2","3","-1","1","1","2","4","-1","-1","-2","-1","-1","-1","-1","-1","-2","-3","-2","-3","1","3","-2","2","4","-2","-2","-2","2","4","1","3","3","2","-3"};
+
+			// Functional Groups Modeled
+			static const int numFunctionalGroups=19;
+			string functionGroups[numFunctionalGroups]={"CH3","CH2","CH","*1CH(CH)4*1CH","*1CH2(CH2)4*1CH2","*1CH(CH)4*1C[CH3]","OH","CH3C[OH]HCH3","H2O","*1CH(CH)4*1C[OH]","CH3C::O","C[::O]H","C[::O]OH",\
+												"CH3C[::O]OH","CH2O","CHCl2","CCl3","*1CH(CH)4*1C[NH2]","CNH2"};
+			excessVolume CH3;
+			excessVolume CH2;
+			excessVolume CH;
+			excessVolume benzene;
+			excessVolume cyclohexane;
+			excessVolume toluene;
+			excessVolume OH;
+			excessVolume CH3CHOHCH3;
+			excessVolume H2O;
+			excessVolume phenol;
+			excessVolume CH3CO;
+			excessVolume CHO;
+			excessVolume COOH;
+			excessVolume CH3COOH;
+			excessVolume CH2O;
+			excessVolume CHCl2;
+			excessVolume CCl3;
+			excessVolume aniline;
+			excessVolume CNH2;
 		private:
 			int countDelimiter(string Data,string delimiter);
+			int* fillIntArray(string Data,int numPnts,string delimiter);
 			double* fillDoubleArray(string Data,int numPnts,string delimiter);
 			string* fillStringArray(string Data,int numPnts,string delimiter);
 			static const int numModeledSolvents=39;
 			// List of Modeled Solvents Structures
-			string modeledSolvents[numModeledSolvents]={"CH3C::[O]OH","CH3C[CH3]::O","CH3C:::N","CH3(CH2)3OH","CH3(CH2)3C[::O]CH3","*1CHCHC[Cl]CHCH*1CH","CHCl3","*1CH2(CH2)4*1CH2","CH3(CH2)3O(CH2)3CH3","C[Cl]H2C[Cl]H2","ClC[Cl]H2","CH3OCH2CH2OCH3","CH3C[::O]N[CH3]CH3","CH3N[CH3]C[::O]H","*1CH2OCH2CH2O*1CH2","CH3S[::O]CH3","CH3CH2OH","CH3C[::O]OCH2CH3","CH3CH2OCH2CH3","HOCH2CH2OH","CH3(CH2)3C[CH2CH3]HCH2OH","NH2C[::O]H","HOCH2C[OH]HCH2OH","CH3(CH2)4CH3","CH3C[CH3]HCH2OH","CH3OH","CH3O(CH2)2OH","CH3CH2C[::O]CH3","CH3C[CH3]HC[::O]CH3","CH3N[::O]O","CH3C[OH]HCH2OH","CH3(CH2)2OH","CH3C[OH]HCH3","*1CH2(CH2)3*1O","*1CH(CH)2C[CH2(CH2)2*2CH2]*2C*1CH","CH3C[CH3]HCH2C[::O]CH3","*1CH(CH)4*1C[CH3]","ClC[Cl]::C[Cl]H","H2O"};
+			string modeledSolvents[numModeledSolvents]={"CH3C::[O]OH","CH3C[CH3]::O","CH3C:::N","CH3(CH2)3OH",\
+												"CH3(CH2)3C[::O]CH3","*1CHCHC[Cl]CHCH*1CH","CHCl3","*1CH2(CH2)4*1CH2","CH3(CH2)3O(CH2)3CH3","C[Cl]H2C[Cl]H2","ClC[Cl]H2","CH3OCH2CH2OCH3",\
+												"CH3C[::O]N[CH3]CH3","CH3N[CH3]C[::O]H","*1CH2OCH2CH2O*1CH2","CH3S[::O]CH3","CH3CH2OH","CH3C[::O]OCH2CH3","CH3CH2OCH2CH3",\
+												"HOCH2CH2OH","CH3(CH2)3C[CH2CH3]HCH2OH","NH2C[::O]H","HOCH2C[OH]HCH2OH","CH3(CH2)4CH3","CH3C[CH3]HCH2OH","CH3OH","CH3O(CH2)2OH",\
+												"CH3CH2C[::O]CH3","CH3C[CH3]HC[::O]CH3","CH3N[::O]O","CH3C[OH]HCH2OH","CH3(CH2)2OH","CH3C[OH]HCH3","*1CH2(CH2)3*1O",\
+												"*1CH(CH)2C[CH2(CH2)2*2CH2]*2C*1CH","CH3C[CH3]HCH2C[::O]CH3","*1CH(CH)4*1C[CH3]","ClC[Cl]::C[Cl]H","H2O"};
 			// Structural Formula Interpretation:
 			// Paranthesis () should always be followed by a number indicating the number of repeats
 			// Square brackets [] indicate bonding with previous atom but not next atom, i.e. a branch
@@ -109,7 +150,11 @@ using namespace std;
 			// for cyclic and polycyclic compounds, connections are specified by *Num preceding atom
 			// Squiggly Brackets {} designates the oxidation state of the preceding atom
 			// (single bond is assumed so must indicate double bond as :: and triple bond as :::)
-			string modeledSolventsNames[numModeledSolvents]={"acetic acid","acetone","acetonitrile","butanol","butyl methyl ketone","chlorobenzene","chloroform","cyclohexane","dibutyl ether","1,2-dichloroethane","dichloromethane","1,2-dimethoxyethane","n,n-dimethylacetamide","n,n-dimethylformamide","1,4-dioxane","dimethyl sulfoxide","ethanol","ethyl acetate","diethyl ether","ethylene glycol","2-ethylhexanol","formamide","glycerol","hexane","isobutanol","methanol","2-methoxyethanol","methyl ethyl ketone","methyl isopropyl ketone","nitromethane","propylene glycol","propanol","isopropanol","tetrahydrofuran","tetralin","methyl isobutyl ketone","toluene","trichloroethene","water"};
+			string modeledSolventsNames[numModeledSolvents]={"acetic acid","acetone","acetonitrile","butanol","butyl methyl ketone","chlorobenzene","chloroform","cyclohexane","dibutyl ether",\
+													"1,2-dichloroethane","dichloromethane","1,2-dimethoxyethane","n,n-dimethylacetamide","n,n-dimethylformamide","1,4-dioxane",\
+													"dimethyl sulfoxide","ethanol","ethyl acetate","diethyl ether","ethylene glycol","2-ethylhexanol","formamide","glycerol",\
+													"hexane","isobutanol","methanol","2-methoxyethanol","methyl ethyl ketone","methyl isopropyl ketone","nitromethane",\
+													"propylene glycol","propanol","isopropanol","tetrahydrofuran","tetralin","methyl isobutyl ketone","toluene","trichloroethene","water"};
 		};
 
 # endif

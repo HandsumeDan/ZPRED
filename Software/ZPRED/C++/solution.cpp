@@ -6,6 +6,8 @@ Solution::Solution(string solvent,string solventConc,string solventConcType,stri
 	// Solute Concentration = mole/L
 	// Basic modeling principle: Calculate property of the pure (or mixed) solvent(s), then correct for presence of solutes
 
+	initializeFunctionGroupInformation();		// for parsing solvent
+
 	// Pure Solvent(s) Parameters
 	numSolvents=countDelimiter(solvent,delimiter);
 	solvents=new string[numSolvents];
@@ -28,6 +30,19 @@ Solution::Solution(string solvent,string solventConc,string solventConcType,stri
 		solventsConc=volFrac2MoleFrac(solventsConc,solventsMW,solventsDensity,numSolvents);}
 	else
 		{cerr<<"Error in Solution::Solution\nUnrecognized solvent concentration units ("<<solventConcType<<")\n";exit(EXIT_FAILURE);}
+	// Get Functional Groups Composing Solvent Molecule
+	solventFunctionGroup=new string*[numSolvents];
+	int tmpN;
+	string tmpStr,nLst="",fgLst="",*tmpArr;	
+	for(int i=0;i<numSolvents;i++)
+		{tmpN=getSolventFunctionGroups(solvents[i],tmpStr);
+		nLst+=cnvrtNumToStrng(tmpN,0)+delimiter;
+		fgLst+=tmpStr+"\\";
+		}
+	numFunctionGroup=fillIntArray(nLst,numSolvents,delimiter);
+	tmpArr=fillStringArray(fgLst,numSolvents,"\\");
+	for(int i=0;i<numSolvents;i++){solventFunctionGroup[i]=fillStringArray(tmpArr[i],numFunctionGroup[i],GLOBAL_DELIMITER);}
+	delete [] tmpArr;
 
 	// Solute Parameters
 	numSolutes=countDelimiter(solute,delimiter);
@@ -130,16 +145,250 @@ double Solution::calcSolutionDensity(double T)
 	double* p=new double[numSolvents];
 	// Compute Pure Solvent(s) Density [kg/L]
 	for(int i=0;i<numSolvents;i++){p[i]=calcPureSolventDensity(solvents[i],T);}
+	double *r=new double[numSolvents];
+	double *q=new double[numSolvents];
+	double *Q=new double[numSolvents];
+	double *o=new double[numSolvents];
+	double *RK=new double[numSolvents];
+	double *Ar=new double[numSolvents];
+	double *Ac=new double[numSolvents];
+	double *A=new double[numSolvents];
+	double *term=new double[numSolvents];
+	double *X;
+	double a,tmpDbl,value,total,Om,On,Pnm,Pkm,Pmk,trm1=0,trm2=0,trm3=0,trm4=0,trm5=0,Rk,Rk1,Rk2,Ar1,Ar2,A1,A2,Ac1,Ac2;
+	int tmpInt,numTotalGroups,Counter,lastIndex=0;
+	string tmp,nVal,group,group2,grp,*totalGroups;
+	excessVolume eV,eV2;
+	double G=0,Pressure=101325.0*1e3,mixedDens;
 	// Define Pure Solvent(s) Mixture Density (Assuming ideal mixture) w/o solutes
-	double Sum=0;
-	for(int i=0;i<numSolvents;i++){Sum+=w[i]/p[i];}delete [] w;
-	double solventDensity=1/Sum;
+	double Sum=0,solventDensity;
+	if(numSolvents>=2)
+		{// Binary Mixture or Ternary Mixture
+		for(int i=0;i<numSolvents;i++)
+			{tmpDbl=0;
+			value=0;
+			for(int j=0;j<numFunctionGroup[i];j++)
+				{tmp=solventFunctionGroup[i][j];
+				nVal=tmp.substr(0,1);
+				tmpInt=atoi(nVal.c_str());
+				group=tmp.substr(1,tmp.length()-1);
+				//cout<<"|"<<tmpInt<<"|"<<tmp<<"|\n";
+				eV=getFunctionGroupInformation(group);
+				tmpDbl+=tmpInt*eV.R;
+				value+=tmpInt*eV.Q;
+				}
+			r[i]=tmpDbl;
+			q[i]=value;
+			}
+		//
+		total=0;
+		value=0;
+		numTotalGroups=0;
+		for(int i=0;i<numSolvents;i++)
+			{total+=r[i]*solventsConc[i];
+			value+=q[i]*solventsConc[i];
+			numTotalGroups+=numFunctionGroup[i];}
+		//
+		for(int i=0;i<numSolvents;i++)
+			{Q[i]=r[i]*solventsConc[i]/total;
+			o[i]=q[i]*solventsConc[i]/value;}
+		//
+		X=new double[numTotalGroups];
+		totalGroups=new string[numTotalGroups];
+		total=0;
+		Counter=0;
+		for(int i=0;i<numSolvents;i++)
+			{for(int j=0;j<numFunctionGroup[i];j++)
+				{tmp=solventFunctionGroup[i][j];
+				nVal=tmp.substr(0,1);
+				tmpInt=atoi(nVal.c_str());
+				total+=tmpInt*solventsConc[i];
+				group=tmp.substr(1,tmp.length()-1);
+				totalGroups[Counter]=group;
+				Counter++;
+				}
+			}
+		Counter=0;
+		for(int i=0;i<numSolvents;i++)
+			{for(int j=0;j<numFunctionGroup[i];j++)
+				{tmp=solventFunctionGroup[i][j];
+				nVal=tmp.substr(0,1);
+				tmpInt=atoi(nVal.c_str());
+				X[Counter]=tmpInt*solventsConc[i]/total;
+				Counter++;
+				}
+			}
+		//
+		Sum=0;
+		for(int k=0;k<numTotalGroups;k++)
+			{group=totalGroups[k];
+			eV=getFunctionGroupInformation(group);
+			Sum+=eV.Q*X[k];
+			}
+		//
+		for(int s=0;s<numSolvents;s++)
+			{//
+			term[s]=0;
+			if(s==0)
+				{for(int k=0;k<numTotalGroups;k++)
+					{trm2=0;
+					group=totalGroups[k];
+					for(int i=0;i<numFunctionGroup[0];i++)
+						{group2=totalGroups[i];
+						a=getFunctionGroupInteractionParameter(group,group2);
+						eV2=getFunctionGroupInformation(group2);
+						Om=eV2.Q*X[i]/Sum;
+						Pmk=exp(-a/temperature);
+						trm2+=Om*Pmk;
+						//
+						a=getFunctionGroupInteractionParameter(group2,group);
+						Pkm=exp(-a/temperature);
+						value=Om*Pkm;
+						total=0;
+						for(int j=0;j<numTotalGroups;j++)
+							{grp=totalGroups[j];
+							eV=getFunctionGroupInformation(grp);
+							On=eV.Q*X[j]/Sum;
+							a=getFunctionGroupInteractionParameter(group2,grp);
+							Pnm=exp(-a/temperature);
+							total+=On+Pnm;
+							}
+						trm3+=value/total;
+						}
+					trm2=log(trm2);
+					group=totalGroups[k];
+					eV=getFunctionGroupInformation(group);
+					Rk1=eV.Q*(1-trm2-trm3);
+					//trm4+=Rk1;
+					term[s]+=Rk1;
+					}
+				}
+			else
+				{lastIndex+=numFunctionGroup[s-1];
+				for(int k=0;k<numTotalGroups;k++)
+					{trm2=0;
+					group=totalGroups[k];
+					for(int i=lastIndex;i<lastIndex+numFunctionGroup[s];i++)
+						{group2=totalGroups[i];
+						a=getFunctionGroupInteractionParameter(group,group2);
+						eV2=getFunctionGroupInformation(group2);
+						Om=eV2.Q*X[i]/Sum;
+						Pmk=exp(-a/temperature);
+						trm2+=Om*Pmk;
+						//
+						a=getFunctionGroupInteractionParameter(group2,group);
+						Pkm=exp(-a/temperature);
+						value=Om*Pkm;
+						total=0;
+						for(int j=0;j<numTotalGroups;j++)
+							{grp=totalGroups[j];
+							eV=getFunctionGroupInformation(grp);
+							On=eV.Q*X[j]/Sum;
+							a=getFunctionGroupInteractionParameter(group2,grp);
+							Pnm=exp(-a/temperature);
+							total+=On+Pnm;
+							}
+						trm3+=value/total;
+						}
+					trm2=log(trm2);
+					group=totalGroups[k];
+					eV=getFunctionGroupInformation(group);
+					Rk2=eV.Q*(1-trm2-trm3);
+					//trm5+=Rk2;
+					term[s]+=Rk2;
+					}				
+				}			
+			}
+		//
+		for(int k=0;k<numTotalGroups;k++)
+			{trm2=0;
+			group=totalGroups[k];
+			for(int i=0;i<numTotalGroups;i++)
+				{group2=totalGroups[i];
+				a=getFunctionGroupInteractionParameter(group,group2);
+				Pmk=exp(-a/temperature);
+				eV2=getFunctionGroupInformation(group2);
+				Om=eV2.Q*X[i]/Sum;
+				trm2+=Om*Pmk;
+				//
+				a=getFunctionGroupInteractionParameter(group2,group);
+				Pkm=exp(-a/temperature);
+				value=Om*Pkm;
+				total=0;
+				for(int j=0;j<numTotalGroups;j++)
+					{grp=totalGroups[j];
+					eV=getFunctionGroupInformation(grp);
+					On=eV.Q*X[j]/Sum;
+					a=getFunctionGroupInteractionParameter(group2,grp);
+					Pnm=exp(-a/temperature);
+					total+=On+Pnm;
+					}
+				trm3+=value/total;
+				}
+			trm2=log(trm2);
+			group=totalGroups[k];
+			eV=getFunctionGroupInformation(group);
+			Rk=eV.Q*(1-trm2-trm3);
+			trm1+=Rk;
+			}
+		//
+		// Activity Coefficient R
+		for(int i=0;i<numSolvents;i++){Ar[i]=trm1-term[i];}
+		
+		// Activity Coefficient C
+		trm4=0;
+		for(int i=0;i<numSolvents;i++){trm4+=solventsConc[i]*(5*(r[i]-q[i])-(r[i]-1));}
+		for(int i=0;i<numSolvents;i++)
+			{trm1=log(Q[i]/solventsConc[i]);
+			trm2=5*q[i]*log(o[i]/Q[i]);
+			trm3=5*(r[i]-q[i])-(r[i]-1);
+			trm5=Q[i]*trm4/solventsConc[i];
+			//Ac[i]=trm1+trm2+trm3-trm5;
+			Ac[i]=1-(trm1+trm2+trm3-trm5);
+			}
+		// ACtivity Coefficient
+		for(int i=0;i<numSolvents;i++){A[i]=Ac[i]+Ar[i];}
+
+		//cout<<"Ethanol A: "<<A[0]<<"\n"<<Ac[0]<<"\n"<<Ar[0]<<"\n";
+		//cout<<"Water A: "<<A[1]<<"\n"<<Ac[1]<<"\n"<<Ar[1]<<"\n";
+		//G+=x_1*log(abs(A1));
+		//G+=x_2*log(abs(A2));
+		G=0;
+		for(int i=0;i<numSolvents;i++){G+=solventsConc[i]*log(Ac[i]);}
+		trm1=Rg;
+		G*=trm1;
+		G*=temperature;
+/*		cout<<"Gibb's Free Energy Loss ("<<T<<" K): "<<G<<" J/mol\n";
+		cout<<"Excess Volume: "<<G/Pressure<<" L/mol\n";
+		for(int i=0;i<numSolvents;i++)
+			{cout<<solvents[i]<<"\n";
+			cout<<"A: "<<A[i]<<"|"<<Ac[i]<<"|"<<Ar[i]<<"\n";
+			cout<<1000*p[i]<<" g/L\n";
+			cout<<solventsMW[i]<<" g/mol\n";
+			cout<<solventsConc[i]<<"\n";
+			cout<<"--------------------\n";}		
+*/
+		mixedDens=0;
+		for(int i=0;i<numSolvents;i++){mixedDens+=solventsConc[i]*solventsMW[i];}
+		trm1=0;
+		for(int i=0;i<numSolvents;i++){trm1+=solventsConc[i]*solventsMW[i]/(1000*p[i]);}
+		trm3=G/Pressure+trm1;
+		//trm3=trm1+trm2;
+		mixedDens/=trm3;
+		solventDensity=mixedDens/1000;		// convert to kg/L from g/L
+		//cout<<"Mixture Density: "<<mixedDens<<" g/L\n";
+		}
+	else
+		{for(int i=0;i<numSolvents;i++){Sum+=w[i]/p[i];}delete [] w;
+		solventDensity=1/Sum;
+		}
+	
 	// Convert from kg/L to kg/m^3
 	solventDensity*=1000;
 	double d0,d1,d2,d3,d4,vSolute,wTotal=0,wSolvent,MW,S;
 	double a1,a2,a3,b1,b2,b3,c1,c2,c3;
 	double *Coeff;
-	string tmp=solutes[0];
+	tmp=solutes[0];
 	if(numSolutes==1 && tmp.compare("KH2PO4")==0)
 		{// 2007. Temperature and Concentration Dependence of Density of Model Liquid Foods
 		// Convert Absolute Temperature to celsius
@@ -837,7 +1086,33 @@ double Solution::calcPureSolventDielectric(string solventName,double temperature
 
 int Solution::countDelimiter(string Data,string delimiter){int Counter=0;string tmp="";for(int i=0;i<Data.length();i++){tmp=Data[i];if(tmp.compare(delimiter)==0){Counter++;}}return Counter;}
 
-double* Solution::fillDoubleArray(string Data,int numPnts,string delimiter){double* Output=new double[numPnts];string bld="",tmp="";int Counter=0;for(int i=0;i<Data.length();i++){tmp=Data[i];if(tmp.compare(delimiter)==0 && Counter<numPnts){Output[Counter]=strtod(bld.c_str(),NULL);Counter++;bld="";}else{bld+=Data[i];}}return Output;}
+double* Solution::fillDoubleArray(string Data,int numPnts,string delimiter)
+	{double* Output=new double[numPnts];
+	string bld="",tmp="";
+	int Counter=0;
+	for(int i=0;i<Data.length();i++)
+		{tmp=Data[i];
+		if(tmp.compare(delimiter)==0 && Counter<numPnts)
+			{Output[Counter]=strtod(bld.c_str(),NULL);
+			Counter++;
+			bld="";}
+		else{bld+=Data[i];}
+		}
+	return Output;}
+
+int* Solution::fillIntArray(string Data,int numPnts,string delimiter)
+	{int* Output=new int[numPnts];
+	string bld="",tmp="";
+	int Counter=0;
+	for(int i=0;i<Data.length();i++)
+		{tmp=Data[i];
+		if(tmp.compare(delimiter)==0 && Counter<numPnts)
+			{Output[Counter]=atoi(bld.c_str());
+			Counter++;
+			bld="";}
+		else{bld+=Data[i];}
+		}
+	return Output;}
 
 string* Solution::fillStringArray(string Data,int numPnts,string delimiter){string* Output=new string[numPnts];string bld="",tmp="";int Counter=0;for(int i=0;i<Data.length();i++){tmp=Data[i];if(tmp.compare(delimiter)==0 && Counter<numPnts){Output[Counter]=bld;Counter++;bld="";}else{bld+=Data[i];}}return Output;}
 
@@ -909,7 +1184,7 @@ double* Solution::molarity2MassFrac(double* M,double* MW,int numComps,double sol
 double Solution::calcMoleculeMolecularWeight(string structure)
 	{double Output=0;
 	// Assess Moleculalur Structural Formula
-	string numAtomList="",atomList="",atomNm="",rpt="",branch="",delimiter=";",tmp;
+	string numAtomList="",atomList="",atomNm="",rpt="",branch="",delimiter=GLOBAL_DELIMITER,tmp;
 	char letter,second_letter;
 	bool PASS,SEARCHING;
 	string *Atom;
@@ -1530,6 +1805,46 @@ string Solution::interpretMoleculeName(string Molecule)
 		}
 	return Output;}
 
+void Solution::initializeFunctionGroupInformation()
+	{CH3.R=0.9011; CH3.Q=0.848; CH3.a_CH3=0; CH3.a_CH2=0; CH3.a_CH=0; CH3.a_benzene=-114.8; CH3.a_cyclohexane=-115.7; CH3.a_toluene=-115.7; CH3.a_OH=644.6; CH3.a_CH3CHOHCH3=310.7; CH3.a_H2O=1300; CH3.a_phenol=2255; CH3.a_CH3CO=472.6; CH3.a_CHO=158.1; CH3.a_COOH=139.4; CH3.a_CH3COOH=972.4; CH3.a_CH2O=662.1; CH3.a_CHCl2=-243.9; CH3.a_CCl3=7.5; CH3.a_aniline=902.2; CH3.a_CNH2=422.1;
+	//
+	CH2.R=0.6744; CH2.Q=0.54; CH2.a_CH3=0; CH2.a_CH2=0; CH2.a_CH=0; CH2.a_benzene=-114.8; CH2.a_cyclohexane=-115.7; CH2.a_toluene=-115.7; CH2.a_OH=644.6; CH2.a_CH3CHOHCH3=310.7; CH2.a_H2O=1300; CH2.a_phenol=2255; CH2.a_CH3CO=472.6; CH2.a_CHO=158.1; CH2.a_COOH=139.4; CH2.a_CH3COOH=972.4; CH2.a_CH2O=662.1; CH2.a_CHCl2=-243.9; CH2.a_CCl3=7.5; CH2.a_aniline=902.2; CH2.a_CNH2=422.1;
+	//
+	CH.R=0.4469; CH.Q=0.228; CH.a_CH3=0; CH.a_CH2=0; CH.a_CH=0; CH.a_benzene=-114.8; CH.a_cyclohexane=-115.7; CH.a_toluene=-115.7; CH.a_OH=644.6; CH.a_CH3CHOHCH3=310.7; CH.a_H2O=1300; CH.a_phenol=2255; CH.a_CH3CO=472.6; CH.a_CHO=158.1; CH.a_COOH=139.4; CH.a_CH3COOH=972.4; CH.a_CH2O=662.1; CH.a_CHCl2=-243.9; CH.a_CCl3=7.5; CH.a_aniline=902.2; CH.a_CNH2=422.1;
+	//
+	benzene.R=0.5313; benzene.Q=0.4; benzene.a_CH3=156.5; benzene.a_CH2=156.5; benzene.a_CH=156.5; benzene.a_benzene=0; benzene.a_cyclohexane=167; benzene.a_toluene=167; benzene.a_OH=703.9; benzene.a_CH3CHOHCH3=577.3; benzene.a_H2O=859.4; benzene.a_phenol=1649; benzene.a_CH3CO=593.7; benzene.a_CHO=362.3; benzene.a_COOH=461.8; benzene.a_CH3COOH=6; benzene.a_CH2O=32.14; benzene.a_CHCl2=0; benzene.a_CCl3=-231.9; benzene.a_aniline=1.64; benzene.a_CNH2=179.7;
+	//
+	cyclohexane.R=1.0396; cyclohexane.Q=0.66; cyclohexane.a_CH3=104.4; cyclohexane.a_CH2=104.4; cyclohexane.a_CH=104.4; cyclohexane.a_benzene=-146.8; cyclohexane.a_cyclohexane=0; cyclohexane.a_toluene=0; cyclohexane.a_OH=4000; cyclohexane.a_CH3CHOHCH3=906.8; cyclohexane.a_H2O=5695; cyclohexane.a_phenol=292.6; cyclohexane.a_CH3CO=916.7; cyclohexane.a_CHO=1218; cyclohexane.a_COOH=339.1; cyclohexane.a_CH3COOH=5688; cyclohexane.a_CH2O=213.1; cyclohexane.a_CHCl2=0; cyclohexane.a_CCl3=-12.14; cyclohexane.a_aniline=689.6; cyclohexane.a_CNH2=0;
+	//
+	toluene.R=1.2663; toluene.Q=0.968; toluene.a_CH3=104.4; toluene.a_CH2=104.4; toluene.a_CH=104.4; toluene.a_benzene=-146.8; toluene.a_cyclohexane=0; toluene.a_toluene=0; toluene.a_OH=4000; toluene.a_CH3CHOHCH3=906.8; toluene.a_H2O=5695; toluene.a_phenol=292.6; toluene.a_CH3CO=916.7; toluene.a_CHO=1218; toluene.a_COOH=339.1; toluene.a_CH3COOH=5688; toluene.a_CH2O=213.1; toluene.a_CHCl2=0; toluene.a_CCl3=-12.14; toluene.a_aniline=689.6; toluene.a_CNH2=0;
+	//
+	OH.R=1; OH.Q=1.2; OH.a_CH3=328.2; OH.a_CH2=328.2; OH.a_CH=328.2; OH.a_benzene=-9.21; OH.a_cyclohexane=1.27; OH.a_toluene=1.27; OH.a_OH=0; OH.a_CH3CHOHCH3=991.3; OH.a_H2O=28.73; OH.a_phenol=-195.5; OH.a_CH3CO=67.07; OH.a_CHO=1409; OH.a_COOH=-104; OH.a_CH3COOH=195.6; OH.a_CH2O=262.5; OH.a_CHCl2=272.2; OH.a_CCl3=-61.57; OH.a_aniline=-348.2; OH.a_CNH2=-166.8;							
+	//
+	CH3CHOHCH3.R=3.2491; CH3CHOHCH3.Q=3.124; CH3CHOHCH3.a_CH3=-131.9; CH3CHOHCH3.a_CH2=-131.9; CH3CHOHCH3.a_CH=-131.9; CH3CHOHCH3.a_benzene=-252; CH3CHOHCH3.a_cyclohexane=-273.6; CH3CHOHCH3.a_toluene=-273.6; CH3CHOHCH3.a_OH=-268.8; CH3CHOHCH3.a_CH3CHOHCH3=0; CH3CHOHCH3.a_H2O=5.89; CH3CHOHCH3.a_phenol=-153.2; CH3CHOHCH3.a_CH3CO=353.8; CH3CHOHCH3.a_CHO=-338.6; CH3CHOHCH3.a_COOH=-57.98; CH3CHOHCH3.a_CH3COOH=487.1; CH3CHOHCH3.a_CH2O=1970; CH3CHOHCH3.a_CHCl2=507.8; CH3CHOHCH3.a_CCl3=1544; CH3CHOHCH3.a_aniline=0; CH3CHOHCH3.a_CNH2=0;
+	//
+	H2O.R=0.92; H2O.Q=1.4; H2O.a_CH3=342.4; H2O.a_CH2=342.4; H2O.a_CH=342.4; H2O.a_benzene=372.8; H2O.a_cyclohexane=203.7; H2O.a_toluene=203.7; H2O.a_OH=-122.4; H2O.a_CH3CHOHCH3=104.9; H2O.a_H2O=0; H2O.a_phenol=344.5; H2O.a_CH3CO=-171.8; H2O.a_CHO=-349.9; H2O.a_COOH=-465.7; H2O.a_CH3COOH=-6.32; H2O.a_CH2O=64.42; H2O.a_CHCl2=370.7; H2O.a_CCl3=356.8; H2O.a_aniline=-109.8; H2O.a_CNH2=385.3;
+	//
+	phenol.R=0.8952; phenol.Q=0.68; phenol.a_CH3=-159.8; phenol.a_CH2=-159.8; phenol.a_CH=-159.8; phenol.a_benzene=-473.2; phenol.a_cyclohexane=-470.4; phenol.a_toluene=-470.4; phenol.a_OH=-63.15; phenol.a_CH3CHOHCH3=-547.2; phenol.a_H2O=-595.9; phenol.a_phenol=0; phenol.a_CH3CO=-825.7; phenol.a_CHO=0; phenol.a_COOH=0; phenol.a_CH3COOH=-898.3; phenol.a_CH2O=0; phenol.a_CHCl2=0; phenol.a_CCl3=0; phenol.a_aniline=-851.6; phenol.a_CNH2=0;
+	//
+	CH3CO.R=1.6724; CH3CO.Q=1.488; CH3CO.a_CH3=66.56; CH3CO.a_CH2=66.56; CH3CO.a_CH=66.56; CH3CO.a_benzene=-78.31; CH3CO.a_cyclohexane=-73.87; CH3CO.a_toluene=-73.87; CH3CO.a_OH=216; CH3CO.a_CH3CHOHCH3=-127.6; CH3CO.a_H2O=634.8; CH3CO.a_phenol=-568; CH3CO.a_CH3CO=0; CH3CO.a_CHO=-37.36; CH3CO.a_COOH=1247; CH3CO.a_CH3COOH=258.7; CH3CO.a_CH2O=5.202; CH3CO.a_CHCl2=-301; CH3CO.a_CCl3=12.01; CH3CO.a_aniline=1010; CH3CO.a_CNH2=0;
+	//
+	CHO.R=0.998; CHO.Q=0.948; CHO.a_CH3=146.1; CHO.a_CH2=146.1; CHO.a_CH=146.1; CHO.a_benzene=-75.3; CHO.a_cyclohexane=223.2; CHO.a_toluene=223.2; CHO.a_OH=-431.3; CHO.a_CH3CHOHCH3=231.4; CHO.a_H2O=623.7; CHO.a_phenol=0; CHO.a_CH3CO=128; CHO.a_CHO=0; CHO.a_COOH=0.75; CHO.a_CH3COOH=-245.8; CHO.a_CH2O=0; CHO.a_CHCl2=0; CHO.a_CCl3=0; CHO.a_aniline=0; CHO.a_CNH2=0;
+	//
+	COOH.R=1.3013; COOH.Q=1.224; COOH.a_CH3=1744; COOH.a_CH2=1744; COOH.a_CH=1744; COOH.a_benzene=75.49; COOH.a_cyclohexane=147.3; COOH.a_toluene=147.3; COOH.a_OH=118.4; COOH.a_CH3CHOHCH3=349.1; COOH.a_H2O=652.3; COOH.a_phenol=0; COOH.a_CH3CO=-101.3; COOH.a_CHO=1051; COOH.a_COOH=0; COOH.a_CH3COOH=-117.6; COOH.a_CH2O=-96.62; COOH.a_CHCl2=1670; COOH.a_CCl3=48.15; COOH.a_aniline=942.2; COOH.a_CNH2=0;
+	//
+	CH3COOH.R=1.9031; CH3COOH.Q=1.728; CH3COOH.a_CH3=-320.1; CH3COOH.a_CH2=-320.1; CH3COOH.a_CH-320.1; CH3COOH.a_benzene=114.8; CH3COOH.a_cyclohexane=-170; CH3COOH.a_toluene=-170; CH3COOH.a_OH=180.6; CH3COOH.a_CH3CHOHCH3=-152.8; CH3COOH.a_H2O=385.9; CH3COOH.a_phenol=-337.3; CH3COOH.a_CH3CO=58.84; CH3COOH.a_CHO=1090; CH3COOH.a_COOH=1417; CH3COOH.a_CH3COOH=0; CH3COOH.a_CH2O=-235.7; CH3COOH.a_CHCl2=108.9; CH3COOH.a_CCl3=-209.7; CH3COOH.a_aniline=0; CH3COOH.a_CNH2=0;
+	//
+	CH2O.R=0.9183; CH2O.Q=0.78; CH2O.a_CH3=1571; CH2O.a_CH2=1571; CH2O.a_CH=1571; CH2O.a_benzene=52.13; CH2O.a_cyclohexane=65.69; CH2O.a_toluene=65.69; CH2O.a_OH=137.1; CH2O.a_CH3CHOHCH3=-218.1; CH2O.a_H2O=212.8; CH2O.a_phenol=0; CH2O.a_CH3CO=52.38; CH2O.a_CHO=0; CH2O.a_COOH=1402; CH2O.a_CH3COOH=461.3; CH2O.a_CH2O=0; CH2O.a_CHCl2=137.8; CH2O.a_CCl3=-154.3; CH2O.a_aniline=0; CH2O.a_CNH2=0;
+	//
+	CHCl2.R=2.0606; CHCl2.Q=1.684; CHCl2.a_CH3=27.9; CHCl2.a_CH2=27.9; CHCl2.a_CH=27.9; CHCl2.a_benzene=0; CHCl2.a_cyclohexane=0; CHCl2.a_toluene=0; CHCl2.a_OH=669.2; CHCl2.a_CH3CHOHCH3=-401.6; CHCl2.a_H2O=740.4; CHCl2.a_phenol=0; CHCl2.a_CH3CO=550.6; CHCl2.a_CHO=0; CHCl2.a_COOH=437.7; CHCl2.a_CH3COOH=-132.9; CHCl2.a_CH2O=-197.7; CHCl2.a_CHCl2=0; CHCl2.a_CCl3=0; CHCl2.a_aniline=0; CHCl2.a_CNH2=0;
+	//
+	CCl3.R=2.6401; CCl3.Q=2.184; CCl3.a_CH3=21.23; CCl3.a_CH2=21.23; CCl3.a_CH=21.23; CCl3.a_benzene=288.5; CCl3.a_cyclohexane=33.61; CCl3.a_toluene=33.61; CCl3.a_OH=418.4; CCl3.a_CH3CHOHCH3=-465.7; CCl3.a_H2O=793.2; CCl3.a_phenol=0; CCl3.a_CH3CO=-825.7; CCl3.a_CHO=0; CCl3.a_COOH=370.4; CCl3.a_CH3COOH=-898.3; CCl3.a_CH2O=-20.93; CCl3.a_CHCl2=0; CCl3.a_CCl3=0; CCl3.a_aniline=-75.5; CCl3.a_CNH2=0;
+	//
+	aniline.R=1.06; aniline.Q=0.816; aniline.a_CH3=175.8; aniline.a_CH2=175.8; aniline.a_CH=175.8; aniline.a_benzene=-218.9; aniline.a_cyclohexane=-15.41; aniline.a_toluene=-15.41; aniline.a_OH=529; aniline.a_CH3CHOHCH3=0; aniline.a_H2O=-239.8; aniline.a_phenol=-860.3; aniline.a_CH3CO=857.7; aniline.a_CHO=0; aniline.a_COOH=681.4; aniline.a_CH3COOH=0; aniline.a_CH2O=0; aniline.a_CHCl2=0; aniline.a_CCl3=-216.3; aniline.a_aniline=0; aniline.a_CNH2=0;
+	//
+	CNH2.R=1.3692; CNH2.Q=1.236; CNH2.a_CH3=-16.74; CNH2.a_CH2=-16.74; CNH2.a_CH=-16.74; CNH2.a_benzene=-38.64; CNH2.a_cyclohexane=0; CNH2.a_toluene=0; CNH2.a_OH=0; CNH2.a_CH3CHOHCH3=0; CNH2.a_H2O=-527.7; CNH2.a_phenol=0; CNH2.a_CH3CO=0; CNH2.a_CHO=0; CNH2.a_COOH=0; CNH2.a_CH3COOH=0; CNH2.a_CH2O=0; CNH2.a_CHCl2=0; CNH2.a_CCl3=0; CNH2.a_aniline=0; CNH2.a_CNH2=0;
+	}
+
 // Reference: Lange's Handbook of Chemistry (Table >=4.9)
 double Solution::getBondLength(string atomicBond)
 	{// Output Bond Length in Angstroms (1A=0.1nm)
@@ -1637,7 +1952,7 @@ double Solution::getBondLength(string atomicBond)
 	return Output;}
 
 string Solution::interpretSolute(string solute)
-	{string Output="",ionList="",chargeList="",radiusList="",delimiter=";";
+	{string Output="",ionList="",chargeList="",radiusList="",delimiter=GLOBAL_DELIMITER;
 	// Generate List of Possible Ion(s) contained in solute
 	int Counter=0,pos,multiplier,pos2;	
 	for(int i=0;i<numIons;i++)
@@ -1853,6 +2168,55 @@ string Solution::interpretSolute(string solute)
 		}
 	return Output;}
 
+excessVolume Solution::getFunctionGroupInformation(string group)
+	{if(group.compare("CH3")==0){return CH3;}
+	else if(group.compare("CH2")==0){return CH2;}
+	else if(group.compare("CH")==0){return CH;}
+	else if(group.compare("*1CH(CH)4*1CH")==0){return benzene;}
+	else if(group.compare("*1CH2(CH2)4*1CH2")==0){return cyclohexane;}
+	else if(group.compare("*1CH(CH)4*1C[CH3]")==0){return toluene;}
+	else if(group.compare("OH")==0){return OH;}
+	else if(group.compare("CH3C[OH]HCH3")==0){return CH3CHOHCH3;}
+	else if(group.compare("H2O")==0){return H2O;}
+	else if(group.compare("*1CH(CH)4*1C[OH]")==0){return phenol;}
+	else if(group.compare("CH3C::O")==0){return CH3CO;}
+	else if(group.compare("C[::O]H")==0){return CHO;}
+	else if(group.compare("C[::O]OH")==0){return COOH;}
+	else if(group.compare("CH3C[::O]OH")==0){return CH3COOH;}
+	else if(group.compare("CH2O")==0){return CH2O;}
+	else if(group.compare("CHCl2")==0){return CHCl2;}
+	else if(group.compare("CCl3")==0){return CCl3;}
+	else if(group.compare("*1CH(CH)4*1C[NH2]")==0){return aniline;}
+	else if(group.compare("CNH2")==0){return CNH2;}
+	else
+		{cerr<<"Error in Solution::getFunctionGroupInformation()!\nUnrecognized functional group ("<<group<<")\n"; exit(EXIT_FAILURE);}
+	}
+
+double Solution::getFunctionGroupInteractionParameter(string group,string group2)
+	{excessVolume eV=getFunctionGroupInformation(group);
+	if(group2.compare("CH3")==0){return eV.a_CH3;}
+	else if(group2.compare("CH2")==0){return eV.a_CH2;}
+	else if(group2.compare("CH")==0){return eV.a_CH;}
+	else if(group2.compare("*1CH(CH)4*1CH")==0){return eV.a_benzene;}
+	else if(group2.compare("*1CH2(CH2)4*1CH2")==0){return eV.a_cyclohexane;}
+	else if(group2.compare("*1CH(CH)4*1C[CH3]")==0){return eV.a_toluene;}
+	else if(group2.compare("OH")==0){return eV.a_OH;}
+	else if(group2.compare("CH3C[OH]HCH3")==0){return eV.a_CH3CHOHCH3;}
+	else if(group2.compare("H2O")==0){return eV.a_H2O;}
+	else if(group2.compare("*1CH(CH)4*1C[OH]")==0){return eV.a_phenol;}
+	else if(group2.compare("CH3C::O")==0){return eV.a_CH3CO;}
+	else if(group2.compare("C[::O]H")==0){return eV.a_CHO;}
+	else if(group2.compare("C[::O]OH")==0){return eV.a_COOH;}
+	else if(group2.compare("CH3C[::O]OH")==0){return eV.a_CH3COOH;}
+	else if(group2.compare("CH2O")==0){return eV.a_CH2O;}
+	else if(group2.compare("CHCl2")==0){return eV.a_CHCl2;}
+	else if(group2.compare("CCl3")==0){return eV.a_CCl3;}
+	else if(group2.compare("*1CH(CH)4*1C[NH2]")==0){return eV.a_aniline;}
+	else if(group2.compare("CNH2")==0){return eV.a_CNH2;}
+	else
+		{cerr<<"Error in Solution::getFunctionGroupInteractionParameter()!\nUnrecognized functional group ("<<group2<<") interacting with group ("<<group<<")\n"; exit(EXIT_FAILURE);}
+	}
+
 string Solution::getIonData(string soluteConc,string soluteName,string delimiter)
 	{int numSolutes=count_delimiter(soluteName,delimiter);
 	int ErrChck=count_delimiter(soluteConc,delimiter);
@@ -1896,6 +2260,190 @@ string Solution::getIonData(string soluteConc,string soluteName,string delimiter
 		Output+=ionString;}
 	//largestIon=cnvrtNumToStrng(ionSzCompare,DISTANCE_SIG_FIGS);	// Keep Ion Radius with 2 significant digits
 	return Output;}
+
+int Solution::getSolventFunctionGroups(string theSolvent,string &theFunctionGroups)
+	{string delimiter=GLOBAL_DELIMITER;
+	theFunctionGroups="";
+	theSolvent="|"+theSolvent+"|";
+	if(theSolvent.compare("|CH3C::[O]OH|")==0||theSolvent.compare("|acetic acid|")==0||theSolvent.compare("|acetic_acid|")==0)		// Acetic Acid
+		{theFunctionGroups+="1CH3"+delimiter;
+		theFunctionGroups+="1CH3C[::O]OH"+delimiter;
+		theFunctionGroups+="1C[::O]OH"+delimiter;
+		return 3;}
+	else if(theSolvent.compare("|CH3C[CH3]::O|")==0||theSolvent.compare("|acetone|")==0)	// Acetone
+		{theFunctionGroups+="2CH3"+delimiter;
+		theFunctionGroups+="1C[::O]H"+delimiter;
+		return 2;}
+	else if(theSolvent.compare("|CH3C:::N|")==0||theSolvent.compare("|acetonitrile|")==0)		// Acetonitrile
+		{theFunctionGroups+="1CH3"+delimiter;
+		theFunctionGroups+="1CNH2"+delimiter;
+		return 2;}
+	else if(theSolvent.compare("|CH3(CH2)3OH|")==0||theSolvent.compare("|butanol|")==0)	// Butanol
+		{theFunctionGroups+="1CH3"+delimiter;
+		theFunctionGroups+="3CH2"+delimiter;
+		theFunctionGroups+="1OH"+delimiter;
+		return 3;}
+	else if(theSolvent.compare("|CH3(CH2)3C[::O]CH3|")==0||theSolvent.compare("|butyl methyl ketone|")==0||theSolvent.compare("|butyl_methyl_ketone|")==0)	// Butyl Methyl Ketone
+		{theFunctionGroups+="2CH3"+delimiter;
+		theFunctionGroups+="3CH2"+delimiter;
+		theFunctionGroups+="1C[::O]H"+delimiter;
+		return 3;}
+	else if(theSolvent.compare("|*1CHCHC[Cl]CHCH*1CH|")==0||theSolvent.compare("|chlorobenzene|")==0)	// Chlorobenzene
+		{theFunctionGroups+="6CH"+delimiter;
+		theFunctionGroups+="1CHCl2"+delimiter;
+		return 2;}
+	else if(theSolvent.compare("|CHCl3|")==0||theSolvent.compare("|chloroform|")==0)			// Chloroform
+		{theFunctionGroups+="1CCl3"+delimiter;
+		return 1;}
+	else if(theSolvent.compare("|*1CH2(CH2)4*1CH2|")==0||theSolvent.compare("|cyclohexane|")==0)	// Cyclohexane
+		{theFunctionGroups+="6CH2"+delimiter;
+		return 1;}
+	else if(theSolvent.compare("|CH3(CH2)3O(CH2)3CH3|")==0||theSolvent.compare("|dibutyl ether|")==0||theSolvent.compare("|dibutyl_ether|")==0)	// Dibutyl Ether
+		{theFunctionGroups+="2CH3"+delimiter;
+		theFunctionGroups+="6CH2"+delimiter;
+		theFunctionGroups+="1CH2O"+delimiter;
+		return 3;}
+	else if(theSolvent.compare("|C[Cl]H2C[Cl]H2|")==0||theSolvent.compare("|1,2-dichloroethane|")==0)	// 1,2-dichloroethane
+		{theFunctionGroups+="2CHCl2"+delimiter;
+		theFunctionGroups+="1CH2"+delimiter;
+		return 2;}
+	else if(theSolvent.compare("|ClC[Cl]H2|")==0||theSolvent.compare("|dichloromethane|")==0)			// dichloromethane
+		{theFunctionGroups+="2CHCl2"+delimiter;
+		theFunctionGroups+="1CH2"+delimiter;
+		return 2;}
+	else if(theSolvent.compare("|CH3OCH2CH2OCH3|")==0||theSolvent.compare("|1,2-dimethoxyethane|")==0)			// 1,2-dimethoxyethane
+		{theFunctionGroups+="2CH3"+delimiter;
+		theFunctionGroups+="2CH2"+delimiter;
+		theFunctionGroups+="2CHO"+delimiter;
+		return 3;}
+	else if(theSolvent.compare("|CH3C[::O]N[CH3]CH3|")==0||theSolvent.compare("|n,n-dimethylacetamide|")==0)			// n,n-dimethylacetamide
+		{theFunctionGroups+="3CH3"+delimiter;
+		theFunctionGroups+="1CHO"+delimiter;
+		theFunctionGroups+="1CNH2"+delimiter;
+		return 3;}
+	else if(theSolvent.compare("|CH3N[CH3]C[::O]H|")==0||theSolvent.compare("|n,n-dimethylformamide|")==0)			// n,n-dimethylformamide
+		{theFunctionGroups+="2CH3"+delimiter;
+		theFunctionGroups+="1CHO"+delimiter;
+		theFunctionGroups+="1CNH2"+delimiter;
+		return 3;}
+	else if(theSolvent.compare("|*1CH2OCH2CH2O*1CH2|")==0||theSolvent.compare("|1,4-dioxane|")==0)			// 1,4-dioxane
+		{theFunctionGroups+="4CH2"+delimiter;
+		theFunctionGroups+="2CHO"+delimiter;
+		return 2;}
+	else if(theSolvent.compare("|CH3S[::O]CH3|")==0||theSolvent.compare("|dimethyl sulfoxide|")==0||theSolvent.compare("|dimethyl_sulfoxide|")==0)			// dimethyl sulfoxide
+		{theFunctionGroups+="2CH3"+delimiter;
+		theFunctionGroups+="1CHO"+delimiter;
+		return 2;}
+	else if(theSolvent.compare("|CH3CH2OH|")==0||theSolvent.compare("|ethanol|")==0)		// Ethanol
+		{theFunctionGroups+="1CH3"+delimiter;
+		theFunctionGroups+="1CH2"+delimiter;
+		theFunctionGroups+="1OH"+delimiter;
+		return 3;}
+	else if(theSolvent.compare("|CH3C[::O]OCH2CH3|")==0||theSolvent.compare("|ethyl acetate|")==0||theSolvent.compare("|ethyl_acetate|")==0)		// ethyl acetate
+		{theFunctionGroups+="2CH3"+delimiter;
+		theFunctionGroups+="1CH2"+delimiter;
+		theFunctionGroups+="1COOH"+delimiter;
+		return 3;}
+	else if(theSolvent.compare("|CH3CH2OCH2CH3|")==0||theSolvent.compare("|diethyl ether|")==0||theSolvent.compare("|diethyl_ether|")==0)		// diethyl ether
+		{theFunctionGroups+="2CH3"+delimiter;
+		theFunctionGroups+="2CH2"+delimiter;
+		theFunctionGroups+="1CHO"+delimiter;
+		return 3;}
+	else if(theSolvent.compare("|HOCH2CH2OH|")==0||theSolvent.compare("|ethylene glycol|")==0||theSolvent.compare("|ethylene_glycol|")==0)		// ethylene_glycol
+		{theFunctionGroups+="2CH2"+delimiter;
+		theFunctionGroups+="2OH"+delimiter;
+		return 2;}
+	else if(theSolvent.compare("|CH3(CH2)3C[CH2CH3]HCH2OH|")==0||theSolvent.compare("|2-ethylhexanol|")==0)		// 2-ethylhexanol
+		{theFunctionGroups+="2CH3"+delimiter;
+		theFunctionGroups+="5CH2"+delimiter;
+		theFunctionGroups+="1CH"+delimiter;
+		theFunctionGroups+="1OH"+delimiter;
+		return 4;}
+	else if(theSolvent.compare("|NH2C[::O]H|")==0||theSolvent.compare("|formamide|")==0)		// formamide
+		{theFunctionGroups+="1CNH2"+delimiter;
+		theFunctionGroups+="1CHO"+delimiter;
+		return 2;}
+	else if(theSolvent.compare("|HOCH2C[OH]HCH2OH|")==0||theSolvent.compare("|glycerol|")==0)		// glycerol
+		{theFunctionGroups+="3OH"+delimiter;
+		theFunctionGroups+="2CH2"+delimiter;
+		theFunctionGroups+="1CHO"+delimiter;
+		return 3;}
+	else if(theSolvent.compare("|CH3(CH2)4CH3|")==0||theSolvent.compare("|hexane|")==0)		// hexane
+		{theFunctionGroups+="2CH3"+delimiter;
+		theFunctionGroups+="4CH2"+delimiter;
+		return 2;}
+	else if(theSolvent.compare("|CH3C[CH3]HCH2OH|")==0||theSolvent.compare("|isobutanol|")==0)		// isobutanol
+		{theFunctionGroups+="2CH3"+delimiter;
+		theFunctionGroups+="1CH2"+delimiter;
+		theFunctionGroups+="1CH"+delimiter;
+		theFunctionGroups+="1OH"+delimiter;
+		return 4;}
+	else if(theSolvent.compare("|CH3OH|")==0||theSolvent.compare("|methanol|")==0)		// methanol
+		{theFunctionGroups+="1CH3"+delimiter;
+		theFunctionGroups+="1OH"+delimiter;
+		return 2;}
+	else if(theSolvent.compare("|CH3O(CH2)2OH|")==0||theSolvent.compare("|2-methoxyethanol|")==0)		// 2-methoxyethanol
+		{theFunctionGroups+="1CH3"+delimiter;
+		theFunctionGroups+="2CH2"+delimiter;
+		theFunctionGroups+="1CHO"+delimiter;
+		theFunctionGroups+="1OH"+delimiter;
+		return 4;}
+	else if(theSolvent.compare("|CH3CH2C[::O]CH3|")==0||theSolvent.compare("|methyl ethyl ketone|")==0||theSolvent.compare("|methyl_ethyl_ketone|")==0)		// methyl ethyl ketone
+		{theFunctionGroups+="2CH3"+delimiter;
+		theFunctionGroups+="1CH2"+delimiter;
+		theFunctionGroups+="1CHO"+delimiter;
+		return 3;}
+	else if(theSolvent.compare("|CH3C[CH3]HC[::O]CH3|")==0||theSolvent.compare("|methyl isopropyl ketone|")==0||theSolvent.compare("|methyl_isopropyl_ketone|")==0)		// methyl isopropyl ketone
+		{theFunctionGroups+="3CH3"+delimiter;
+		theFunctionGroups+="1CH"+delimiter;
+		theFunctionGroups+="1CHO"+delimiter;
+		return 3;}
+	else if(theSolvent.compare("|CH3N[::O]O|")==0||theSolvent.compare("|nitromethane|")==0)		// nitromethane
+		{theFunctionGroups+="1CH3"+delimiter;
+		theFunctionGroups+="1CNH2"+delimiter;
+		return 2;}
+	else if(theSolvent.compare("|CH3C[OH]HCH2OH|")==0||theSolvent.compare("|propylene glycol|")==0||theSolvent.compare("|propylene_glycol|")==0)		// propylene_glycol
+		{theFunctionGroups+="1CH3"+delimiter;
+		theFunctionGroups+="2OH"+delimiter;
+		theFunctionGroups+="1CH2"+delimiter;
+		theFunctionGroups+="1CH"+delimiter;
+		return 4;}
+	else if(theSolvent.compare("|CH3(CH2)2OH|")==0||theSolvent.compare("|propanol|")==0)		// propanol
+		{theFunctionGroups+="1CH3"+delimiter;
+		theFunctionGroups+="2CH2"+delimiter;
+		theFunctionGroups+="1OH"+delimiter;
+		return 3;}
+	else if(theSolvent.compare("|CH3C[OH]HCH3|")==0||theSolvent.compare("|isopropanol|")==0)		// isopropanol
+		{theFunctionGroups+="2CH3"+delimiter;
+		theFunctionGroups+="1CH"+delimiter;
+		theFunctionGroups+="1OH"+delimiter;
+		return 3;}
+	else if(theSolvent.compare("|*1CH2(CH2)3*1O|")==0||theSolvent.compare("|tetrahydrofuran|")==0)		// tetrahydrofuran
+		{theFunctionGroups+="3CH2"+delimiter;
+		theFunctionGroups+="1CHO"+delimiter;
+		return 2;}
+	else if(theSolvent.compare("|*1CH(CH)2C[CH2(CH2)2*2CH2]*2C*1CH|")==0||theSolvent.compare("|tetralin|")==0)		// tetralin
+		{theFunctionGroups+="6CH"+delimiter;
+		theFunctionGroups+="4CH2"+delimiter;
+		return 2;}
+	else if(theSolvent.compare("|CH3C[CH3]HCH2C[::O]CH3|")==0||theSolvent.compare("|methyl isobutyl ketone|")==0||theSolvent.compare("|methyl_isobutyl_ketone|")==0)		// methyl_isobutyl_ketone
+		{theFunctionGroups+="3CH3"+delimiter;
+		theFunctionGroups+="1CH"+delimiter;
+		theFunctionGroups+="1CH2"+delimiter;
+		theFunctionGroups+="1CHO"+delimiter;
+		return 4;}
+	else if(theSolvent.compare("|*1CH(CH)4*1C[CH3]|")==0||theSolvent.compare("|toluene|")==0)		// toluene
+		{theFunctionGroups+="1*1CH(CH)4*1C[CH3]"+delimiter;
+		return 1;}
+	else if(theSolvent.compare("|ClC[Cl]::C[Cl]H|")==0||theSolvent.compare("|trichloroethene|")==0)		// trichloroethene
+		{theFunctionGroups+="2CHCl2"+delimiter;
+		return 1;}
+	else if(theSolvent.compare("|H2O|")==0||theSolvent.compare("|water|")==0)			// Water
+		{theFunctionGroups+="1H2O"+delimiter;
+		return 1;}
+	else
+		{cerr<<"Error in Solution::getSolventFunctionGroups()!\n"<<theSolvent<<" is not recognized as so I am exiting...\n"; exit(EXIT_FAILURE);}
+	}
 
 double Solution::calcDebyeLength(double T)
 	{// Count Number of Entries
